@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(Photo, { foreignKey: "placeId" });
       this.hasMany(Feedback, { foreignKey: "placeId" });
+
       this.belongsTo(User, { foreignKey: "userId" });
     }
   }
@@ -40,5 +41,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Place",
     }
   );
+
   return Place;
 };

@@ -1,0 +1,45 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none;
+  background-size: 200% 200%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 1000;
+  gap: 20px;  
+  transition: backdrop-filter 0.2s ease;
+ 
+
+
+}
+
+.container.scrolled {
+  backdrop-filter: blur(40px)
+}
+
+.bar {
+  display: flex;
+  border: 2px solid #e9dbc1;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  gap: 10px;
+  backdrop-filter: blur(40px)
+  
+}
+
+.navButton {
+  background: #027147;
+  color: #e9dbc1;
+  border: none;
+  border-radius: 20px;
+  padding: 6px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
