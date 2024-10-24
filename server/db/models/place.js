@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Place extends Model {
     /**
@@ -22,20 +20,27 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(Photo, { foreignKey: "placeId" });
       this.hasMany(Feedback, { foreignKey: "placeId" });
+
+      this.belongsTo(User, { foreignKey: "userId" });
     }
   }
-  Place.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    width: DataTypes.STRING,
-    longitude: DataTypes.STRING,
-    status: {
-      type: DataTypes.ENUM,
-      values: ['active', 'inactive', 'archived']
+  Place.init(
+    {
+      title: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      width: DataTypes.STRING,
+      longitude: DataTypes.STRING,
+      status: {
+        type: DataTypes.ENUM,
+        values: ['approved', 'pending', 'rejected'],
+      },
+      userId: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Place",
     }
-  }, {
-    sequelize,
-    modelName: 'Place',
-  });
+  );
+
   return Place;
 };
