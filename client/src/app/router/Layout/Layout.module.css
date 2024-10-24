@@ -1,0 +1,20 @@
+/* .container {
+  padding-top: 100px;
+} */
+
+.content {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+
+.mainShift {
+  margin-left: 33.33vw;
+}
