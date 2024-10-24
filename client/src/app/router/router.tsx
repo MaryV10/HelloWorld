@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { ROUTES as AppRoutes } from './routes';
 import Layout from './Layout/Layout';
 import { HomePage } from '../../pages/HomePage/HomePage';
+import MapPage from '@/pages/MapPage/MapPage';
 
 
 
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: AppRoutes.FILMS,
         element: <HomePage />,
+      },
+      {
+        path: AppRoutes.MAP,
+        element: <MapPage />,
       },
       // {
       //   path: AppRoutes.TASKS,

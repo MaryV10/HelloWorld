@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
     <div className={styles.container}>
       <img style={{width: "150px"}} src={logo} alt="" />
 <div className={styles.bar}>
-<Link to={ROUTES.FILMS}>
+<Link to={ROUTES.MAP}>
       <button className={styles.navButton}>
   Карта
       </button>
