@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(Photo, { foreignKey: "placeId" });
       this.hasMany(Feedback, { foreignKey: "placeId" });
+      this.belongsTo(User, { foreignKey: "userId" });
     }
   }
   Place.init(
@@ -30,8 +31,9 @@ module.exports = (sequelize, DataTypes) => {
       longitude: DataTypes.STRING,
       status: {
         type: DataTypes.ENUM,
-        values: ["active", "inactive", "archived"],
+        values: ['approved', 'pending', 'rejected'],
       },
+      userId: DataTypes.INTEGER,
     },
     {
       sequelize,

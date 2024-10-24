@@ -47,10 +47,10 @@ class PlaceService {
       console.error(error);
     }
   }
-  //создание одного места на общей карте
-  static async createPlace({ title, description, userId }) {
+  // //создание одного места на общей карте
+  static async createPlace({ title, description, longitude, width, userId }) {
     try {
-      const newPlace = await Place.create({ title, description, userId, status: "pending" });
+      const newPlace = await Place.create({ title, description, longitude, width, userId, status: "pending" });
       const placeWithRelations = await Place.findOne({
         where: { id: newPlace.id },
         include: [

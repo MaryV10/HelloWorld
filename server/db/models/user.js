@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "userId",
       });
       this.hasMany(Feedback, { foreignKey: "userId" });
+      this.hasMany(Place, { foreignKey: "userId" });
     }
   }
   User.init(

@@ -1,17 +1,17 @@
 const PlaceService = require("../services/PlaceServices");
 
- // параметризированный запрос для OnePlacePage (только со статусом "approved")
+ // работает параметризированный запрос для OnePlacePage (только со статусом "approved")
 async function getOnePlaceController(req, res) {
-  const { placeId } = req.params;
+  const { id } = req.params;
 
   try {
-    const place = await PlaceService.getOnePlace(placeId);
+    const place = await PlaceService.getOnePlace(id);
     res.status(200).json({ place });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 }
-//вывести все места которые есть в базе со статусом "approved" (для общей карты)
+//работает вывести все места которые есть в базе со статусом "approved" (для общей карты)
 async function getAllApprovedPlacesController(req, res) {
   try {
     const places = await PlaceService.getAllApprovedPlaces();
@@ -20,6 +20,7 @@ async function getAllApprovedPlacesController(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
+//работает вывести все места которые есть в базе со статусом "pending" (для админки)
 async function getAllPendingPlacesController(req, res) {
   try {
     const places = await PlaceService.getAllPendingPlaces();
@@ -28,9 +29,9 @@ async function getAllPendingPlacesController(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
-  //создание одного места на общей карте
+  // работает создание одного места на общей карте
 async function createPlaceController(req, res) {
-  const { title, description } = req.body;
+  const { title, description, longitude, width } = req.body;
   const { user } = res.locals;
   try {
     if (title.trim() === "" || description.trim() === "") {
@@ -42,6 +43,8 @@ async function createPlaceController(req, res) {
         title,
         description,
         userId: user.id,
+        longitude, 
+        width
       });
       res.status(201).json({ place });
     }
@@ -49,7 +52,7 @@ async function createPlaceController(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
-  //одобрить заявку на добавление нового места
+  //работает одобрить заявку на добавление нового места
 async function approvePlaceController(req, res) {
   try {
     const place = await PlaceService.approvePlace();
@@ -58,6 +61,7 @@ async function approvePlaceController(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
+  // работает отклонить заявку на добавление нового места
 async function rejectPlaceController(req, res) {
   try {
     const place = await PlaceService.rejectPlace();
