@@ -2,9 +2,11 @@ import { createBrowserRouter } from 'react-router-dom';
 import { ROUTES as AppRoutes } from './routes';
 import Layout from './Layout/Layout';
 import { HomePage } from '../../pages/HomePage/HomePage';
+
+import { SignInPage } from '@/pages/SignInPage';
+import { SignUpPage } from '@/pages/SignUpPage';
+
 import MapPage from '@/pages/MapPage/MapPage';
-
-
 
 
 export const router = createBrowserRouter([
@@ -16,6 +18,7 @@ export const router = createBrowserRouter([
         path: AppRoutes.HOME,
         element: <HomePage />,
       },
+
       {
         path: AppRoutes.FILMS,
         element: <HomePage />,
@@ -24,28 +27,13 @@ export const router = createBrowserRouter([
         path: AppRoutes.MAP,
         element: <MapPage />,
       },
-      // {
-      //   path: AppRoutes.TASKS,
-      //   element: <HomePage />,
-      //   children: [
-      //     {
-      //       path: AppRoutes.TASK_DETAIL,
-      //       element: (
-      //         <ProtectedRoute>
-      //           <TaskDetailPage />
-      //         </ProtectedRoute>
-      //       ),
-      //     },
-          
-      //   ],
-      // },
       {
         path: AppRoutes.SIGNIN,
-        element: <HomePage />,
+        element: <SignInPage />,
       },
       {
         path: AppRoutes.SIGNUP,
-        element: <HomePage />,
+        element: <SignUpPage />,
       },
     ],
   },
