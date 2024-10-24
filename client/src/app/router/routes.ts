@@ -4,5 +4,6 @@ export enum ROUTES {
   SIGNUP = '/signup',
   TASKS = '/tasks',
   TASK_DETAIL = '/tasks/:taskId',
-  FILMS = '/films'
+  FILMS = '/films',
+  MAP = '/map'
 }
