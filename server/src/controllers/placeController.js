@@ -54,8 +54,10 @@ async function createPlaceController(req, res) {
 }
 //работает одобрить заявку на добавление нового места
 async function approvePlaceController(req, res) {
+  const { id } = req.params;
+  const { user } = res.locals;
   try {
-    const place = await PlaceService.approvePlace();
+    const place = await PlaceService.approvePlace(id, user.id);
     res.status(200).json({ place });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -63,8 +65,10 @@ async function approvePlaceController(req, res) {
 }
 // работает отклонить заявку на добавление нового места
 async function rejectPlaceController(req, res) {
+  const { id } = req.params;
+  const { user } = res.locals;
   try {
-    const place = await PlaceService.rejectPlace();
+    const place = await PlaceService.rejectPlace(id, user.id);
     res.status(200).json({ place });
   } catch (error) {
     res.status(500).json({ message: error.message });
