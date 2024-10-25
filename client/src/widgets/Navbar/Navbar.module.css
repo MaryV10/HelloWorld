@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900);
+
 .container {
   position: fixed;
   top: 0;
@@ -36,10 +38,16 @@
 
 .navButton {
   background: #027147;
-  color: #e9dbc1;
+  color: #ffffff;
   border: none;
   border-radius: 20px;
   padding: 6px;
   padding-left: 30px;
   padding-right: 30px;
+  font-size: Unbounded;
+  transition: transform 0.2s ease;
+}
+
+.navButton:hover {
+ transform: scale(1.1);
 }

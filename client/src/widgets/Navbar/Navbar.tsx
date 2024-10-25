@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
     const handleScroll = () => {
       const navbar = document.querySelector(`.${styles.container}`);
       if (navbar) {
-        navbar.classList.toggle(styles.scrolled, window.scrollY > 1);
+        navbar.classList.toggle(styles.scrolled, window.scrollY > 40);
       }
     };
 

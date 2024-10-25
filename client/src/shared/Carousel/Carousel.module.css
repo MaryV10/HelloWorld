@@ -1,0 +1,20 @@
+.container {
+    margin: 0;
+    height: 400px;
+    width: 100%;
+    color: white;
+    line-height: 270px;
+    text-align: center;
+    background: rgb(0, 0, 0);
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .roundedCarousel {
+    border-radius: 20px; 
+    overflow: hidden;
+    height: 270px;
+  }
+  
