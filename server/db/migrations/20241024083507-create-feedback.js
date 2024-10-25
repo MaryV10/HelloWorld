@@ -16,6 +16,8 @@ module.exports = {
           model: "Users",
           key: "id",
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       placeId: {
         allowNull: false,
@@ -24,6 +26,8 @@ module.exports = {
           model: "Places",
           key: "id",
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       score: {
         allowNull: false,
