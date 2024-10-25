@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "nodemon src/app.js --ext js"
+        "dev": "nodemon src/app.js --ext js",
+        "dbr": " npx sequelize db:drop  && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
+        
   },
   "author": "",
   "license": "ISC",

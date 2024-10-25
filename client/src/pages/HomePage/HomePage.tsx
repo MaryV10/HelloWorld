@@ -3,11 +3,18 @@ import background from "../../../public/0061.jpg";
 import styles from "./HomePage.module.css";
 
 import { CarouselComponent } from "@/shared/Carousel";
+import {isMobile} from 'react-device-detect';
+import { CarouselMainPage } from "@/shared/CarouselMainPage/CarouselMainPage";
 import Example from "@/shared/CarouselMain/CarouselMain";
 
 export const HomePage: React.FC = () => {
 
-
+  const renderContent = () => {
+    if (isMobile) {
+      return <div><CarouselMainPage /></div>;
+    }
+    return <div><Example /></div>;
+  };
  
   return (
     <>
@@ -36,10 +43,10 @@ export const HomePage: React.FC = () => {
       
    
       </div>
-  
       <div className={styles.exampleWrapper}>
-        <Example />
+        {renderContent()}
       </div>
+      
       <div className={styles.greenLine}>Enjoy the world with us!</div>
     </>
   );
