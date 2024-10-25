@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
+
 import { ROUTES } from '@/app/router/routes';
 import logo from "../../../public/logo.png"
 
@@ -21,6 +22,10 @@ export const Navbar: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+
+
+ 
 
   return (
     <div className={styles.container}>

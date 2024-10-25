@@ -2,7 +2,6 @@ import React from 'react';
 import { Carousel } from 'antd';
 import styles from "./Carousel.module.css";
 import image1 from "../../../public/landscape-hills-covered-grass-flowers-cloudy-sky-sunlight.jpg";
-import video1 from "../../../public/456973_United States Fish And Wildlife Service_USFWS_1920x1080 (3).mp4"
 import video2 from "../../../public/6026167_Person_People_3840x2160 (1).mp4"
 
 export const CarouselComponent: React.FC = () => {
