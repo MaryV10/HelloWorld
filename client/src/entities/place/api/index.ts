@@ -19,7 +19,7 @@ export class PlaceService {
     static async getAllApprovedPlaces(): Promise<PlaceList> {
       try {
        const {data} =  await axiosInstance.get(`/places`);
-       return data
+       return data.places
         
       } catch (error) {
         console.error('Error fetching all places:', error);
@@ -41,9 +41,11 @@ export class PlaceService {
    //создание одного места на общей карте
   static async createPlace(title: string, description: string, longitude: string, width: string): Promise<Place> {
     try {
+      console.log(title, description, longitude, width);
       const response = await axiosInstance.post('/places', {title, description, longitude, width},
       );
-      return response.data;
+      
+      return response.data.place;
     } catch (error) {
       console.error('Error creating place:', error);
       throw new Error('Failed to create place.');

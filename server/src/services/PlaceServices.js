@@ -50,6 +50,7 @@ class PlaceService {
   // //создание одного места на общей карте
   static async createPlace({ title, description, longitude, width, userId }) {
     try {
+      
       const newPlace = await Place.create({ title, description, longitude, width, userId, status: "pending" });
       const placeWithRelations = await Place.findOne({
         where: { id: newPlace.id },
@@ -59,7 +60,9 @@ class PlaceService {
           { model: Photo },
         ],
       });
+      
       return placeWithRelations;
+      
     } catch (error) {
       console.error(error);
     }

@@ -7,3 +7,9 @@
     height: 100%;
     width: 100%;
 }
+.textarea{
+    min-width: 200px;
+    max-width: 500px;
+    min-height: 200px;
+    max-height: 500px;
+}
