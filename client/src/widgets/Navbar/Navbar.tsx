@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
@@ -9,6 +10,7 @@ import Modal from "@/shared/ui/Modal/Modal";
 import { SignUpForm } from "@/features/auth/ui/SignUpForm";
 import { SignInForm } from "@/features/auth/ui/SignInForm";
 
+
 export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
@@ -19,7 +21,7 @@ export const Navbar: React.FC = () => {
     const handleScroll = () => {
       const navbar = document.querySelector(`.${styles.container}`);
       if (navbar) {
-        navbar.classList.toggle(styles.scrolled, window.scrollY > 1);
+        navbar.classList.toggle(styles.scrolled, window.scrollY > 40);
       }
     };
 
@@ -29,6 +31,7 @@ export const Navbar: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
 
   const handleLogout = () => {
     dispatch(logout());
@@ -41,13 +44,14 @@ export const Navbar: React.FC = () => {
     setActive1((prev) => !prev);
   };
 
- 
-// =======================================================
+
   return (
     <div className={styles.container}>
+
       <Link to={ROUTES.HOME}>
         <img style={{ width: "150px" }} src={logo} alt="" />
       </Link>
+
 
 
       <>
@@ -68,6 +72,7 @@ export const Navbar: React.FC = () => {
         </Modal>
       </>
 
+
       <div className={styles.bar}>
         <Link to={ROUTES.MAP}>
           <button className={styles.navButton}>Карта</button>
@@ -77,6 +82,7 @@ export const Navbar: React.FC = () => {
             Logout
           </button>
         ) : (
+
           <div>
 
              <button
@@ -101,6 +107,7 @@ export const Navbar: React.FC = () => {
         )}
       </div>
     </div>
+
   );
 };
 

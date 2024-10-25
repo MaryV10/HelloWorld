@@ -27,11 +27,18 @@ module.exports = {
       },
       status: {
         allowNull: false,
+        defaultValue: "pending",
         type: Sequelize.ENUM("approved", "pending", "rejected"),
       },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       createdAt: {
         allowNull: false,

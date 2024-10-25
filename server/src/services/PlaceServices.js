@@ -7,7 +7,7 @@ class PlaceService {
       const place = await Place.findOne({
         where: { id, status: "approved" },
         include: [
-          { model: Tag, as: "tags" },
+          {model: Tag, as: "tags", through: { attributes: [] }  },
           { model: Feedback },
           { model: Photo },
         ],
@@ -23,7 +23,7 @@ class PlaceService {
       return await Place.findAll({
         where: { status: "approved" },
         include: [
-          { model: Tag, as: "tags" },
+          { model: Tag, as: "tags", through: { attributes: [] } },
           { model: Feedback },
           { model: Photo },
         ],
@@ -36,9 +36,9 @@ class PlaceService {
   static async getAllPendingPlaces() {
     try {
       return await Place.findAll({
-        where: { status: "pending" },
+        
         include: [
-          { model: Tag, as: "tags" },
+          { model: Tag, as: "tags", through: { attributes: [] }  },
           { model: Feedback },
           { model: Photo },
         ],
@@ -54,7 +54,7 @@ class PlaceService {
       const placeWithRelations = await Place.findOne({
         where: { id: newPlace.id },
         include: [
-          { model: Tag, as: "tags" },
+          { model: Tag, as: "tags", through: { attributes: [] } },
           { model: Feedback },
           { model: Photo },
         ],
@@ -65,17 +65,17 @@ class PlaceService {
     }
   }
   //одобрить заявку на добавление нового места
-  static async approvePlace() {
+  static async approvePlace(id, userId) {
     try {
       const place = await Place.findOne({
-        where: { userId:1, status: "pending" },
+        where: { id, userId, status: "pending" },
         include: [
-          { model: Tag, as: "tags" },
+          { model: Tag, as: "tags", through: { attributes: [] }  },
           { model: Feedback },
           { model: Photo },
         ],
       });
-      if (place) {
+      if (place && userId===1) {
         place.status = "approved";
         await place.save();
         return place;
@@ -86,17 +86,17 @@ class PlaceService {
     }
   }
   //отклонить заявку на добавление нового места
-  static async rejectPlace() {
+  static async rejectPlace(id, userId) {
     try {
       const place = await Place.findOne({
-        where: { userId:1, status: "pending" },
+        where: { id, userId:1, status: "pending" },
         include: [
-          { model: Tag, as: "tags" },
+          { model: Tag, as: "tags", through: { attributes: [] }  },
           { model: Feedback },
           { model: Photo },
         ],
       });
-      if (place) {
+      if (place && userId===1) {
         place.status = "rejected";
         await place.save();
         return place;
@@ -104,6 +104,40 @@ class PlaceService {
       return null;
     } catch (error) {
       console.error(error);
+    }
+  }
+   //удалить место 
+  static async deletePlace(id, userId) {
+    try {
+      const place = await Place.findOne({ where: { id, userId} });
+      if (!place) {
+        return { isDeleted: false, message: "Place is not found" };
+      }
+      await place.destroy();
+      return { isDeleted: true, message: "Place is deleted" };
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // обновление
+  static async updatePlace(id, userId, data) {
+    try {
+      const place = await Place.findOne({
+        where: { id, userId },
+        include: [
+          { model: Tag, as: "tags", through: { attributes: [] }  },
+          { model: Feedback },
+          { model: Photo },
+        ],
+      });
+
+      if (!place) {
+        return { message: "Place is not found" };
+      }
+      return await place.update(data);
+    } catch (error) {
+      return error;
     }
   }
 }

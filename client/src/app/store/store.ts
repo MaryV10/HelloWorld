@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { userSlice } from '@/entities/user';
+import { placeSlice } from '@/entities/place';
 
 
 
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     
     user: userSlice,
+    place: placeSlice
 
   },
 });
