@@ -16,7 +16,7 @@ export const CarouselComponent: React.FC = () => {
       };
 
   return (
-    <div style={{width: "600px" , margin: "20px"}}>
+    <div className={styles.desctop}>
     <Carousel arrows autoplay className={styles.roundedCarousel} draggable  infinite>
       <div>
         <img style={contentStyle} className={styles.container} src={image1} alt="" />
