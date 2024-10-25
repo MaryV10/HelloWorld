@@ -1,7 +1,3 @@
-
-import React, { useEffect } from "react";
-
-
 import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -69,13 +65,13 @@ export const Navbar: React.FC = () => {
       </>
     ) : (
       <>
-        <Link to={ROUTES.SIGNIN}>
-          {" "}
-          <button className={styles.navButton}>Вход</button>
-        </Link>
-        <Link to={ROUTES.SIGNUP}>
-          <button className={styles.navButton}>Регистрация</button>
-        </Link>
+        
+          
+          <button onClick={onToggle1} className={styles.navButton}>Вход</button>
+       
+        
+          <button onClick={onToggle} className={styles.navButton}>Регистрация</button>
+        
       </>
     )}
   </div></div>;
@@ -113,40 +109,7 @@ export const Navbar: React.FC = () => {
       </>
 
 
-      <div className={styles.bar}>
-        <Link to={ROUTES.MAP}>
-          <button className={styles.navButton}>Карта</button>
-        </Link>
-        {user ? (
-          <button className={styles.navButton} onClick={handleLogout}>
-            Logout
-          </button>
-        ) : (
-
-          <div>
-
-             <button
-              type="button"
-              className={styles.navButton}
-              onClick={onToggle1}
-            >
-              Вход
-            </button>
-
-            <button
-              type="button"
-              className={styles.navButton}
-              onClick={onToggle}
-            >
-              Регистрация
-            </button>
-
-
-
-          </div>
-        )}
-      </div>
-
+      
     </div>
   );
 };
