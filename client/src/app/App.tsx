@@ -1,24 +1,19 @@
+import { RouterProvider } from "react-router-dom";
+import "./App.css";
+import { router } from "./router/router";
 
+import { Provider } from "react-redux";
+import store from "./store/store";
 
-import { RouterProvider } from 'react-router-dom';
-import './App.css'
-import { router } from './router/router';
-
-import { Provider } from 'react-redux';
-import store from './store/store';
-
-import { YMaps } from '@pbe/react-yandex-maps';
-
+import { YMaps } from "@pbe/react-yandex-maps";
 
 function App() {
   return (
-      
-               <YMaps>
+    <YMaps>
       <Provider store={store}>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </Provider>
-        </YMaps>
-
+    </YMaps>
   );
 }
 
