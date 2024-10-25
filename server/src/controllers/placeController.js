@@ -33,13 +33,16 @@ async function getAllPendingPlacesController(req, res) {
 async function createPlaceController(req, res) {
   const { title, description, longitude, width } = req.body;
   const { user } = res.locals;
+  
   try {
+    
     if (title.trim() === "" || description.trim() === "") {
       res.status(400).json({
         error: "Заполните данные",
       });
     } else {
-      const place = await PlaceService.createTwitter({
+      
+      const place = await PlaceService.createPlace({
         title,
         description,
         userId: user.id,
