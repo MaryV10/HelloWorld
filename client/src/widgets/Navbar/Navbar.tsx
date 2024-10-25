@@ -1,16 +1,15 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { ROUTES } from "@/app/router/routes";
 import logo from "../../../public/logo.png";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { logout } from "@/entities/user";
-import { Button } from "antd";
+
 
 export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
- 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,40 +32,32 @@ export const Navbar: React.FC = () => {
 
   return (
     <div className={styles.container}>
-
-      <img style={{ width: "150px" }} src={logo} alt="" />
+      <Link to={ROUTES.HOME}>
+        <img style={{ width: "150px" }} src={logo} alt="" />
+      </Link>
       <div className={styles.bar}>
-        <Link to={ROUTES.HOME}>
+        <Link to={ROUTES.MAP}>
           <button className={styles.navButton}>Карта</button>
         </Link>
+        {user ? (
+          <button className={styles.navButton} onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link to={ROUTES.SIGNIN}>
+              {" "}
+              <button className={styles.navButton}>Вход</button>
+            </Link>
 
-        {user && <Button onClick={handleLogout}>Logout</Button>}
-
-      <img style={{width: "150px"}} src={logo} alt="" />
-<div className={styles.bar}>
-<Link to={ROUTES.MAP}>
-      <button className={styles.navButton}>
-  Карта
-      </button>
-      </Link>
-
-
-        <>
-          <Link to={ROUTES.SIGNIN}>
-            <button className={styles.navButton}>Вход</button>
-          </Link>
-
-          <Link to={ROUTES.SIGNUP}>
-            <button className={styles.navButton} >
-              Регистрация
-            </button>
-          </Link>
-        </>
+            <Link to={ROUTES.SIGNUP}>
+              <button className={styles.navButton}>Регистрация</button>
+            </Link>
+          </>
+        )}
       </div>
-     
     </div>
   );
 };
 
 export default Navbar;
-
