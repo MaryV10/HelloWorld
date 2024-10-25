@@ -1,9 +1,142 @@
 .heroImage {
-    
     background-position: center;
     height: 100vh;
-    background-size: 100%;
+    width: 100%;
     margin: 0;
     padding: 0; 
+    object-fit: cover;
 }
 
+.mission {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 20px;
+    color: white;
+    gap: 10px;
+    background: #e9dbc1;
+    position: relative;
+}
+
+.mission p {
+    max-width: 80%;
+    margin: 0;
+    color: black;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    text-align: justify; 
+    margin-left: 15px;
+}
+
+.exampleWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.mission h1 {
+    max-width: 80%;
+    margin-left: 15px;
+}
+
+.carousel {
+    max-width: 35%;
+}
+
+.greenLine {
+    background: #037144;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.container {
+    width: 150px;
+    height: 150px;
+    background-image: url("https://framerusercontent.com/images/M4SNURkNYCDjIiopKdiL689jOQ.svg");
+    border-radius: 30px;
+}
+
+.carouselFadeIn {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+@media (max-width: 767px) {
+    .carouselFadeIn {
+        display: none;
+    }
+
+    .heroImage {
+      height: 50vh;
+    }
+  
+    .mission {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .mission p {
+      max-width: 100%;
+      margin-left: 0;
+    }
+  
+    .exampleWrapper {
+      width: 100px;
+      margin-left: -10vw;
+    }
+  
+    .carousel {
+      max-width: 100%;
+    }
+  
+    .greenLine {
+      font-size: 20px;
+      height: 60px;
+    }
+}
+  
+@media (min-width: 768px) and (max-width: 1024px) {
+    .carouselFadeIn {
+        display: none;
+    }
+
+    .heroImage {
+      height: 70vh;
+    }
+  
+    .mission {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .mission p {
+      max-width: 70%;
+    }
+  
+    .exampleWrapper {
+      width: 80%;
+    }
+  
+    .carousel {
+      max-width: 60%;
+    }
+  
+    .greenLine {
+      font-size: 24px;
+      height: 80px;
+    }
+}

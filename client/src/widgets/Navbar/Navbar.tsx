@@ -1,3 +1,6 @@
+
+
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
@@ -5,6 +8,7 @@ import { ROUTES } from "@/app/router/routes";
 import logo from "../../../public/logo.png";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { logout } from "@/entities/user";
+
 
 
 export const Navbar: React.FC = () => {
@@ -15,7 +19,7 @@ export const Navbar: React.FC = () => {
     const handleScroll = () => {
       const navbar = document.querySelector(`.${styles.container}`);
       if (navbar) {
-        navbar.classList.toggle(styles.scrolled, window.scrollY > 1);
+        navbar.classList.toggle(styles.scrolled, window.scrollY > 40);
       }
     };
 
@@ -26,9 +30,11 @@ export const Navbar: React.FC = () => {
     };
   }, []);
 
+
   const handleLogout = () => {
     dispatch(logout());
   };
+
 
   return (
     <div className={styles.container}>
