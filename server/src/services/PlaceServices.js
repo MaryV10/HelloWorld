@@ -106,6 +106,40 @@ class PlaceService {
       console.error(error);
     }
   }
+   //удалить место 
+  static async deletePlace(id, userId) {
+    try {
+      const place = await Place.findOne({ where: { id, userId} });
+      if (!place) {
+        return { isDeleted: false, message: "Place is not found" };
+      }
+      await place.destroy();
+      return { isDeleted: true, message: "Place is deleted" };
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // обновление
+  static async updatePlace(id, userId, data) {
+    try {
+      const place = await Place.findOne({
+        where: { id, userId },
+        include: [
+          { model: Tag, as: "tags" },
+          { model: Feedback },
+          { model: Photo },
+        ],
+      });
+
+      if (!place) {
+        return { message: "Place is not found" };
+      }
+      return await place.update(data);
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 module.exports = PlaceService;

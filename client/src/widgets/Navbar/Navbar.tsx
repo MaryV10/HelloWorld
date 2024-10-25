@@ -32,9 +32,11 @@ export const Navbar: React.FC = () => {
 
   return (
     <div className={styles.container}>
+
       <Link to={ROUTES.HOME}>
         <img style={{ width: "150px" }} src={logo} alt="" />
       </Link>
+
       <div className={styles.bar}>
         <Link to={ROUTES.MAP}>
           <button className={styles.navButton}>Карта</button>
@@ -49,15 +51,15 @@ export const Navbar: React.FC = () => {
               {" "}
               <button className={styles.navButton}>Вход</button>
             </Link>
-
             <Link to={ROUTES.SIGNUP}>
               <button className={styles.navButton}>Регистрация</button>
             </Link>
           </>
+
         )}
       </div>
     </div>
-    </div>
+
   );
 };
 

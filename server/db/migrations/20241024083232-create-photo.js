@@ -16,6 +16,8 @@ module.exports = {
           model: "Places",
           key: "id",
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       imageUrl: {
         allowNull: false,
