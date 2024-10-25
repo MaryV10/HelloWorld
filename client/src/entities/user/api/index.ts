@@ -10,6 +10,7 @@ export class UserService {
   }> {
     const response = await axiosInstance.get("/tokens/refresh");
     setAccessToken(response.data.accessToken);
+   
     return response.data;
   }
 
@@ -25,7 +26,7 @@ export class UserService {
     });
 
     setAccessToken(response.data.accessToken);
-
+    
     return response.data;
   }
 
