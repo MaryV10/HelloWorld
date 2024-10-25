@@ -6,9 +6,13 @@ import { signIn } from '@/entities/user';
 import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './SignInForm.module.css';
 
-export const SignInForm: React.FC = () => {
+interface SignInFormProps {
+  onToggle1: () => void;
+}
 
-  const [inputs, setInputs] = useState({ password: '', email: '' });
+export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
+
+  const [inputs, setInputs] = useState({ email: "", password: "" });
  
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -25,21 +29,14 @@ export const SignInForm: React.FC = () => {
       const resultAction = await dispatch(signIn({ email, password }));
       unwrapResult(resultAction);
       navigate(ROUTES.HOME);
-      navigate(ROUTES.HOME);
+      setInputs("");
     } catch (error) {
       console.error('Sign in failed:', error);
     }
   };
 
   return (
-
-
-
-
-
-
-
-    
+   
     <form className={styles.signInForm} onSubmit={handleSubmit}>
       <label>
         Email:
@@ -59,8 +56,8 @@ export const SignInForm: React.FC = () => {
           onChange={changeInputsHandler}
         />
       </label>
-      <button type='submit'>
-        <span>Sign In</span>
+      <button type='submit' onClick={onToggle1}>
+        <span>Авторизоваться</span>
       </button>
     </form>
   );
