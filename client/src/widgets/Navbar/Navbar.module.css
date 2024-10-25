@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900);
+
 .container {
   position: fixed;
   top: 0;
@@ -13,33 +15,80 @@
   z-index: 1000;
   gap: 20px;  
   transition: backdrop-filter 0.2s ease;
- 
-
-
+  animation: slideDown 0.5s forwards;
+  opacity: 0;
+  transform: scale(0.8);
 }
 
 .container.scrolled {
-  backdrop-filter: blur(40px)
+  backdrop-filter: blur(40px);
 }
 
 .bar {
   display: flex;
   border: 2px solid #e9dbc1;
-  padding: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 5px 20px;
   border-radius: 20px;
   gap: 10px;
-  backdrop-filter: blur(40px)
-  
+  background-color: rgba(233, 219, 193, 0.2);
+  box-shadow: 0 4px 20px #00000033;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .navButton {
   background: #027147;
-  color: #e9dbc1;
+  color: #ffffff;
   border: none;
   border-radius: 20px;
   padding: 6px;
   padding-left: 30px;
   padding-right: 30px;
+  font-size: Unbounded;
+  transition: transform 0.2s ease;
+}
+
+.navButton:hover {
+  transform: scale(1.1);
+}
+
+/* Медиа запросы для адаптации под планшеты и смартфоны */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .navButton {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 5px;
+  }
+
+  .navButton {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .bar {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
