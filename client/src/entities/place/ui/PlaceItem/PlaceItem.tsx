@@ -2,10 +2,11 @@ import { Placemark } from "@pbe/react-yandex-maps"
 import { useNavigate } from "react-router-dom";
 
 interface PlaceItemProps {
-    index: number;             // Явное указание, что index — это число
-    coordinates: [number, number];  // Явное указание типа для координат (массив из двух чисел)
+    index: number;             
+    coordinates: [number, number];
+    title: string;
   }
-export const PlaceItem: React.FC<PlaceItemProps> = ({index, coordinates }) =>{
+export const PlaceItem: React.FC<PlaceItemProps> = ({index, coordinates, title }) =>{
     const navigate = useNavigate(); 
     const handlePlacemarkClick = () => {  
         navigate(`/OnePlacePage/${index}`);  
@@ -21,7 +22,7 @@ export const PlaceItem: React.FC<PlaceItemProps> = ({index, coordinates }) =>{
         iconImageOffset: [-15, -15],
     }}
   
-    properties={{ hintContent: `Hello World ${index}`
+    properties={{ hintContent: `${title}`
             }}
             onClick={handlePlacemarkClick}  
     />

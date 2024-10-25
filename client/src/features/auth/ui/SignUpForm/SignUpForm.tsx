@@ -7,6 +7,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUpForm.module.css";
 
+
+
 export const SignUpForm: React.FC = () => {
 
   const [nickname, setNickname] = useState("");
@@ -36,7 +38,8 @@ export const SignUpForm: React.FC = () => {
   return (
     <form className={styles.signUpForm} onSubmit={handleSubmit}>
       <label>
-      nickname:
+        <p>nickname:</p>
+      
         <input
           type="text"
           value={nickname}
@@ -44,7 +47,8 @@ export const SignUpForm: React.FC = () => {
         />
       </label>
       <label>
-      firstName:
+      <p>firstName:</p>
+      
         <input
           type="text"
           value={firstName}
@@ -52,7 +56,8 @@ export const SignUpForm: React.FC = () => {
         />
       </label>
       <label>
-      secondName:
+      <p>secondName:</p>
+      
         <input
           type="text"
           value={secondName}
@@ -60,7 +65,8 @@ export const SignUpForm: React.FC = () => {
         />
       </label>
       <label>
-      email:
+      <p>email:</p>
+      
         <input
           type="email"
           value={email}
@@ -68,7 +74,8 @@ export const SignUpForm: React.FC = () => {
         />
       </label>
       <label>
-      password:
+      <p>password:</p>
+      
         <input
           type="password"
           value={password}
@@ -76,14 +83,15 @@ export const SignUpForm: React.FC = () => {
         />
       </label>
       <label>
-      avatarUrl:
+      <p>avatarUrl:</p>
+      
         <input
           type="text"
           value={avatarUrl}
           onChange={(e) => setAvatarUrl(e.target.value)}
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button type="submit">Зарегистрироваться</button>
     </form>
   );
 };
