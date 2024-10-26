@@ -124,7 +124,7 @@ class PlaceService {
   }
 
   // обновление
-  static async updatePlace(id, userId, data) {
+  static async updatePlace(id, userId, {title,description, width, longitude}) {
     try {
       const place = await Place.findOne({
         where: { id, userId },
@@ -134,11 +134,19 @@ class PlaceService {
           { model: Photo },
         ],
       });
-
       if (!place) {
         return { message: "Place is not found" };
       }
-      return await place.update(data);
+      place.title = title;
+      place.description = description;
+      place.width = width;
+      place.longitude = longitude;
+      await place.save();
+     
+      // console.log(plainUser, '222222222222222222');
+      return { place };
+
+  
     } catch (error) {
       return error;
     }

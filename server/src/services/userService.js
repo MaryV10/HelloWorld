@@ -48,9 +48,25 @@ console.log({nickname, firstName, secondName}, 'newNickname, newFirstName, newSe
       await user.save();
       const plainUser = user.get();
       delete user.password;
-      console.log(plainUser, '222222222222222222');
-      return { user: plainUser };
+      return  plainUser ;
       
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async getUser(id) {
+    try {
+      const user= await User.findOne({
+        where: { id}
+      });
+      if (!user) {
+        return { message: "User is not found" };
+      }
+      const plainUser = user.get();
+      delete plainUser.password;
+      console.log(plainUser, '=====>>>>>>>>>>PLAIN');
+      return  plainUser ;
     } catch (error) {
       return error;
     }
