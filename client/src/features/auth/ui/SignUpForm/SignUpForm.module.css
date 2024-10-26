@@ -1,12 +1,20 @@
 .signUpForm {
-    width: 500px;
+    /* width: 500px; */
     margin: 0 auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     gap: 30px;
+    border-radius: 12px;
+    background: rgb(92, 92, 92);
+  }
 
-    background: rgb(62, 62, 62);
+  label {
+    display: flex;
+    gap: 20px;  
+    justify-content: space-between;
+    align-items: center;
   }
