@@ -3,6 +3,11 @@ import Carousel from "react-spring-3d-carousel";
 import { v4 as uuidv4 } from "uuid";
 import { config } from "react-spring";
 
+import left from "@/assets/free-icon-rewind-left-gpng.png"
+import right from "@/assets/free-icon-rewind-right-g.png"
+
+import styles from "./Carousel.module.css"
+
 export default class Example extends Component {
   state = {
     goToSlide: 0,
@@ -17,7 +22,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -40,7 +45,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -63,7 +68,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -86,7 +91,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -109,7 +114,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -132,7 +137,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -155,7 +160,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -178,7 +183,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "2px solid #e9dbc1",
+            border: "4px solid #e9dbc1",
             background: 'rgba(233, 219, 193, 0.2)',
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -213,19 +218,17 @@ export default class Example extends Component {
           slides={this.slides}
           goToSlide={this.state.goToSlide}
           offsetRadius={this.state.offsetRadius}
-          showNavigation={this.state.showNavigation}
+          showNavigation={false}
           animationConfig={this.state.config}
         />
-        <div
-          style={{
-            margin: "0 auto",
-            marginTop: "2rem",
-            width: "50%",
-            display: "flex",
-            justifyContent: "space-around",
-          }}
-        ></div>
+        <div className={styles.buttonsContainer}>
+         
+          <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide - 1 : this.slides.length - 1 })} src={left} alt="" />
+          <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide + 1 : this.slides.length - 1 })} src={right} alt="" />
+         
+        </div>
       </div>
     );
   }
 }
+  

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Carousel } from 'antd';
 import styles from "./Carousel.module.css";
-import image1 from "../../../public/landscape-hills-covered-grass-flowers-cloudy-sky-sunlight.jpg";
-import video2 from "../../../public/6026167_Person_People_3840x2160 (1).mp4"
+import image1 from "@/assets/landscape-hills-covered-grass-flowers-cloudy-sky-sunlight.jpg";
+import video2 from "@/assets/6026167_Person_People_3840x2160 (1).mp4"
 
-export const CarouselComponent: React.FC = () => {
+ const CarouselComponent: React.FC = () => {
     const contentStyle: React.CSSProperties = {
         margin: 0,
         width: '100%',
@@ -29,3 +29,4 @@ export const CarouselComponent: React.FC = () => {
     </div>
   );
 };
+export default CarouselComponent
