@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { updateUser, USER_THUNKS_ACTIONS } from '@/entities/user/api/userThunks';
+import { updateUser } from '@/entities/user/api/userThunks';
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { User } from "@/entities/user";

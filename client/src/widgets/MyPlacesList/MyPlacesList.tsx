@@ -8,12 +8,15 @@ import { getApprovedPlaces } from "@/entities/place/api/placeThunks";
 export const MyPlacesList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { places } = useAppSelector((state) => state.place);
+  
+  
+  
 
   useEffect(() => {
     dispatch(getApprovedPlaces());
   }, [dispatch]);
   
-
+// console.log(places);
   return (
     <div
       style={{

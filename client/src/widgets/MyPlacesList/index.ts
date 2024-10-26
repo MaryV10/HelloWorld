@@ -1,2 +1,2 @@
 import { MyPlacesList } from './MyPlacesList';
-export default { MyPlacesList };
+export default  MyPlacesList ;

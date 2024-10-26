@@ -26,15 +26,15 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: (builder: ActionReducerMapBuilder<UserSliceType>) => {
     builder
-      .addCase(refreshAccessToken.pending, (state) => {
+      .addCase(refreshAccessToken.pending, (state: UserSliceType) => {
         state.loading = true;
       })
-      .addCase(refreshAccessToken.rejected, (state) => {
+      .addCase(refreshAccessToken.rejected, (state: UserSliceType) => {
         state.loading = false;
       })
-      .addCase(refreshAccessToken.fulfilled, (state, action) => {
+      .addCase(refreshAccessToken.fulfilled, (state: UserSliceType, action) => {
         state.loading = false;
         state.error = null;
         state.user = action.payload.user;
