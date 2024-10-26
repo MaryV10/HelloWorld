@@ -1,33 +1,26 @@
 .container {
-    margin: 0;
-    height: 400px;
-    width: 100%;
-    color: white;
-    line-height: 270px;
-    text-align: center;
-    background: rgb(0, 0, 0);
-    object-fit: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px; 
-  }
-  
-  
-  .roundedCarousel {
-    overflow: hidden;
-  }
-  
-  .divContainer {
+  margin: 0;
+  width: 90vw;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
-    height: 400px;
-    color: white;
+.roundedCarousel {
+  overflow: hidden;
+}
 
-    text-align: center;
-    background: rgba(233, 219, 193, 0.2);
-border: 2px solid #e9dbc1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px; 
-  }
+.divContainer {
+  height: 60vh;
+  color: white;
+  text-align: center;
+  backdrop-filter: blur(40px);
+  border: 4px solid #e9dbc1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}

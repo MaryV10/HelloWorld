@@ -11,4 +11,15 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {  
+    plugins: {  
+      'import': pluginImport,  
+    },
+    rules: {  
+      // Add the following lines:  
+      'import/named': 'off',   // For named exports  
+      'import/default': 'off', // For default exports  
+      'import/export': 'off',  // For export statements  
+    },  
+  },  
 ];

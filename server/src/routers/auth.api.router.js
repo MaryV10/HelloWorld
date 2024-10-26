@@ -8,4 +8,5 @@ router.get('/logout', logout);
 router.put('/',  verifyAccessToken, update);
 router.get('/:id', verifyAccessToken, getUser);
 
+
 module.exports = router;
