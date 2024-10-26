@@ -8,8 +8,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUpForm.module.css";
 
+interface SignUpFormProps {
+  setActive: (active: boolean) => void;
+}
 
-export const SignUpForm: React.FC = () => {
+
+export const SignUpForm: React.FC<SignUpFormProps> = () => {
 
   const [nickname, setNickname] = useState("");
   const [firstName, setFirstName] = useState("");
