@@ -30,6 +30,31 @@ class UserService {
 
     return { user: plainUser };
   }
+
+   async updateUser(id, {nickname, firstName, secondName}) {
+    try {
+      console.log(id, '44444444444');
+      const user= await User.findOne({
+        where: { id}
+      });
+      console.log(user, 'USERRRRRR!');
+console.log({nickname, firstName, secondName}, 'newNickname, newFirstName, newSecondName');
+      if (!user) {
+        return { message: "User is not found" };
+      }
+      user.nickname = nickname;
+      user.firstName = firstName;
+      user.secondName = secondName;
+      await user.save();
+      const plainUser = user.get();
+      delete user.password;
+      console.log(plainUser, '222222222222222222');
+      return { user: plainUser };
+      
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 module.exports = new UserService();
