@@ -8,6 +8,7 @@ import { SignUpPage } from '@/pages/SignUpPage';
 
 import MapPage from '@/pages/MapPage/MapPage';
 import { ProfilePage } from '@/pages/ProfilePage';
+import { OnePlacePage } from '@/pages/OnePlacePage';
 
 
 export const router = createBrowserRouter([
@@ -19,11 +20,6 @@ export const router = createBrowserRouter([
         path: AppRoutes.HOME,
         element: <HomePage />,
       },
-
-      // {
-      //   path: AppRoutes.FILMS,
-      //   element: <HomePage />,
-      // },
       {
         path: AppRoutes.MAP,
         element: <MapPage />,
@@ -39,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: AppRoutes.PROFILE,
         element: <ProfilePage />,
+      },
+      {
+        path: AppRoutes.ONEPLACE,
+        element: <OnePlacePage />,
       },
     ],
   },

@@ -6,8 +6,10 @@ import { signIn } from '@/entities/user';
 import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './SignInForm.module.css';
 
+
 interface SignInFormProps {
   onToggle1: () => void;
+  setActive1: (active1: boolean) => void; // Add this line
 }
 
 export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {

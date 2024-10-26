@@ -17,6 +17,8 @@ import { SignInForm } from "@/features/auth/ui/SignInForm";
 
 
 
+
+
 export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
@@ -108,7 +110,7 @@ export const Navbar: React.FC = () => {
 
       <>
         <Modal active={active1} onToggle={onToggle1}>
-          <SignInForm setActive1={setActive1} onToggle={onToggle1}/>
+          <SignInForm setActive1={setActive1} onToggle1={onToggle1}/>
           <button type="button" onClick={onToggle1}>
             Закрыть
           </button>

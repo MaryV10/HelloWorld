@@ -3,6 +3,8 @@ import React, { useEffect} from "react";
 
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
+
+import { Link } from "react-router-dom";
 import { getApprovedPlaces} from "@/entities/place/api/placeThunks";
 import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
 
@@ -10,6 +12,7 @@ import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
 export const MyPlacesList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { places } = useAppSelector((state) => state.place);
+
 
   useEffect(() => {
     dispatch(getApprovedPlaces());
@@ -46,8 +49,8 @@ export const MyPlacesList: React.FC = () => {
   // onPlaceUpdate={handlePlaceUpdate}/>
 
   <MyPlaceItem key={p.id} place={p}  />
+      
 
-       
       ))}
  
     </div>

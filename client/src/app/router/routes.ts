@@ -3,6 +3,6 @@ export enum ROUTES {
   SIGNIN = '/signin',
   SIGNUP = '/signup',
   PROFILE = '/profile',
-
-  MAP = '/map'
+  MAP = '/map',
+  ONEPLACE = '/profile/:id',
 }
