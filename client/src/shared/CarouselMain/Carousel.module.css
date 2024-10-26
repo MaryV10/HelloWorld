@@ -1,4 +1,24 @@
-img {
-    border-radius: 20px;
-    }
-    
+
+.button {
+  height: 50px;
+
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+    transform: scale(1.1);
+  cursor: pointer;
+}
+
+.buttonsContainer {
+margin: 0 auto;
+margin-top: 2rem;
+width: 50%;
+display: flex;
+justify-content: space-around;
+background: rgba(233, 219, 193, 0.3);
+width: 180px;
+padding: 5px;
+border-radius: 20px; 
+}

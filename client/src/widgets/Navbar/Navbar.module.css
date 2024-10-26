@@ -29,11 +29,11 @@
 .bar {
   display: flex;
   align-items: center;
-  border: 2px solid #e9dbc1;
+  /* border: 2px solid #e9dbc1; */
   padding: 5px 20px;
   border-radius: 20px;
   gap: 10px;
-  background-color: rgba(233, 219, 193, 0.2);
+  background-color: rgba(233, 219, 193, 0.3);
   box-shadow: 0 4px 20px #00000033;
 }
 

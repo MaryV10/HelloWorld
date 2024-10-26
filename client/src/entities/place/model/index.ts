@@ -20,5 +20,18 @@ export type Place = {
   Feedbacks: Feedback[];
 };
 
+export type PlaceWithoutStatusTagsPhotosFeedbacks = {
+  id: number;
+  title: string;
+  description: string;
+  width: string;
+  longitude: string;
+  userId: number;
+
+
+};
+
+
+
 export type PlaceList = Place[];
 

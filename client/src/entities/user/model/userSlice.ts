@@ -6,6 +6,7 @@ import {
   signUp,
   logout,
   updateUser,
+  getUser,
 } from "../api/userThunks";
 import { message } from "antd";
 // import { updatePlace } from "@/entities/place/api/placeThunks";
@@ -26,15 +27,15 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
-  extraReducers: (builder: ActionReducerMapBuilder<UserSliceType>) => {
+  extraReducers: (builder) => {
     builder
-      .addCase(refreshAccessToken.pending, (state: UserSliceType) => {
+      .addCase(refreshAccessToken.pending, (state) => {
         state.loading = true;
       })
-      .addCase(refreshAccessToken.rejected, (state: UserSliceType) => {
+      .addCase(refreshAccessToken.rejected, (state) => {
         state.loading = false;
       })
-      .addCase(refreshAccessToken.fulfilled, (state: UserSliceType, action) => {
+      .addCase(refreshAccessToken.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.user = action.payload.user;
@@ -93,7 +94,25 @@ const userSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.user = action.payload.user;
+        console.log(action.payload, '=====>>ap');
+        state.user = action.payload;
+        
+      })
+
+      .addCase(getUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to logout";
+        message.error(state.error);
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        console.log(action.payload, '=====>>GETUSER ACTION PAYLOAD');
+        state.user = action.payload;
+        
       });
   },
 });

@@ -1,22 +1,28 @@
-import React from "react";
-import background from "../../../public/0061.jpg";
+import React, { Suspense } from "react";
+import background from "@/assets/0061.jpg";
 import styles from "./HomePage.module.css";
 
-import { CarouselComponent } from "@/shared/Carousel";
 import {isMobile} from 'react-device-detect';
-import { CarouselMainPage } from "@/shared/CarouselMainPage/CarouselMainPage";
-import Example from "@/shared/CarouselMain/CarouselMain";
 
+import Example from "@/shared/CarouselMain/CarouselMain";
+import Loader from "@/shared/Loader/Loader";
+const LazyTaskForm = React.lazy(() => import('@/shared/CarouselMainPage/CarouselMainPage'));
+const LazyCarouselComponent = React.lazy(() => import('@/shared/Carousel/Carousel'));
 export const HomePage: React.FC = () => {
 
   const renderContent = () => {
     if (isMobile) {
-      return <div><CarouselMainPage /></div>;
+
+      return <Suspense fallback={<Loader />}>
+   <div><LazyTaskForm /></div>
+    </Suspense>  ;
     }
     return <div><Example /></div>;
   };
  
   return (
+
+    
     <>
       <img className={styles.heroImage} src={background} alt="" />
 
@@ -35,13 +41,11 @@ export const HomePage: React.FC = () => {
         </div>
 
       
-
+        <Suspense fallback={<Loader />}>
           <div className={styles.carouselFadeIn}>
-            <CarouselComponent />
+            <LazyCarouselComponent />
           </div>
-        
-      
-   
+          </Suspense>
       </div>
       <div className={styles.exampleWrapper}>
         {renderContent()}
