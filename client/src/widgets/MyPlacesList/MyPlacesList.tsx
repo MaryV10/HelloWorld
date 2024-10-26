@@ -13,7 +13,7 @@ export const MyPlacesList: React.FC = () => {
 
   useEffect(() => {
     dispatch(getApprovedPlaces());
-  }, [dispatch]); 
+  }, [dispatch]);  
   
   // const handlePlaceDelete = (id: number) => {
   //   dispatch(removePlace({id}));
