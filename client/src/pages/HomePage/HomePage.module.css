@@ -1,3 +1,4 @@
+
 .heroImage {
     background-position: center;
     height: 100vh;
@@ -8,7 +9,7 @@
 }
 
 .mission {
-    display: flex;
+ display: flex;
     justify-content: space-between;
     align-items: center; 
     padding: 20px;
@@ -16,6 +17,7 @@
     gap: 10px;
     background: #e9dbc1;
     position: relative;
+   
 }
 
 .mission p {
@@ -74,69 +76,108 @@
       transform: translateY(0);
     }
 }
-
 @media (max-width: 767px) {
     .carouselFadeIn {
-        display: none;
+        display: block;
     }
 
     .heroImage {
-      height: 50vh;
+        height: 80vh;
     }
   
     .mission {
-      flex-direction: column;
-      align-items: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+     
+        
     }
   
     .mission p {
-      max-width: 100%;
-      margin-left: 0;
+        max-width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+
     }
   
     .exampleWrapper {
-      width: 100px;
-      margin-left: -10vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
     }
   
     .carousel {
-      max-width: 100%;
+        max-width: 100%;
+       
     }
   
     .greenLine {
-      font-size: 20px;
-      height: 60px;
+        font-size: 20px;
+        height: 60px;
     }
+    .carouselFadeIn {
+        max-width: 100%;
+        display: block;
+    }
+
+    
 }
-  
+
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .carouselFadeIn {
-        display: none;
+        display: block;
+        
     }
 
     .heroImage {
-      height: 70vh;
+        height: 70vh;
     }
   
     .mission {
-      flex-direction: row;
-      justify-content: space-between;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
     }
   
     .mission p {
-      max-width: 70%;
+        max-width: 70%;
     }
   
     .exampleWrapper {
-      width: 80%;
+        width: 80%;
     }
   
     .carousel {
-      max-width: 60%;
+        max-width: 60%;
     }
   
     .greenLine {
-      font-size: 24px;
-      height: 80px;
+        font-size: 24px;
+        height: 80px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .heroImage {
+        height: 80vh;
+    }
+
+  
+
+    .exampleWrapper {
+        width: 70%;
+    }
+
+    .greenLine {
+        font-size: 26px;
+        height: 90px;
     }
 }

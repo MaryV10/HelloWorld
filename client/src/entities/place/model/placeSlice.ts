@@ -78,6 +78,7 @@ const placeSlice = createSlice({
       .addCase(addPlace.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        console.log(action.payload);
         state.places.push(action.payload);
       })
 //!-----------------------

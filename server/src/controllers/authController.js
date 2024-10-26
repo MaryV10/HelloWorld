@@ -84,9 +84,39 @@ async function logout(req, res) {
   }
 }
 
+async function update(req, res) {
+  // const { id } = req.params;
+  const { nickname, firstName, secondName} = req.body;
+  const { user } = res.locals;
+  console.log(req.body, '66666666666666666666666');
+  console.log(user.id, 'useeeerIDD');
+  try {
+    if (nickname.trim() === "" || firstName.trim() === "" || secondName.trim() === "") {
+      res.status(400).json({
+        message: "Not update",
+      });
+    } else {
+      console.log({nickname,
+        firstName,
+        secondName}, 'lllllllllllllllll');
+        
+      const updateUser = await userService.updateUser( user.id, {
+        nickname,
+        firstName,
+        secondName
+      });
+      console.log(updateUser, 'updateUser');
+
+      res.status(200).json({ updateUser });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
   logout,
-  
+  update
 };
