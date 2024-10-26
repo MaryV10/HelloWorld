@@ -29,7 +29,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
       const resultAction = await dispatch(signIn({ email, password }));
       unwrapResult(resultAction);
       navigate(ROUTES.HOME);
-      setInputs("");
+      setInputs({ email: "", password: "" });
     } catch (error) {
       console.error('Sign in failed:', error);
     }
