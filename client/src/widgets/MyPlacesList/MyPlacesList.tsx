@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 
 
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
@@ -7,7 +7,7 @@ import { getApprovedPlaces } from "@/entities/place/api/placeThunks";
 
 export const MyPlacesList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { places } = useAppSelector((state) => state.places);
+  const { places } = useAppSelector((state) => state.place);
 
   useEffect(() => {
     dispatch(getApprovedPlaces());
