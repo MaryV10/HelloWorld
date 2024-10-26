@@ -60,4 +60,21 @@ export class UserService {
     await axiosInstance.get("/auth/logout");
     setAccessToken("");
   }
+
+
+static async updateUser( 
+  nickname: string, firstName: string, secondName: string): Promise<{
+    accessToken: string;
+    user: User;
+  }>{
+ try {
+   const response = await axiosInstance.put(`/auth`, {nickname, firstName, secondName})
+   console.log(response.data, 'RESPONSE>DATA=============>>>>>>>>>');
+   console.log(response.data.accessToken, 'accessToken'); // undefined
+  return response.data.updateUser
+ } catch (error) {
+   console.error('Error fetching user:', error);
+   throw new Error('Failed to fetch user.');
+ }
+}
 }

@@ -48,9 +48,13 @@ export const Navbar: React.FC = () => {
           <button className={styles.navButton}>Карта</button>
         </Link>
         {user ? (
+          <>
           <button className={styles.navButton} onClick={handleLogout}>
             Logout
           </button>
+          <Link to={ROUTES.PROFILE}><button className={styles.navButton}> Личный кабинет </button></Link>
+          </>
+          
         ) : (
           <>
             <Link to={ROUTES.SIGNIN}>
