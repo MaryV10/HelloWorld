@@ -13,3 +13,19 @@
     min-height: 200px;
     max-height: 500px;
 }
+.mapContainer{
+    position: relative;
+
+}
+
+.sidebar{
+    position: absolute;
+    top: 100px;
+    right: 0;
+}
+.input{
+    position:absolute;
+    top: 100px;
+    left: 0;
+    z-index: 50;
+}
