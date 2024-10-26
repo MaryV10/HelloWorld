@@ -6,7 +6,7 @@ import React from 'react';
 export const ProfilePage: React.FC = () => {
 
   return (
-    <div style={{ marginTop: '100px', padding: '20px', height: '80vh', background:'pink' }}> 
+    <div style={{ marginTop: '100px', padding: '20px', height: '150vh', background:'pink' }}> 
       <p>Личный кабинет</p>
       {/* <button type='button' onClick={() => dispatch(decrement())}>
         -

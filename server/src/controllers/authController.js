@@ -85,9 +85,20 @@ async function update(req, res) {
   }
 }
 
+async function getUser(req, res) {
+  const { user } = res.locals;
+  try {
+      const updateUser = await userService.getUser( user.id);
+      res.status(200).json({ updateUser });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
   logout,
-  update
+  update,
+  getUser
 };

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
-import type { AuthResponse } from '../model';
+import type { AuthResponse, User } from '../model';
 import { UserService } from '.';
 
 
@@ -10,6 +10,7 @@ export enum USER_THUNKS_ACTIONS {
     SIGN_UP = 'user/signUp',
     LOGOUT = 'user/logout',
     UPDATE_USER = 'user/updateUser',
+    GET_USER = 'user/getUser',
   }
 
 
@@ -84,13 +85,29 @@ export const logout = createAsyncThunk<
 
 
 export const updateUser = createAsyncThunk<
-AuthResponse,
+User,
   {nickname: string; firstName: string; secondName: string },
   { rejectValue: RejectValue }
 >(USER_THUNKS_ACTIONS.UPDATE_USER, async ({ nickname, firstName, secondName  }, { rejectWithValue }) => {
   try {
-    console.log({nickname, firstName, secondName}, '000000000000000000000');
+    // console.log({nickname, firstName, secondName}, '000000000000000000000');
     return await UserService.updateUser(nickname, firstName, secondName);
+  } catch (error) {
+    const err = error as AxiosError<{ message: string }>;
+    return rejectWithValue({ message: err.message });
+  }
+});
+
+export const getUser = createAsyncThunk<
+User,
+  number,
+  { rejectValue: RejectValue }
+>(USER_THUNKS_ACTIONS.GET_USER, async ( id  , { rejectWithValue }) => {
+  try {
+    console.log(id, '000000000000000000000');
+     const user = await UserService.getUser(id);
+     console.log(user, '```````````````');
+     return user
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({ message: err.message });
