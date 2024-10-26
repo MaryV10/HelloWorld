@@ -4,7 +4,7 @@ import React, { useEffect} from "react";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
 
-import { Link } from "react-router-dom";
+
 import { getApprovedPlaces} from "@/entities/place/api/placeThunks";
 import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
 
