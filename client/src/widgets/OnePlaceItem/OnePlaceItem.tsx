@@ -1,28 +1,29 @@
 import { useAppSelector } from "@/shared/hooks/reduxHooks";
 import React from "react";
 import { useParams } from "react-router-dom";
-
+import styles from "./OnePlaceItem.module.css";
 
 export const OnePlaceItem: React.FC = () => {
-  const { places } = useAppSelector((state) => state.place);
+  const { approvedPlaces } = useAppSelector((state) => state.place);
   const { id } = useParams();
 
-  const onePlace = places.find((place) => place.id === Number(id));
+  const onePlace = approvedPlaces.find((place) => place.id === Number(id));
+
+  console.log(onePlace, "onePlaceItem");
 
   const totalScore = () => {
-    if(!onePlace?.Feedbacks || onePlace?.Feedbacks.length === 0) {
-      return 0
+    if (!onePlace?.Feedbacks || onePlace?.Feedbacks.length === 0) {
+      return 0;
+    } else {
+      const totalScore: number | undefined = onePlace?.Feedbacks.reduce(
+        (acc, feedback) => acc + feedback.score,
+        0
+      );
+      const averageScore: number | undefined =
+        totalScore / onePlace?.Feedbacks.length;
+      return averageScore;
     }
-    else{
-      const totalScore: number | undefined = onePlace?.Feedbacks.reduce((acc, feedback) => acc + feedback.score, 0);
-       const averageScore: number | undefined = totalScore / onePlace?.Feedbacks.length;
-       return averageScore;
-    }
-        
-  }
-  
- totalScore()
-
+  };
 
   return (
     <div
@@ -34,21 +35,27 @@ export const OnePlaceItem: React.FC = () => {
       }}
     >
       OnePlaceItem
-      <p>Место: {onePlace?.title}</p>
-      <div>
-        Фото:
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <p>Место: {onePlace?.title}</p>
+        <p>Средняя оценка: {totalScore()}</p>
+      </div>
+      <div className={styles.photos}>
+        <p>Фотографии:</p>
         {onePlace?.Photos.map((photo, index) => (
-          <div key={index}>
+          <div style={{ width: "300px" }} key={index}>
             <img src={photo.imageUrl}></img>
           </div>
         ))}
       </div>
       <p>Description: {onePlace?.description}</p>
-      <div style={{ display: "flex", justifyContent: "space-between", background: "aqua", padding: "10px" }}>
-        <p>
-          Комментарий: {onePlace?.Feedbacks.map((feedback) => feedback.comment)}
-        </p>
-        <p>Оценка: {onePlace?.Feedbacks.map((feedback) => feedback.score)}</p>
+      <div className={styles.feedbacks}>
+        
+          {onePlace?.Feedbacks.map((feedback) => (
+            <div className={styles.feedbacksOneLine}>
+              <div><div>Комментарий:</div> <div>{feedback.comment}</div></div>
+              <div>Оценка: {feedback.score}</div>
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -43,7 +43,27 @@ export const MyPlaceItem: React.FC<Props> = ({
 
   return (
     <div className={styles.myPlaceItem}>
-      {/* {isEditing ? (
+      
+      <>
+        <Link to={`/profile/${place.id}`}>
+          <h2 className={styles.title}>{place.title}</h2>
+        </Link>
+          <p className={styles.description}>{place.description}</p>
+          <p>{place.status}</p>
+          <p>{place.userId}</p>
+          {place.Photos.map((photo, index) => (  
+    <img style={{height: '20vh', margin: '10px'}}key={index} src={photo.imageUrl} alt={`Photo ${index + 1}`} />  
+  ))}  
+          {/* <button onClick={handleEdit}>Edit</button>
+          <button onClick={() => onPlaceDelete(place.id)}>Delete</button> */}
+      </>
+      </div>
+    // </div>
+  );
+}
+
+
+{/* {isEditing ? (
         <>
           <input
             type="text"
@@ -77,19 +97,3 @@ export const MyPlaceItem: React.FC<Props> = ({
           <button onClick={handleCancel}>Cancel</button>
         </>
       ) : ( */}
-      <>
-        <Link to={`/profile/${place.id}`}>
-          <h2 className={styles.title}>{place.title}</h2>
-          <p className={styles.description}>{place.description}</p>
-          <p>{place.status}</p>
-          <p>{place.userId}</p>
-          {place.Photos.map((photo, index) => (  
-    <img style={{height: '20vh', margin: '10px'}}key={index} src={photo.imageUrl} alt={`Photo ${index + 1}`} />  
-  ))}  
-          {/* <button onClick={handleEdit}>Edit</button>
-          <button onClick={() => onPlaceDelete(place.id)}>Delete</button> */}
-      </>
-      {/* )} */}
-    </div>
-  );
-};
