@@ -1,22 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { Place, PlaceList } from ".";
 import { message } from "antd";
-import {
-  addPlace,
-  approvePlace,
-  getApprovedPlaces,
-  getOnePlace,
-  getPendingPlaces,
-  rejectPlace,
-  removePlace,
-  updatePlace,
-} from "../api/placeThunks";
+
+import {  addPlace, approvePlace, getApprovedPlaces, getMyPlaces, getOnePlace, getPendingPlaces, rejectPlace, removePlace, updatePlace,  } from "../api/placeThunks";
+
 import { addPhoto, removePhoto } from "@/entities/photo/api/photoThunks";
+
 
 type PlaceSliceType = {
   places: PlaceList;
   pendingPlaces: PlaceList;
   approvedPlaces: PlaceList;
+  allPlaces: PlaceList;
   place: Place | null;
   error: string | null;
   loading: boolean;
@@ -27,6 +22,7 @@ const initialState: PlaceSliceType = {
   places: [],
   pendingPlaces: [],
   approvedPlaces: [],
+  allPlaces: [],
   error: null,
   loading: false,
 };
@@ -50,8 +46,7 @@ const placeSlice = createSlice({
         state.error = null;
         state.place = action.payload; 
       })
-      // -----------------------
-      .addCase(getApprovedPlaces.pending, (state) => {
+           .addCase(getApprovedPlaces.pending, (state) => {
         state.loading = true;
       })
       .addCase(getApprovedPlaces.rejected, (state, action) => {
@@ -62,23 +57,42 @@ const placeSlice = createSlice({
       .addCase(getApprovedPlaces.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.approvedPlaces = action.payload;
+        state.approvedPlaces = action.payload
+        console.log(action.payload, 'APPPROVED');
       })
-      // -----------------------
-      .addCase(getPendingPlaces.pending, (state) => {
+      //!-----------------------
+      .addCase(getMyPlaces.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getPendingPlaces.rejected, (state, action) => {
+      .addCase(getMyPlaces.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload?.message || "Error to load";
         message.error(state.error);
       })
-      .addCase(getPendingPlaces.fulfilled, (state, action) => {
+      .addCase(getMyPlaces.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.pendingPlaces = action.payload;
+        state.places = action.payload
+
       })
+      //!-----------------------
+    
+         .addCase(getPendingPlaces.pending, (state) => {
+          state.loading = true;
+        })
+        .addCase(getPendingPlaces.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload?.message || "Error to load";
+          message.error(state.error);
+        })
+        .addCase(getPendingPlaces.fulfilled, (state, action) => {
+          state.loading = false;
+          state.error = null;
+          state.pendingPlaces = action.payload
+
+        })
       // -----------------------
+
       .addCase(addPlace.pending, (state) => {
         state.loading = true;
       })

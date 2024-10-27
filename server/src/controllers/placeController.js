@@ -20,6 +20,17 @@ async function getAllApprovedPlacesController(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
+
+//работает вывести все места которые есть в базе со статусом "pending" (для админки)
+async function getAllMyPlacesController(req, res) {
+  const { user } = res.locals;
+  try {
+    const places = await PlaceService.getAllMyPlaces(user.id);
+    res.status(200).json({ places });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
 //работает вывести все места которые есть в базе со статусом "pending" (для админки)
 async function getAllPendingPlacesController(req, res) {
   try {
@@ -122,6 +133,7 @@ async function updatePlaceController(req, res) {
 module.exports = {
   getOnePlaceController,
   getAllApprovedPlacesController,
+  getAllMyPlacesController,
   getAllPendingPlacesController,
   createPlaceController,
   approvePlaceController,

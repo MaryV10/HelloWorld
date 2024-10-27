@@ -114,7 +114,7 @@ export const MyPlaceItem: React.FC<Props> = ({
           <h2 className={styles.title}>{place.title}</h2>
           <p className={styles.description}>{place.description}</p>
           <p>{place.status}</p>
-          <p>{place.userId}</p>
+          <p>userId: {place.userId}</p>
           {place.Photos.map((photo, index) => (  
     <img style={{height: '20vh', margin: '10px'}}key={index} src={photo.imageUrl} alt={`Photo ${index + 1}`} />  
   ))}  
