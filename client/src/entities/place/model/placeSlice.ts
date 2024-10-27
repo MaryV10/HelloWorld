@@ -2,12 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { Place, PlaceList } from ".";
 // import { refreshAccessToken, signIn, signUp, logout } from '../api/userThunks';
 import { message } from "antd";
-import {  addPlace, approvePlace, getApprovedPlaces, getOnePlace, getPendingPlaces, rejectPlace, removePlace, updatePlace,  } from "../api/placeThunks";
+import {  addPlace, approvePlace, getApprovedPlaces, getMyPlaces, getOnePlace, getPendingPlaces, rejectPlace, removePlace, updatePlace,  } from "../api/placeThunks";
 
 type PlaceSliceType = {
   places: PlaceList;
   pendingPlaces: PlaceList;
   approvedPlaces: PlaceList;
+  allPlaces: PlaceList;
   place: Place | null;
   error: string | null;
   loading: boolean;
@@ -18,6 +19,7 @@ const initialState: PlaceSliceType = {
   places: [],
   pendingPlaces: [],
   approvedPlaces: [],
+  allPlaces: [],
   error: null,
   loading: false,
 };
@@ -54,6 +56,21 @@ const placeSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.approvedPlaces = action.payload
+        console.log(action.payload, 'APPPROVED');
+      })
+      //!-----------------------
+      .addCase(getMyPlaces.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getMyPlaces.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to load";
+        message.error(state.error);
+      })
+      .addCase(getMyPlaces.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.places = action.payload
         console.log(action.payload, 'APPPROVED');
       })
       //!-----------------------

@@ -5,6 +5,7 @@ import type { Place, PlaceList } from "../model";
 
 enum PLACE_THUNKS_ACTIONS {
   GET_ONE_PLACE = "places/getOnePlace",
+  GET_MY_PLACES = "places/getMyPlaces",
   GET_APPROVED_PLACES = "places/getApprovedPlaces",
   GET_PENDING_PLACES = "places/getPendingPlaces",
   ADD_PLACE = "places/addPlace",
@@ -38,6 +39,19 @@ export const getApprovedPlaces = createAsyncThunk<
 >(PLACE_THUNKS_ACTIONS.GET_APPROVED_PLACES, async (_, { rejectWithValue }) => {
   try {
     return await PlaceService.getAllApprovedPlaces();
+  } catch (error) {
+    const err = error as AxiosError<{ message: string }>;
+    return rejectWithValue({ message: err.message });
+  }
+});
+
+export const getMyPlaces = createAsyncThunk<
+  PlaceList,
+  void,
+  { rejectValue: RejectValue }
+>(PLACE_THUNKS_ACTIONS.GET_MY_PLACES, async (_, { rejectWithValue }) => {
+  try {
+    return await PlaceService.getAllMyPlaces();
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({ message: err.message });

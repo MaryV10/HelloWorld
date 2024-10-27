@@ -32,6 +32,22 @@ class PlaceService {
       console.error(error);
     }
   }
+
+    //вывести все места по userId
+    static async getAllMyPlaces(userId) {  
+      try {  
+        return await Place.findAll({  
+          where: { userId },  
+          include: [  
+            { model: Tag, as: "tags", through: { attributes: [] } },  
+            { model: Feedback },  
+            { model: Photo },  
+          ],  
+        });  
+      } catch (error) {  
+        console.error(error);  
+      }  
+    }  
   //вывести все места которые есть в базе со статусом "pending" (для админки)
   static async getAllPendingPlaces() {
     try {

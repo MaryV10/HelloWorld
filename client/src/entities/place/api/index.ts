@@ -27,6 +27,17 @@ export class PlaceService {
       }
     }
 
+    static async getAllMyPlaces(): Promise<PlaceList> {
+      try {
+       const {data} =  await axiosInstance.get(`/places/my`);
+       return data.places
+        
+      } catch (error) {
+        console.error('Error fetching all places:', error);
+        throw new Error('Failed to fetch places.');
+      }
+    }
+
       //вывести все места которые есть в базе со статусом "pending" (для админки)
       static async getAllPendingPlaces(): Promise<PlaceList> {
         try {
