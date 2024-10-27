@@ -2,7 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { Place, PlaceList } from ".";
 // import { refreshAccessToken, signIn, signUp, logout } from '../api/userThunks';
 import { message } from "antd";
-import {  addPlace, approvePlace, getApprovedPlaces, getOnePlace, getPendingPlaces, rejectPlace, removePlace, updatePlace,  } from "../api/placeThunks";
+import {
+  addPlace,
+  approvePlace,
+  getApprovedPlaces,
+  getOnePlace,
+  getPendingPlaces,
+  rejectPlace,
+  removePlace,
+  updatePlace,
+} from "../api/placeThunks";
+import { addPhoto, removePhoto } from "@/entities/photo/api/photoThunks";
 
 type PlaceSliceType = {
   places: PlaceList;
@@ -28,6 +38,7 @@ const placeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+
     .addCase(getOnePlace.pending, (state) => {
       state.loading = true;
     })
@@ -42,6 +53,7 @@ const placeSlice = createSlice({
       state.place = action.payload; 
     })
     // -----------------------
+
       .addCase(getApprovedPlaces.pending, (state) => {
         state.loading = true;
       })
@@ -57,6 +69,7 @@ const placeSlice = createSlice({
         console.log(action.payload, 'APPPROVED');
       })
       //!-----------------------
+=
     
          .addCase(getPendingPlaces.pending, (state) => {
           state.loading = true;
@@ -73,6 +86,7 @@ const placeSlice = createSlice({
           console.log(action.payload, 'PENDDDDDDING');
         })
              // -----------------------
+=
       .addCase(addPlace.pending, (state) => {
         state.loading = true;
       })
@@ -87,7 +101,9 @@ const placeSlice = createSlice({
         console.log(action.payload);
         state.places.push(action.payload);
       })
-//!-----------------------
+      // -----------------------
+    
+      //!-----------------------
       .addCase(approvePlace.pending, (state) => {
         state.loading = true;
       })
@@ -130,7 +146,9 @@ const placeSlice = createSlice({
       .addCase(removePlace.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.filter((place) => place.id !== action.payload);
+        state.places = state.places.filter(
+          (place) => place.id !== action.payload
+        );
       })
       //!-----------------------
       .addCase(updatePlace.pending, (state) => {
@@ -147,7 +165,41 @@ const placeSlice = createSlice({
         state.places = state.places.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
-      });
+      })
+      // -----------------------
+      .addCase(addPhoto.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addPhoto.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to add";
+        message.error(state.error);
+      })
+      .addCase(addPhoto.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        console.log(action.payload);
+        state.places = state.places.map((place) =>
+          place.id === action.payload.id ? action.payload : place
+        );
+      })
+      //! -----------------------
+      .addCase(removePhoto.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(removePhoto.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to add";
+        message.error(state.error);
+      })
+      .addCase(removePhoto.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        console.log(action.payload);
+        state.places = state.places.map((place) =>
+          place.id === action.payload.id ? action.payload : place
+        );
+      })
   },
 });
 
