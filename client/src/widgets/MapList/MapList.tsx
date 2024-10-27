@@ -58,6 +58,7 @@ const [modalActive, setModalActive] = useState(false);
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;}
+      
     if (isLongTouch) {
       setIsLongTouch(false);
       
