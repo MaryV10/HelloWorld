@@ -50,7 +50,7 @@ export const getPendingPlaces = createAsyncThunk<
   { rejectValue: RejectValue }
 >(PLACE_THUNKS_ACTIONS.GET_PENDING_PLACES, async (_, { rejectWithValue }) => {
   try {
-    return await PlaceService.getAllApprovedPlaces();
+    return await PlaceService.getAllPendingPlaces();
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({ message: err.message });
@@ -97,7 +97,7 @@ export const rejectPlace = createAsyncThunk<
   { rejectValue: RejectValue }
 >(PLACE_THUNKS_ACTIONS.REJECT_PLACE, async ({ id }, { rejectWithValue }) => {
   try {
-    return await PlaceService.approvePlace(id);
+    return await PlaceService.rejectPlace(id);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
     return rejectWithValue({ message: err.message });

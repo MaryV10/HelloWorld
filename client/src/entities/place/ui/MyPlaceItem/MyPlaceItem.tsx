@@ -80,19 +80,13 @@ export const MyPlaceItem: React.FC<Props> = ({
       <>
         <Link to={`/profile/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
-        </Link>
-        <p className={styles.description}>{place.description}</p>
-        <p>{place.status}</p>
-        <p>{place.Photos.length}</p>
-        {place.Photos.map((photo, index) => (
-          <img
-            style={{ height: "20vh" }}
-            key={index}
-            src={photo.imageUrl}
-            alt={`Photo ${index + 1}`}
-          />
-        ))}
-        {/* <button onClick={handleEdit}>Edit</button>
+          <p className={styles.description}>{place.description}</p>
+          <p>{place.status}</p>
+          <p>{place.userId}</p>
+          {place.Photos.map((photo, index) => (  
+    <img style={{height: '20vh', margin: '10px'}}key={index} src={photo.imageUrl} alt={`Photo ${index + 1}`} />  
+  ))}  
+          {/* <button onClick={handleEdit}>Edit</button>
           <button onClick={() => onPlaceDelete(place.id)}>Delete</button> */}
       </>
       {/* )} */}

@@ -5,6 +5,7 @@ import styles from "./MapList.module.css";
 import ModalWindow from "@/shared/ui/Modal/Modal";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { addPlace, getApprovedPlaces } from "@/entities/place/api/placeThunks";
+import Sidebar from "../Sidebar/Sidebar";
 
 
 
@@ -23,6 +24,7 @@ function MapList() {
 const [description, setDescription] = useState("");
 const [modalActive, setModalActive] = useState(false);
   const [isLongTouch, setIsLongTouch] = useState(false);
+  const [search, setSearch] = useState("")
   const [coords, setCoords] = useState<[number, number] | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -36,6 +38,7 @@ const [modalActive, setModalActive] = useState(false);
     dispatch(getApprovedPlaces())
   }, [dispatch]);
 
+  const filteredPlaces = places.filter((place) => place.title.toLowerCase().includes(search.toLowerCase()))
   const handleMouseDown = (e: YMapsMouseEvent) => {
     const originalEvent = e.get("domEvent").originalEvent;
     
@@ -55,6 +58,7 @@ const [modalActive, setModalActive] = useState(false);
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;}
+      
     if (isLongTouch) {
       setIsLongTouch(false);
       
@@ -79,8 +83,14 @@ const [modalActive, setModalActive] = useState(false);
     }
   };
 
+
+
+
   return (
-    <div style={{ height: "100%" }}>
+    <>
+   
+    <div className={styles.mapContainer} style={{ height: "100%" }}>
+    <input className={styles.input} type="text" value= {search} onChange={(e) => setSearch(e.target.value)} placeholder='Поиск...'/>
       <Map
         defaultState={{ center: [59.95, 30.3], zoom: 9 }}
         width={"100%"}
@@ -94,7 +104,7 @@ const [modalActive, setModalActive] = useState(false);
             groupByCoordinates: false,
           }}
         >
-          {places.map((place) => (
+          {filteredPlaces.map((place) => (
             <PlaceItem
               key={place.id}
               index={place.id}
@@ -123,6 +133,12 @@ const [modalActive, setModalActive] = useState(false);
       </form>)}
      </ModalWindow>
     </div>
+    <div className={styles.sidebar}>
+      
+      <Sidebar places={filteredPlaces} />
+    </div>
+    
+    </>
   );
 }
 

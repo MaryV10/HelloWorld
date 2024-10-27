@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+tsconfig.app.tsbuildinfo
 dist
 dist-ssr
 *.local
@@ -24,3 +25,4 @@ tsconfig.app.tsbuildinfo
 *.njsproj
 *.sln
 *.sw?
+.DS_Store
