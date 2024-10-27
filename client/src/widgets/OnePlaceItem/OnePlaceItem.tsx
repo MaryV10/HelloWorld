@@ -20,6 +20,7 @@ export const OnePlaceItem: React.FC = () => {
     }
         
   }
+  
  totalScore()
 
 
