@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./MyPlaceItem.module.css";
+import { Steps } from "antd"; 
 
 
 import { useAppDispatch } from "@/shared/hooks/reduxHooks";
@@ -8,6 +9,7 @@ import { removePhoto } from "@/entities/photo/api/photoThunks";
 
 import { Place } from "../../model";
 import { Link } from "react-router-dom";
+
 
 // import { Place, PlaceWithoutStatusTagsPhotosFeedbacks } from "../../model";
 
@@ -52,8 +54,21 @@ export const MyPlaceItem: React.FC<Props> = ({
   //   }
   // };
 
+  const steps = [
+    {
+      title: 'На модерации',
+      status: place.status === 'pending' ? 'finish' : 'wait',
+    },
+    {
+      title: place.status === 'approved' ? 'Создано' : 'Отклонено',
+      status: place.status === 'approved' ? 'finish' : (place.status === 'rejected' ? 'finish' : 'wait'),
+      
+    },
+  ];
+
   return (
     <div className={styles.myPlaceItem}>
+      <Steps items={steps} className={styles.customStep}/>
       {/* {isEditing ? (
         <>
           <input
@@ -89,11 +104,12 @@ export const MyPlaceItem: React.FC<Props> = ({
         </>
       ) : ( */}
 
-        <>
+      
         <button onClick={onDeleteHandeler}> Делит</button>
 
       <>
         <Link to={`/profile/${place.id}`}>
+        </Link>
 
           <h2 className={styles.title}>{place.title}</h2>
           <p className={styles.description}>{place.description}</p>
@@ -105,7 +121,7 @@ export const MyPlaceItem: React.FC<Props> = ({
           {/* <button onClick={handleEdit}>Edit</button>
           <button onClick={() => onPlaceDelete(place.id)}>Delete</button> */}
       </>
-      {/* )} */}
+
     </div>
   );
 };
