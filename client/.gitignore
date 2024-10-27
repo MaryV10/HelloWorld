@@ -8,9 +8,12 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+tsconfig.app.tsbuildinfo
 dist
 dist-ssr
 *.local
+
+tsconfig.app.tsbuildinfo
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +25,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.DS_Store

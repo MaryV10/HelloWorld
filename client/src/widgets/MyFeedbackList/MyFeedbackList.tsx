@@ -1,11 +1,16 @@
 import React, { useEffect} from "react";
 
+
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
-import {  getApprovedPlaces} from "@/entities/place/api/placeThunks";
-import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
 
-export const MyPlacesList: React.FC = () => {
+
+import { getApprovedPlaces} from "@/entities/place/api/placeThunks";
+import { MyFeedbackItem } from "@/entities/place/ui/MyFeedbackItem";
+
+
+
+export const MyFeedbackList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { approvedPlaces } = useAppSelector((state) => state.place);
   const {user} = useAppSelector((state) => state.user);
@@ -21,31 +26,26 @@ export const MyPlacesList: React.FC = () => {
     <p    style={{
         marginTop: "20px",
 
-      }}>Мои места</p>
+      }}>Мои отзывы</p>
     <div
       style={{
         marginTop: "10px",
         padding: "20px",
         height: "auto",
-        background: "blue",
+        background: "orange",
         display: "flex",
         justifyContent: "space-between",
       }}
     >
 
-{approvedPlaces
-// .filter(p => p.status === 'approved')
-.filter(p => p.userId === user?.id)
-.map((p) => (
-  
-  // <MyPlaceItem key={p.id} place={p}  onPlaceDelete={handlePlaceDelete}
-  // onPlaceUpdate={handlePlaceUpdate}/>
+{approvedPlaces.flatMap(place =>   
+  place.Feedbacks  
+    .filter(feedback => feedback.userId === user?.id)  
+    .map(feedback =>(  
+    <MyFeedbackItem key={feedback.id} feedback={feedback} place={place} />  
+  ))  
+)} 
 
-  <MyPlaceItem key={p.id} place={p}  />
-      
-
-      ))}
- 
     </div>
     </>
   );
