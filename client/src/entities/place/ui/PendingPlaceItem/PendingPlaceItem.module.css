@@ -1,0 +1,26 @@
+.pendingPlaceItem {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .pendingPlaceItem input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .pendingPlaceItem h2 {
+    color: black;
+    margin: 0 0 10px;
+  }
+  
+  .pendingPlaceItem p {
+    color: black;
+    margin: 0 0 20px;
+  }

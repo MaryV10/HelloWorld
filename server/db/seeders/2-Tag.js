@@ -25,6 +25,12 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          title: "лыжи",
+          color: "#336b8b",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
