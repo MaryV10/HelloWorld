@@ -103,13 +103,15 @@ function MapList() {
 
   return (
     <>
-   
+    <div className={styles.navbar}>
+    </div>
+    
     <div className={styles.mapContainer} style={{ height: "100%" }}>
     <input className={styles.input} type="text" value= {search} onChange={(e) => setSearch(e.target.value)} placeholder='Поиск...'/>
       <Map
         defaultState={{ center: [59.95, 30.3], zoom: 9 }}
         width={"100%"}
-        style={{ height: "calc(90vh - 100px)", marginTop: "100px" }}
+        style={{ height: "calc(100vh)", marginTop: "" }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       >
