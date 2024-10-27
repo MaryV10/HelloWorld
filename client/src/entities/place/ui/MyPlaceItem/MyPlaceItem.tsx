@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./MyPlaceItem.module.css";
 
-import { Place} from "../../model";
+import { Place } from "../../model";
+import { Link } from "react-router-dom";
 // import { Place, PlaceWithoutStatusTagsPhotosFeedbacks } from "../../model";
 
 type Props = {
@@ -76,17 +77,24 @@ export const MyPlaceItem: React.FC<Props> = ({
           <button onClick={handleCancel}>Cancel</button>
         </>
       ) : ( */}
-        <>
+      <>
+        <Link to={`/profile/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
-          <p className={styles.description}>{place.description}</p>
-          <p>{place.status}</p>
-          <p>{place.Photos.length}</p>
-          {place.Photos.map((photo, index) => (  
-    <img style={{height: '20vh'}}key={index} src={photo.imageUrl} alt={`Photo ${index + 1}`} />  
-  ))}  
-          {/* <button onClick={handleEdit}>Edit</button>
+        </Link>
+        <p className={styles.description}>{place.description}</p>
+        <p>{place.status}</p>
+        <p>{place.Photos.length}</p>
+        {place.Photos.map((photo, index) => (
+          <img
+            style={{ height: "20vh" }}
+            key={index}
+            src={photo.imageUrl}
+            alt={`Photo ${index + 1}`}
+          />
+        ))}
+        {/* <button onClick={handleEdit}>Edit</button>
           <button onClick={() => onPlaceDelete(place.id)}>Delete</button> */}
-        </>
+      </>
       {/* )} */}
     </div>
   );
