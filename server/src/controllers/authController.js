@@ -91,7 +91,7 @@ async function update(req, res) {
   console.log(req.body, '66666666666666666666666');
   console.log(user.id, 'useeeerIDD');
   try {
-    if (nickname.trim() === "" || firstName.trim() === "" || secondName.trim() === "") {
+    if (nickname.trim() === "" || firstName.trim() === "" ) {
       res.status(400).json({
         message: "Not update",
       });
