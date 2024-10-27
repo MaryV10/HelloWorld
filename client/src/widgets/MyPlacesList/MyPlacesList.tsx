@@ -2,20 +2,24 @@ import React, { useEffect} from "react";
 
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
-import {  getApprovedPlaces} from "@/entities/place/api/placeThunks";
+import {   getMyPlaces} from "@/entities/place/api/placeThunks";
 import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
+
 
 export const MyPlacesList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { approvedPlaces } = useAppSelector((state) => state.place);
+  const { places } = useAppSelector((state) => state.place);
   const {user} = useAppSelector((state) => state.user);
 
 
-  useEffect(() => {
-    dispatch(getApprovedPlaces());
-  }, [dispatch]);  
-  
 
+  useEffect(() => {
+if (user?.id) {
+    dispatch(getMyPlaces())
+}
+  }, [dispatch, user?.id]);  
+  
+console.log(user,'oooooooooooo');
   return (
     <>
     <p    style={{
@@ -33,7 +37,7 @@ export const MyPlacesList: React.FC = () => {
       }}
     >
 
-{approvedPlaces
+{places
 // .filter(p => p.status === 'approved')
 .filter(p => p.userId === user?.id)
 .map((p) => (

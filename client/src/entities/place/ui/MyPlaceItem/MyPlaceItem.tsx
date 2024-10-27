@@ -1,8 +1,16 @@
 import React from "react";
 import styles from "./MyPlaceItem.module.css";
+import { Steps } from "antd"; 
+
+
+import { useAppDispatch } from "@/shared/hooks/reduxHooks";
+
+import { removePhoto } from "@/entities/photo/api/photoThunks";
 
 import { Place } from "../../model";
 import { Link } from "react-router-dom";
+
+
 // import { Place, PlaceWithoutStatusTagsPhotosFeedbacks } from "../../model";
 
 type Props = {
@@ -16,6 +24,7 @@ export const MyPlaceItem: React.FC<Props> = ({
   // onPlaceDelete,
   // onPlaceUpdate,
 }) => {
+  const dispatch = useAppDispatch();
   // const [isEditing, setIsEditing] = useState(false);
   // const [title, setTitle] = useState(place.title);
   // const [description, setDescription] = useState(place.description);
@@ -25,6 +34,10 @@ export const MyPlaceItem: React.FC<Props> = ({
   // const handleEdit = () => {
   //   setIsEditing(true);
   // };
+
+  const onDeleteHandeler = () => {
+    dispatch(removePhoto({ id: place.Photos[0].id}));
+  };
 
   // const handleCancel = () => {
   //   setIsEditing(false);
@@ -40,6 +53,18 @@ export const MyPlaceItem: React.FC<Props> = ({
   //     console.error("Error updating place:", error);
   //   }
   // };
+
+  const steps = [
+    {
+      title: 'На модерации',
+      status: place.status === 'pending' ? 'finish' : 'wait',
+    },
+    {
+      title: place.status === 'approved' ? 'Создано' : 'Отклонено',
+      status: place.status === 'approved' ? 'finish' : (place.status === 'rejected' ? 'finish' : 'wait'),
+      
+    },
+  ];
 
   return (
     <div className={styles.myPlaceItem}>
@@ -63,6 +88,7 @@ export const MyPlaceItem: React.FC<Props> = ({
 }
 
 
+      <Steps items={steps} className={styles.customStep}/>
 {/* {isEditing ? (
         <>
           <input
