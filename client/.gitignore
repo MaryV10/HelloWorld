@@ -26,3 +26,4 @@ tsconfig.app.tsbuildinfo
 *.sln
 *.sw?
 .DS_Store
+tsconfig.app.tsbuildinfo
