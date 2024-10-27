@@ -211,6 +211,34 @@ export default class Example extends Component {
     });
   };
 
+  goToPreviousSlide = () => {
+    this.setState(prevState => ({
+      goToSlide: (prevState.goToSlide > 0) ? prevState.goToSlide - 1 : this.slides.length - 1,
+    }));
+  };
+
+  goToNextSlide = () => {
+    this.setState(prevState => ({
+      goToSlide: (prevState.goToSlide < this.slides.length - 1) ? prevState.goToSlide + 1 : 0,
+    }));
+  };
+
+  handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'ArrowLeft') {
+      this.goToPreviousSlide();
+    } else if (event.key === 'ArrowRight') {
+      this.goToNextSlide();
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   render() {
     return (
       <div style={{ width: "800px", height: "500px", margin: "0 auto" }}>

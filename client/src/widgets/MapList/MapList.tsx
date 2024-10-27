@@ -5,8 +5,7 @@ import styles from "./MapList.module.css";
 import ModalWindow from "@/shared/ui/Modal/Modal";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { addPlace, getApprovedPlaces } from "@/entities/place/api/placeThunks";
-
-
+import { addPhoto } from "@/entities/photo/api/photoThunks";
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -20,31 +19,29 @@ interface YMapsMouseEvent {
 
 function MapList() {
   const [title, setTitle] = useState("");
-const [description, setDescription] = useState("");
-const [modalActive, setModalActive] = useState(false);
+  const [photo, setPhoto] = useState("");
+  const [description, setDescription] = useState("");
+  const [modalActive, setModalActive] = useState(false);
   const [isLongTouch, setIsLongTouch] = useState(false);
   const [coords, setCoords] = useState<[number, number] | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const places = useAppSelector((state)=> state.place.places)
+  const places = useAppSelector((state) => state.place.places);
   const dispatch = useAppDispatch();
 
-
-
   useEffect(() => {
-    dispatch(getApprovedPlaces())
+    dispatch(getApprovedPlaces());
   }, [dispatch]);
 
   const handleMouseDown = (e: YMapsMouseEvent) => {
     const originalEvent = e.get("domEvent").originalEvent;
-    
+
     if (originalEvent.button === 2) {
       originalEvent.preventDefault();
-      
+
       timerRef.current = setTimeout(() => {
         setIsLongTouch(true);
-        const coordinates = e.get("coords") as unknown as [number, number]; 
+        const coordinates = e.get("coords") as unknown as [number, number];
         setCoords(coordinates);
         setModalActive(true);
       }, 1000);
@@ -54,28 +51,39 @@ const [modalActive, setModalActive] = useState(false);
   const handleMouseUp = () => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
-      timerRef.current = null;}
+      timerRef.current = null;
+    }
     if (isLongTouch) {
       setIsLongTouch(false);
-      
     }
   };
 
-  const onSubmitHandler = (event: React.FormEvent) => {
+  const onSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
     if (coords) {
-      dispatch(
-        addPlace({
-          title,
-          description,
-          width: String(coords[0]),
-          longitude: String(coords[1]),
-        })
-      );
-      setModalActive(false);
-      setTitle("");
-      setDescription("");
-      setCoords(null);
+      try {
+    
+        const newPlace = await dispatch(
+          addPlace({
+            title,
+            description,
+            width: String(coords[0]),
+            longitude: String(coords[1]),
+          })
+        ).unwrap();
+
+     
+        await dispatch(addPhoto({ imageUrl: photo, placeId: newPlace.id })).unwrap();
+        
+      
+        setModalActive(false);
+        setTitle("");
+        setDescription("");
+        setPhoto("");
+        setCoords(null);
+      } catch (error) {
+        console.error("Ошибка при добавлении места или фото:", error);
+      }
     }
   };
 
@@ -100,28 +108,35 @@ const [modalActive, setModalActive] = useState(false);
               index={place.id}
               coordinates={[Number(place.width), Number(place.longitude)]}
               title={place.title}
-              
             />
           ))}
         </Clusterer>
       </Map>
       <ModalWindow active={modalActive} onToggle={() => setModalActive(false)}>
-      {modalActive && ( <form onSubmit={onSubmitHandler}>
-      <input
-        type='text'
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder='Название места'
-      />
-       <textarea
-       className={styles.textarea}
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder='Описание места'
-      />
-      <button type='submit'>Создать место</button>
-      </form>)}
-     </ModalWindow>
+        {modalActive && (
+          <form onSubmit={onSubmitHandler}>
+            <input
+              type='text'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder='Название места'
+            />
+            <input
+              type='text'
+              value={photo}
+              onChange={(e) => setPhoto(e.target.value)}
+              placeholder='Фото'
+            />
+            <textarea
+              className={styles.textarea}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder='Описание места'
+            />
+            <button type='submit'>Создать место</button>
+          </form>
+        )}
+      </ModalWindow>
     </div>
   );
 }
