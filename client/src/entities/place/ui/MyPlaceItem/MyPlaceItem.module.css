@@ -24,3 +24,27 @@
     color: black;
     margin: 0 0 20px;
   }
+
+  .customStep .ant-steps-item-finish .ant-steps-item-icon {
+    color: green !important; /* Цвет иконки "Done" */
+  }
+  
+  .customStep .ant-steps-item-process .ant-steps-item-icon {
+    color: orange !important; /* Цвет иконки "На модерации" */
+  }
+  
+  .customStep .ant-steps-item-process {
+    animation: pulse 1s infinite; /* Анимация для статуса "На модерации" */
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
