@@ -7,6 +7,8 @@ import { SignInPage } from '@/pages/SignInPage';
 import { SignUpPage } from '@/pages/SignUpPage';
 
 import MapPage from '@/pages/MapPage/MapPage';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { OnePlacePage } from '@/pages/OnePlacePage';
 
 
 export const router = createBrowserRouter([
@@ -16,11 +18,6 @@ export const router = createBrowserRouter([
     children: [
       {
         path: AppRoutes.HOME,
-        element: <HomePage />,
-      },
-
-      {
-        path: AppRoutes.FILMS,
         element: <HomePage />,
       },
       {
@@ -34,6 +31,14 @@ export const router = createBrowserRouter([
       {
         path: AppRoutes.SIGNUP,
         element: <SignUpPage />,
+      },
+      {
+        path: AppRoutes.PROFILE,
+        element: <ProfilePage />,
+      },
+      {
+        path: AppRoutes.ONEPLACE,
+        element: <OnePlacePage />,
       },
     ],
   },

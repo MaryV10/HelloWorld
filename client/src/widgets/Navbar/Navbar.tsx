@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import {isMobile} from 'react-device-detect';
 import { ROUTES } from "@/app/router/routes";
-import logo from "../../../public/logo.png";
+import Avatar from '@mui/material/Avatar';
+import logo from "@/assets/logo.png";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { logout } from "@/entities/user";
 
@@ -16,11 +17,15 @@ import { SignInForm } from "@/features/auth/ui/SignInForm";
 
 
 
+
+
 export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
   const [active, setActive] = useState(false);
   const [active1, setActive1] = useState(false);
+
+  console.log(user?.avatarUrl)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +58,7 @@ export const Navbar: React.FC = () => {
       return <div><MobileMenu /></div>;
     }
     return <div><div className={styles.bar}>
-    {user && <p style={{background:"#e9dbc1", border: "2px solid black", padding: "6px", borderRadius: "20px", color: "black", paddingLeft: "10px", paddingRight: "10px"}}>Привеет, {user.nickname}</p>}
+    {user && <Avatar alt={`${user.nickname}`} src={user.avatarUrl} style={{border: "3px solid #017247"}}/>}
     <Link to={ROUTES.MAP}>
       <button className={styles.navButton}>Карта</button>
     </Link>
@@ -62,6 +67,10 @@ export const Navbar: React.FC = () => {
         <button className={styles.navButton} onClick={handleLogout}>
           Logout
         </button>
+        <Link to={ROUTES.PROFILE}> <button className={styles.navButton} >
+            Личный кабинет
+        </button>
+        </Link>
       </>
     ) : (
       <>
@@ -101,7 +110,7 @@ export const Navbar: React.FC = () => {
 
       <>
         <Modal active={active1} onToggle={onToggle1}>
-          <SignInForm setActive1={setActive1} onToggle={onToggle1}/>
+          <SignInForm setActive1={setActive1} onToggle1={onToggle1}/>
           <button type="button" onClick={onToggle1}>
             Закрыть
           </button>

@@ -1,1 +1,4 @@
-export { CarouselComponent } from './Carousel.tsx';
+import  CarouselComponent from './Carousel.tsx'
+export { CarouselComponent } 
+
+// import { CarouselComponent } from './Carousel.tsx';

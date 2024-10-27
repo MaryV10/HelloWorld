@@ -5,13 +5,13 @@ const { verifyAccessToken } = require('../middlewares/verifyToken');
 const placeRouter = require('express').Router();
 
 placeRouter
-.get("/", getAllApprovedPlacesController)
-.get("/pending", getAllPendingPlacesController)
-.post("/",  createPlaceController)
-.get("/:id",  getOnePlaceController)
-.put("/approve/:id",  approvePlaceController)
-.put("/reject/:id",  rejectPlaceController)
-.put("/:id",  updatePlaceController)
-.delete("/:id",  deletePlaceController);
+.get("/",  getAllApprovedPlacesController)
+.get("/pending", verifyAccessToken, getAllPendingPlacesController)
+.post("/",  verifyAccessToken, createPlaceController)
+.get("/:id",  verifyAccessToken, getOnePlaceController)
+.put("/approve/:id", verifyAccessToken, approvePlaceController)
+.put("/reject/:id",  verifyAccessToken, rejectPlaceController)
+.put("/:id",  verifyAccessToken, updatePlaceController)
+.delete("/:id",  verifyAccessToken,deletePlaceController);
 
 module.exports = placeRouter;

@@ -6,8 +6,10 @@ import { signIn } from '@/entities/user';
 import { unwrapResult } from '@reduxjs/toolkit';
 import styles from './SignInForm.module.css';
 
+
 interface SignInFormProps {
   onToggle1: () => void;
+  setActive1: (active1: boolean) => void; // Add this line
 }
 
 export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
@@ -29,7 +31,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
       const resultAction = await dispatch(signIn({ email, password }));
       unwrapResult(resultAction);
       navigate(ROUTES.HOME);
-      setInputs("");
+      setInputs({ email: "", password: "" });
     } catch (error) {
       console.error('Sign in failed:', error);
     }

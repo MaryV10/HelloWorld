@@ -95,7 +95,7 @@ export class PlaceService {
      title: string, description: string, longitude: string, width: string): Promise<Place> {
     try {
       const response = await axiosInstance.put(`/places/${id}`, {title, description, longitude, width})
-     return response.data
+     return response.data.place
     } catch (error) {
       console.error('Error fetching place:', error);
       throw new Error('Failed to fetch place.');

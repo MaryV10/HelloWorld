@@ -60,4 +60,33 @@ export class UserService {
     await axiosInstance.get("/auth/logout");
     setAccessToken("");
   }
+
+
+static async updateUser( 
+ nickname: string, firstName: string, secondName: string): Promise<User>{
+ try {
+   const response = await axiosInstance.put(`/auth`, {nickname, firstName, secondName})
+  //  console.log(response.data.updateUser, 'RESPONSE>DATA=============>>>>>>>>>');
+
+  return response.data.updateUser
+ } catch (error) {
+   console.error('Error fetching user:', error);
+   throw new Error('Failed to fetch user.');
+ }
+}
+
+static async getUser( 
+  id:number): Promise<User>{
+  try {
+  
+    const response = await axiosInstance.get(`/auth/${id}`)
+    console.log(response.data.updateUser, 'RESPONSE>DATA=============>>>>>>>>>');
+
+ 
+   return response.data.updateUser
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw new Error('Failed to fetch user.');
+  }
+ }
 }

@@ -1,0 +1,1 @@
+export { OnePlacePage } from "./OnePlacePage";

@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Button,
+  Avatar,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MapIcon from '@mui/icons-material/Map';
@@ -111,7 +112,8 @@ const MobileMenu = () => {
               </ListItem>
             </>
           )}
-          <ListItem>
+          <ListItem style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          {user && <Avatar alt={`${user.nickname}`} src={user.avatarUrl} style={{border: "3px solid #017247", width: "100px", height: "100px", marginTop: "10px", marginBottom: "20px"}}/>}
             <Button
               component={Link}
               to="/map"
@@ -153,6 +155,7 @@ const MobileMenu = () => {
           </ListItem>
           {user && (
             <ListItem>
+          
               <Button
                 onClick={handleLogout}
                 fullWidth
