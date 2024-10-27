@@ -25,6 +25,36 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          placeId: 4,
+          tagId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          placeId: 1,
+          tagId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          placeId: 2,
+          tagId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          placeId: 2,
+          tagId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          placeId: 5,
+          tagId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

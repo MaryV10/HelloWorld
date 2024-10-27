@@ -36,7 +36,7 @@ class PlaceService {
   static async getAllPendingPlaces() {
     try {
       return await Place.findAll({
-        
+        where: { status: "pending" },
         include: [
           { model: Tag, as: "tags", through: { attributes: [] }  },
           { model: Feedback },
