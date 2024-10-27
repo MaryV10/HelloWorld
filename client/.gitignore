@@ -13,6 +13,8 @@ dist
 dist-ssr
 *.local
 
+tsconfig.app.tsbuildinfo
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,3 +26,4 @@ dist-ssr
 *.sln
 *.sw?
 .DS_Store
+tsconfig.app.tsbuildinfo
