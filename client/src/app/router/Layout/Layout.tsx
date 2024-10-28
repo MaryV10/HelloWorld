@@ -6,13 +6,23 @@ import { Navbar } from '@/widgets/Navbar';
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { refreshAccessToken } from '@/entities/user';
+import { getMyPlaces } from '@/entities/place/api/placeThunks';
 
 
 const Layout: React.FC = () => {
 const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(refreshAccessToken());
+    const fetchData = async () => {
+      try {
+        await dispatch(refreshAccessToken()).unwrap();
+        await dispatch(getMyPlaces()).unwrap();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+    
   }, [dispatch]);
 
 

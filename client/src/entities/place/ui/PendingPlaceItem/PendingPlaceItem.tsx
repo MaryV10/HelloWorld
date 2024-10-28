@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./PendingPlaceItem.module.css";
 
 import { Place } from "../../model";
 import { useAppDispatch} from "@/shared/hooks/reduxHooks";
-import { approvePlace, rejectPlace } from "../../api/placeThunks";
+import { approvePlace, getPendingPlaces, rejectPlace } from "../../api/placeThunks";
 
 // import { Place, PlaceWithoutStatusTagsPhotosFeedbacks } from "../../model";
 
@@ -15,29 +15,19 @@ type Props = {
 
 export const PendingPlaceItem: React.FC<Props> = ({
   place,
-  // onPlaceReject,
-  // onPlaceApprove,
+
 }) => {
   const dispatch = useAppDispatch();
 
+  const handleReject =  () => {  
+    dispatch(rejectPlace({ id: place.id }));  
 
+  };  
   
-  // useEffect(() => {  
- 
-  //   const handleReject = async() => {
-  //     dispatch(rejectPlace({ id: place.id }))
-    
-  //   }
+  const handleApprove =  () => {
+   dispatch(approvePlace({ id: place.id }))
 
-  //   handleReject();  
-    
-  // }, [dispatch]); 
-  const handleReject = () => {
-    dispatch(rejectPlace({ id: place.id }))
-  
-  }
-  
-  const handleApprove = () => dispatch(approvePlace({ id: place.id }));
+};
 
   return (
     <div>

@@ -118,9 +118,15 @@ const placeSlice = createSlice({
       .addCase(approvePlace.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.map((place) =>
-          place.id === action.payload.id ? action.payload : place
-        );
+        state.place = action.payload
+        state.places = state.places.map((place) => {
+          if (place.id === action.payload.id) {
+            return action.payload;
+          }
+          return place;
+        })
+        state.pendingPlaces=state.pendingPlaces.filter((place) => place.id !== action.payload.id)
+
       })
       // -----------------------
       .addCase(rejectPlace.pending, (state) => {
@@ -134,8 +140,18 @@ const placeSlice = createSlice({
       .addCase(rejectPlace.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.filter(place => place.id !== action.payload.id);
-      })
+        state.place = action.payload
+        state.places = state.places.map((place) => {
+          if (place.id === action.payload.id) {
+            return action.payload;
+          }
+          return place;
+        })
+        state.pendingPlaces=state.pendingPlaces.filter((place) => place.id !== action.payload.id)
+      }
+    
+    )
+    
       // -----------------------
       .addCase(removePlace.pending, (state) => {
         state.loading = true;
