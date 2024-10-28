@@ -13,7 +13,7 @@ export const OnePlaceItem: React.FC = () => {
 
   const totalScore = () => {
     if (!onePlace?.Feedbacks || onePlace?.Feedbacks.length === 0) {
-      return 0;
+      return "Нет отзывов";
     } else {
       const totalScore: number | undefined = onePlace?.Feedbacks.reduce(
         (acc, feedback) => acc + feedback.score,
@@ -49,13 +49,14 @@ export const OnePlaceItem: React.FC = () => {
       </div>
       <p>Description: {onePlace?.description}</p>
       <div className={styles.feedbacks}>
-        
-          {onePlace?.Feedbacks.map((feedback) => (
-            <div className={styles.feedbacksOneLine}>
-              <div><div>Комментарий:</div> <div>{feedback.comment}</div></div>
-              <div>Оценка: {feedback.score}</div>
+        {onePlace?.Feedbacks.map((feedback) => (
+          <div className={styles.feedbacksOneLine}>
+            <div>
+              <div>Комментарий:</div> <div>{feedback.comment}</div>
             </div>
-          ))}
+            <div>Оценка: {feedback.score}</div>
+          </div>
+        ))}
       </div>
     </div>
   );
