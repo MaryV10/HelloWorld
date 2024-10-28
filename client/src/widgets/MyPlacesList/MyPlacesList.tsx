@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from "react";
 import {  useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
@@ -86,3 +87,4 @@ export const MyPlacesList: React.FC = () => {
   console.log(user, "oooooooooooo");
   return <>{renderContent()}</>;
 };
+
