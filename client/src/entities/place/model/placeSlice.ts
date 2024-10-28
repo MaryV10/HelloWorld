@@ -58,7 +58,6 @@ const placeSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.approvedPlaces = action.payload
-        console.log(action.payload, 'APPPROVED');
       })
       //!-----------------------
       .addCase(getMyPlaces.pending, (state) => {

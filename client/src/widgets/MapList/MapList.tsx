@@ -30,14 +30,18 @@ function MapList() {
   const [isLongTouch, setIsLongTouch] = useState(false);
   const [search, setSearch] = useState("")
   const [coords, setCoords] = useState<[number, number] | null>(null);
+  const {user} = useAppSelector(state => state.user)
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const places = useAppSelector((state) => state.place.approvedPlaces);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getApprovedPlaces());
-  }, [dispatch]);
+    if(user?.id)
+ {dispatch(getApprovedPlaces());
+
+ }    
+  }, [dispatch, user?.id]);
 
   const filteredPlaces = places.filter((place) => place.title.toLowerCase().includes(search.toLowerCase()))
   const handleMouseDown = (e: YMapsMouseEvent) => {
