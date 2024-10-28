@@ -35,9 +35,9 @@ export const MyPlaceItem: React.FC<Props> = ({
   //   setIsEditing(true);
   // };
 
-  const onDeleteHandeler = () => {
-    dispatch(removePhoto({ id: place.Photos[0].id}));
-  };
+  // const onDeleteHandeler = () => {
+  //   dispatch(removePhoto({ id: place.Photos[0].id}));
+  // };
 
   // const handleCancel = () => {
   //   setIsEditing(false);
