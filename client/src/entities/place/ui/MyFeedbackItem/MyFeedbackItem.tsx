@@ -1,25 +1,30 @@
 import React from "react";
 
-
 import { Place } from "../../model";
 import { Feedback } from "@/entities/feedback";
 
 interface MyFeedbackItemProps {
-
-  place: Place;
+  place?: Place;
   feedback: Feedback;
+  isPlaceEnabled?: boolean;
 }
 
 // Используем интерфейс в компоненте
 export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
   place,
   feedback,
+  isPlaceEnabled = false,
 }) => {
   return (
     <div>
       <p>feedback.userId: {feedback.userId}</p>
-      <p>Название: {place.title}</p>
-      <p>Описание: {place.description}</p>
+      {isPlaceEnabled && (
+        <>
+          <p>Название: {place?.title}</p>
+          <p>Описание: {place?.description}</p>
+        </>
+      )}
+
       <p>Моя оценка: {feedback.score}</p>
       <p>Мой коммент: {feedback.comment}</p>
     </div>
