@@ -1,0 +1,51 @@
+.container {
+    margin: 0;
+    height: 400px;
+    width: 100px;
+    color: white;
+    line-height: 270px;
+    text-align: center;
+    background: rgb(0, 0, 0);
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+}
+  
+  
+  .roundedCarousel {
+    border-radius: 20px; 
+    overflow: hidden;
+    height: 270px;
+  }
+.desctop {
+    max-width: 600px;
+}
+
+@media (max-width: 767px) {
+    .container {
+        height: 250px; 
+        line-height: 200px; 
+    }
+
+    .roundedCarousel {
+        height: 200px; 
+    }
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        height: 350px; 
+        line-height: 240px; 
+    }
+
+    .roundedCarousel {
+        height: 230px;
+    }
+}
