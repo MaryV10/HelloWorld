@@ -42,7 +42,7 @@ export const MyFeedbackList: React.FC = () => {
   place.Feedbacks  
     .filter(feedback => feedback.userId === user?.id)  
     .map(feedback =>(  
-    <MyFeedbackItem key={feedback.id} feedback={feedback} place={place} />  
+    <MyFeedbackItem key={feedback.id} feedback={feedback} place={place} isPlaceEnabled/>  
   ))  
 )} 
 

@@ -30,7 +30,9 @@ function MapList() {
   const [isLongTouch, setIsLongTouch] = useState(false);
   const [search, setSearch] = useState("");
   const [coords, setCoords] = useState<[number, number] | null>(null);
+
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const places = useAppSelector((state) => state.place.approvedPlaces);
@@ -38,9 +40,11 @@ function MapList() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+
     dispatch(getApprovedPlaces());
     dispatch(getAllTags());
   }, [dispatch]);
+
 
   const selectedTagIds = selectedTags.map(Number);
 

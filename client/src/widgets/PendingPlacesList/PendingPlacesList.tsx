@@ -35,10 +35,8 @@ export const PendingPlacesList: React.FC = () => {
         }}
       >
         {pendingPlaces
-          // .filter(p => p.status === 'pending')
+
           .map((p) => (
-            // <MyPlaceItem key={p.id} place={p}  onPlaceDelete={handlePlaceDelete}
-            // onPlaceUpdate={handlePlaceUpdate}/>
 
             <PendingPlaceItem key={p.id} place={p} />
           ))}

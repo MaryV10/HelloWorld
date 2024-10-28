@@ -1,15 +1,16 @@
-import React, { useEffect} from "react";
+import React from "react";
 
-import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
+import {  useAppSelector } from "@/shared/hooks/reduxHooks";
 
-import {   getMyPlaces} from "@/entities/place/api/placeThunks";
+
 import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
 
 
 export const MyPlacesList: React.FC = () => {
-  const dispatch = useAppDispatch();
+
   const { places } = useAppSelector((state) => state.place);
   const {user} = useAppSelector((state) => state.user);
+
 
 
 
@@ -19,6 +20,7 @@ if (user?.id) {
 }
   }, [dispatch, user?.id]);  
   
+
 
   return (
     <>
@@ -37,7 +39,7 @@ if (user?.id) {
       }}
     >
 
-{places
+{places && places
 // .filter(p => p.status === 'approved')
 .filter(p => p.userId === user?.id)
 .map((p) => (

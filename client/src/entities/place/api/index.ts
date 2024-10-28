@@ -73,7 +73,7 @@ console.log(tags);
   ): Promise<Place> {
     try {
       const response = await axiosInstance.put(`/places/approve/${id}`, );
-      return response.data;
+      return response.data.place;
     } catch (error) {
       console.error('Error approving place:', error);
       throw new Error('Failed to approve place.');
@@ -88,7 +88,7 @@ console.log(tags);
       try {
         const response = await axiosInstance.put(`/places/reject/${id}`
         );
-        return response.data;
+        return response.data.place;
       } catch (error) {
         console.error('Error rejecting place:', error);
         throw new Error('Failed to reject place.');

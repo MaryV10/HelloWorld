@@ -11,8 +11,13 @@ const tagRouter = require("./tag.api.router");
 const photoRouter = require("./photo.router");
 const tagPlaceRouter = require("./tagPlace.api.router");
 
+const feedbackRouter = require("./feedback.router");
+
+
 
 router.use("/tags", tagRouter);
+router.use("/feedbacks", feedbackRouter);
+
 router.use('/tokens', tokenRouter);
 router.use('/places', placeRouter);
 

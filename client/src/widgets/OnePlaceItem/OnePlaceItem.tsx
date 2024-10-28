@@ -1,19 +1,29 @@
-import { useAppSelector } from "@/shared/hooks/reduxHooks";
-import React from "react";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./OnePlaceItem.module.css";
+import {
+  getApprovedPlaces,
+  getOnePlace,
+} from "@/entities/place/api/placeThunks";
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
+  const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   const { id } = useParams();
 
   const onePlace = approvedPlaces.find((place) => place.id === Number(id));
 
- 
+
+  if (approvedPlaces.length === 0 && user?.id) {
+    dispatch(getApprovedPlaces());
+  }
+
 
   const totalScore = () => {
     if (!onePlace?.Feedbacks || onePlace?.Feedbacks.length === 0) {
-      return "Нет отзывов";
+      return "Нет оценок";
     } else {
       const totalScore: number | undefined = onePlace?.Feedbacks.reduce(
         (acc, feedback) => acc + feedback.score,
@@ -24,6 +34,12 @@ export const OnePlaceItem: React.FC = () => {
       return averageScore;
     }
   };
+//  ======================= CREATE FEEDBACK ===========================
+  // const handlerAddFeedback = () => {
+  //   if (user?.id) {
+  //     dispatch(());
+  //   }
+  // }
 
   return (
     <div
@@ -31,12 +47,12 @@ export const OnePlaceItem: React.FC = () => {
         marginTop: "20px",
         padding: "10px",
         height: "50vh",
-        background: "yellow",
       }}
     >
       OnePlaceItem
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <p>Место: {onePlace?.title}</p>
+
         <p>Средняя оценка: {totalScore()}</p>
       </div>
       <div className={styles.photos}>
@@ -48,6 +64,12 @@ export const OnePlaceItem: React.FC = () => {
         ))}
       </div>
       <p>Description: {onePlace?.description}</p>
+      <div>
+        Ваш отзыв:
+        <textarea style={{ backgroundColor: "white" }}></textarea>
+      </div>
+      <button >Добавить отзыв</button>
+     
       <div className={styles.feedbacks}>
         {onePlace?.Feedbacks.map((feedback) => (
           <div className={styles.feedbacksOneLine}>
