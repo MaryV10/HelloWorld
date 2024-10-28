@@ -94,7 +94,7 @@ const userSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log(action.payload, '=====>>ap');
+        
         state.user = action.payload;
         
       })
@@ -110,7 +110,7 @@ const userSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log(action.payload, '=====>>GETUSER ACTION PAYLOAD');
+       
         state.user = action.payload;
         
       });

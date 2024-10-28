@@ -66,7 +66,7 @@ static async updateUser(
  nickname: string, firstName: string, secondName: string): Promise<User>{
  try {
    const response = await axiosInstance.put(`/auth`, {nickname, firstName, secondName})
-  //  console.log(response.data.updateUser, 'RESPONSE>DATA=============>>>>>>>>>');
+ 
 
   return response.data.updateUser
  } catch (error) {
@@ -80,7 +80,7 @@ static async getUser(
   try {
   
     const response = await axiosInstance.get(`/auth/${id}`)
-    console.log(response.data.updateUser, 'RESPONSE>DATA=============>>>>>>>>>');
+    
 
  
    return response.data.updateUser

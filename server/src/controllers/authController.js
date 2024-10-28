@@ -107,7 +107,7 @@ async function update(req, res) {
         firstName,
         secondName,
       });
-      console.log(updateUser, "updateUser");
+      
 
       res.status(200).json({ updateUser });
     }

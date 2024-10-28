@@ -50,11 +50,15 @@ export class PlaceService {
         }
       }
    //создание одного места на общей карте
-  static async createPlace(title: string, description: string, longitude: string, width: string): Promise<Place> {
+  static async createPlace(title: string, description: string, longitude: string, width: string, tags: string[]): Promise<Place> {
     try {
-      console.log(title, description, longitude, width);
+      
       const response = await axiosInstance.post('/places', {title, description, longitude, width},
       );
+console.log(tags);
+      tags.map(async (tag) => {
+        await axiosInstance.post('/tagplace', { tagId: tag, placeId: response.data.place.id })
+      })
       
       return response.data.place;
     } catch (error) {

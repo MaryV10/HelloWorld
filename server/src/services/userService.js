@@ -33,12 +33,12 @@ class UserService {
 
    async updateUser(id, {nickname, firstName, secondName}) {
     try {
-      // console.log(id, '44444444444');
+      
       const user= await User.findOne({
         where: { id}
       });
-      // console.log(user, 'USERRRRRR!');
-console.log({nickname, firstName, secondName}, 'newNickname, newFirstName, newSecondName');
+      
+
       if (!user) {
         return { message: "User is not found" };
       }
@@ -65,7 +65,7 @@ console.log({nickname, firstName, secondName}, 'newNickname, newFirstName, newSe
       }
       const plainUser = user.get();
       delete plainUser.password;
-      // console.log(plainUser, '=====>>>>>>>>>>PLAIN');
+      
       return  plainUser ;
     } catch (error) {
       return error;

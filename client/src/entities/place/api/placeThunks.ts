@@ -73,17 +73,18 @@ export const getPendingPlaces = createAsyncThunk<
 
 export const addPlace = createAsyncThunk<
   Place,
-  { title: string; description: string; longitude: string; width: string },
+  { title: string; description: string; longitude: string; width: string, tags: string[] },
   { rejectValue: RejectValue }
 >(
   PLACE_THUNKS_ACTIONS.ADD_PLACE,
-  async ({ title, description, longitude, width }, { rejectWithValue }) => {
+  async ({ title, description, longitude, width, tags }, { rejectWithValue }) => {
     try {
       return await PlaceService.createPlace(
         title,
         description,
         longitude,
-        width
+        width,
+        tags
       );
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;

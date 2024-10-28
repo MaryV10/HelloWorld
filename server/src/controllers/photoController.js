@@ -30,7 +30,7 @@ async function deletePhotoController(req, res) {
   const { id } = req.params;
   const userId = res.locals.user.id;
   try {
-    console.log(id, userId, "---------------------")
+   
     const { isDeleted } = await PhotoService.deletePhoto(id, userId);
     const place = await PlaceService.getOnePlace(id);
     if (isDeleted) {

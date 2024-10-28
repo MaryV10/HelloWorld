@@ -14,6 +14,7 @@ import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselShared
 export const MyPlacesList: React.FC = () => {
 
   const { places } = useAppSelector((state) => state.place);
+
   const { user } = useAppSelector((state) => state.user);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ export const MyPlacesList: React.FC = () => {
     }
     return (
       <>
+
 
       
         <p

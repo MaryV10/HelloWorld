@@ -5,6 +5,7 @@ export class TagService {
     static async getAllTags(): Promise<TagList> {
         try {
             const { data } = await axiosInstance.get('/tags');
+            
             return data.tags
         } catch (error) {
             console.error('Error fetching all places:', error);
