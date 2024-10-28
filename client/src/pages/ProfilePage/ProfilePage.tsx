@@ -16,8 +16,8 @@ export const ProfilePage: React.FC = () => {
 
 
   return (
-    <div style={{ marginTop: '100px', padding: '20px', height: '250vh', background:'pink' }}> 
-      <p>Личный кабинет</p>
+    <div style={{  padding: '20px', height: '250vh', background:'#f8ebda', display: 'flex', flexDirection: 'column', gap: '20px' }}> 
+  
       {/* <button type='button' onClick={() => dispatch(decrement())}>
         -
       </button>

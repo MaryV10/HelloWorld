@@ -1,50 +1,120 @@
 .myPlaceItem {
-    border: 1px solid #ccc;
+background: none;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+
+  
+}
+
+.myPlaceItem input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.myPlaceItem h2 {
+  color: black;
+  margin: 0 0 10px;
+}
+
+.myPlaceItem p {
+  color: black;
+  margin: 0 0 20px;
+}
+
+.customStep .ant-steps-item-finish .ant-steps-item-icon {
+  color: green !important;
+}
+
+.customStep .ant-steps-item-process .ant-steps-item-icon {
+  color: orange !important;
+}
+
+.customStep .ant-steps-item-process {
+  animation: pulse 1s infinite;
+  min-height: 40px;
+  background-color: #4CAF50;
+}
+
+.customStep .ant-steps-item {
+  min-height: 40px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 600px) {
+  .myPlaceItem {
+    margin: 5px;
     padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .myPlaceItem input {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .myPlaceItem h2 {
-    color: black;
-    margin: 0 0 10px;
-  }
-  
-  .myPlaceItem p {
-    color: black;
-    margin: 0 0 20px;
+   background: none;
+   border: none;
+   max-width: 300px;
   }
 
-  .customStep .ant-steps-item-finish .ant-steps-item-icon {
-    color: green !important; /* Цвет иконки "Done" */
+  .myPlaceItem h2 {
+    font-size: 18px;
   }
-  
-  .customStep .ant-steps-item-process .ant-steps-item-icon {
-    color: orange !important; /* Цвет иконки "На модерации" */
+
+  .myPlaceItem p {
+    font-size: 14px;
   }
-  
-  .customStep .ant-steps-item-process {
-    animation: pulse 1s infinite; /* Анимация для статуса "На модерации" */
+
+  .customStep .ant-steps-item {
+    min-height: 30px;
   }
-  
-  @keyframes pulse {
-    0% {
-      opacity: 0.7;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0.7;
-    }
-  }
+}
+
+
+.myPlaceItem {
+display: flex;
+flex-direction: column;
+justify-content: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+ 
+}
+
+.title {
+  color: black;
+  margin: 0 0 10px;
+}
+
+.description {
+  color: black;
+  margin: 0 0 20px;
+}
+
+.customStep .ant-steps-item-finish .ant-steps-item-icon {
+  color: green !important;
+}
+
+.customStep .ant-steps-item-process .ant-steps-item-icon {
+  color: orange !important; 
+}
+
+.gray .ant-steps-item-icon {
+  color: gray !important; 
+}
+
+.gray {
+  opacity: 0.5; 
+}
+
+.customStep .ant-steps-item {
+  min-height: 40px;
+}

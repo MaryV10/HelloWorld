@@ -57,15 +57,17 @@ export const MyPlaceItem: React.FC<Props> = ({
   const steps = [
     {
       title: 'На модерации',
-      status: place.status === 'pending' ? 'finish' : 'wait',
-      icon: place.status !== 'pending' ? null : <LoadingOutlined />
+      status: place.status === 'pending' ? 'process' : 'finish',
+      icon: place.status === 'pending' ? <LoadingOutlined /> : null,
+      className: place.status === 'approved' || place.status === 'rejected' ? styles.gray : '',
     },
     {
-      title: place.status === 'approved' ? 'Создано' : 'Отклонено',
+      title: place.status === 'pending' ? 'Создано' : (place.status === 'approved' ? 'Создано' : 'Отклонено'),
       status: place.status === 'approved' ? 'finish' : (place.status === 'rejected' ? 'finish' : 'wait'),
-      icon: place.status === 'rejected' ? <CloseOutlined style={{ color: 'red' }} /> : null
+      icon: place.status === 'rejected' ? <CloseOutlined style={{ color: 'red' }} /> : null,
     },
   ];
+  
 
   return (
     <div className={styles.myPlaceItem}>
@@ -78,9 +80,9 @@ export const MyPlaceItem: React.FC<Props> = ({
           <p className={styles.description}>{place.description}</p>
           <p>{place.status}</p>
           <p>{place.userId}</p>
-          {place.Photos.map((photo, index) => (  
-    <img style={{height: '20vh', margin: '10px'}}key={index} src={photo.imageUrl} alt={`Photo ${index + 1}`} />  
-  ))}  
+          
+    <img style={{height: '20vh', margin: '10px', borderRadius: '10px'}} src={place.Photos[0].imageUrl} alt='1' />  
+
           {/* <button onClick={handleEdit}>Edit</button>
           <button onClick={() => onPlaceDelete(place.id)}>Delete</button> */}
       </>
