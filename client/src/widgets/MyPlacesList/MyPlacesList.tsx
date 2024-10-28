@@ -1,6 +1,6 @@
 
 import React, { useEffect } from "react";
-import {  useAppSelector } from "@/shared/hooks/reduxHooks";
+import {  useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
 
 
@@ -11,8 +11,9 @@ import CarouselShared from "@/shared/CarouselShared/CarouselShared";
 import { isMobile } from "react-device-detect";
 import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselSharedMobile";
 
-export const MyPlacesList: React.FC = () => {
 
+export const MyPlacesList: React.FC = () => {
+  const  dispatch = useAppDispatch();
   const { places } = useAppSelector((state) => state.place);
 
   const { user } = useAppSelector((state) => state.user);
