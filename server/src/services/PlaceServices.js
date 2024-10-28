@@ -158,11 +158,7 @@ class PlaceService {
       place.width = width;
       place.longitude = longitude;
       await place.save();
-     
-      // console.log(plainUser, '222222222222222222');
       return { place };
-
-  
     } catch (error) {
       return error;
     }

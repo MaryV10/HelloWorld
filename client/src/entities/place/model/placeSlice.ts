@@ -2,10 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { Place, PlaceList } from ".";
 import { message } from "antd";
 
-import {  addPlace, approvePlace, getApprovedPlaces, getMyPlaces, getOnePlace, getPendingPlaces, rejectPlace, removePlace, updatePlace,  } from "../api/placeThunks";
+import {
+  addPlace,
+  approvePlace,
+  getApprovedPlaces,
+  getMyPlaces,
+  getOnePlace,
+  getPendingPlaces,
+  rejectPlace,
+  removePlace,
+  updatePlace,
+} from "../api/placeThunks";
 
 import { addPhoto, removePhoto } from "@/entities/photo/api/photoThunks";
-
+import {
+  addFeedback,
+  removeFeedback,
+  updateFeedback,
+} from "@/entities/feedback/api/feedbackThunks";
 
 type PlaceSliceType = {
   places: PlaceList;
@@ -44,9 +58,9 @@ const placeSlice = createSlice({
       .addCase(getOnePlace.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.place = action.payload; 
+        state.place = action.payload;
       })
-           .addCase(getApprovedPlaces.pending, (state) => {
+      .addCase(getApprovedPlaces.pending, (state) => {
         state.loading = true;
       })
       .addCase(getApprovedPlaces.rejected, (state, action) => {
@@ -58,7 +72,6 @@ const placeSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.approvedPlaces = action.payload
-        console.log(action.payload, 'APPPROVED');
       })
       //!-----------------------
       .addCase(getMyPlaces.pending, (state) => {
@@ -72,25 +85,23 @@ const placeSlice = createSlice({
       .addCase(getMyPlaces.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = action.payload
-
+        state.places = action.payload;
       })
       //!-----------------------
-    
-         .addCase(getPendingPlaces.pending, (state) => {
-          state.loading = true;
-        })
-        .addCase(getPendingPlaces.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.payload?.message || "Error to load";
-          message.error(state.error);
-        })
-        .addCase(getPendingPlaces.fulfilled, (state, action) => {
-          state.loading = false;
-          state.error = null;
-          state.pendingPlaces = action.payload
 
-        })
+      .addCase(getPendingPlaces.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getPendingPlaces.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to load";
+        message.error(state.error);
+      })
+      .addCase(getPendingPlaces.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.pendingPlaces = action.payload;
+      })
       // -----------------------
 
       .addCase(addPlace.pending, (state) => {
@@ -118,8 +129,15 @@ const placeSlice = createSlice({
       .addCase(approvePlace.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.map((place) =>
-          place.id === action.payload.id ? action.payload : place
+        state.place = action.payload;
+        state.places = state.places.map((place) => {
+          if (place.id === action.payload.id) {
+            return action.payload;
+          }
+          return place;
+        });
+        state.pendingPlaces = state.pendingPlaces.filter(
+          (place) => place.id !== action.payload.id
         );
       })
       // -----------------------
@@ -134,8 +152,18 @@ const placeSlice = createSlice({
       .addCase(rejectPlace.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.filter(place => place.id !== action.payload.id);
+        state.place = action.payload;
+        state.places = state.places.map((place) => {
+          if (place.id === action.payload.id) {
+            return action.payload;
+          }
+          return place;
+        });
+        state.pendingPlaces = state.pendingPlaces.filter(
+          (place) => place.id !== action.payload.id
+        );
       })
+
       // -----------------------
       .addCase(removePlace.pending, (state) => {
         state.loading = true;
@@ -194,6 +222,55 @@ const placeSlice = createSlice({
         message.error(state.error);
       })
       .addCase(removePhoto.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.places = state.places.map((place) =>
+          place.id === action.payload.id ? action.payload : place
+        );
+      })
+      // -----------------------
+      .addCase(addFeedback.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(addFeedback.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to add";
+        message.error(state.error);
+      })
+      .addCase(addFeedback.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.places = state.places.map((place) =>
+          place.id === action.payload.id ? action.payload : place
+        );
+      })
+      // -----------------------
+      .addCase(removeFeedback.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(removeFeedback.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to remove";
+        message.error(state.error);
+      })
+      .addCase(removeFeedback.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.places = state.places.map((place) =>
+          place.id === action.payload.id ? action.payload : place
+        );
+      })
+
+      // -----------------------
+      .addCase(updateFeedback.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateFeedback.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload?.message || "Error to remove";
+        message.error(state.error);
+      })
+      .addCase(updateFeedback.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.places = state.places.map((place) =>
