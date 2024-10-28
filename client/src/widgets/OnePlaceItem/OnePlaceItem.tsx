@@ -9,7 +9,7 @@ export const OnePlaceItem: React.FC = () => {
 
   const onePlace = approvedPlaces.find((place) => place.id === Number(id));
 
-  console.log(onePlace, "onePlaceItem");
+ 
 
   const totalScore = () => {
     if (!onePlace?.Feedbacks || onePlace?.Feedbacks.length === 0) {

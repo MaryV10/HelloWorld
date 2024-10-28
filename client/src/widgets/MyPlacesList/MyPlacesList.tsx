@@ -19,7 +19,7 @@ if (user?.id) {
 }
   }, [dispatch, user?.id]);  
   
-console.log(user,'oooooooooooo');
+
   return (
     <>
     <p    style={{

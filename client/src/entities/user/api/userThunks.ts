@@ -90,7 +90,7 @@ User,
   { rejectValue: RejectValue }
 >(USER_THUNKS_ACTIONS.UPDATE_USER, async ({ nickname, firstName, secondName  }, { rejectWithValue }) => {
   try {
-    // console.log({nickname, firstName, secondName}, '000000000000000000000');
+   
     return await UserService.updateUser(nickname, firstName, secondName);
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
@@ -104,9 +104,9 @@ User,
   { rejectValue: RejectValue }
 >(USER_THUNKS_ACTIONS.GET_USER, async ( id  , { rejectWithValue }) => {
   try {
-    console.log(id, '000000000000000000000');
+   
      const user = await UserService.getUser(id);
-     console.log(user, '```````````````');
+     
      return user
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;

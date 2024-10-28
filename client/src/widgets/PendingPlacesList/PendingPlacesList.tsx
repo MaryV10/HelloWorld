@@ -13,7 +13,7 @@ export const PendingPlacesList: React.FC = () => {
   useEffect(() => {
     dispatch(getPendingPlaces())
   }, [dispatch]);
-  // console.log(state.place, "pending places");
+  
  
   return (
     <>

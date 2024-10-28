@@ -9,8 +9,8 @@ import { addPlace, getApprovedPlaces } from "@/entities/place/api/placeThunks";
 import { addPhoto } from "@/entities/photo/api/photoThunks";
 
 import Sidebar from "../Sidebar/Sidebar";
-
-
+import { TagSelector } from "../TagSelector";
+import { getAllTags } from "@/entities/tag/api/tagThunks";
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -28,18 +28,30 @@ function MapList() {
   const [description, setDescription] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [isLongTouch, setIsLongTouch] = useState(false);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const [coords, setCoords] = useState<[number, number] | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const places = useAppSelector((state) => state.place.approvedPlaces);
+  const tags = useAppSelector((state) => state.tag.tagList);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getApprovedPlaces());
+    dispatch(getAllTags());
   }, [dispatch]);
 
-  const filteredPlaces = places.filter((place) => place.title.toLowerCase().includes(search.toLowerCase()))
+  const selectedTagIds = selectedTags.map(Number);
+
+  const filteredPlaces = places.filter(
+    (place) =>
+      place.title.toLowerCase().includes(search.toLowerCase()) &&
+      selectedTagIds.every((tagId) =>
+        place.tags.some((tag) => tag.id === tagId)
+      )
+  );
+
   const handleMouseDown = (e: YMapsMouseEvent) => {
     const originalEvent = e.get("domEvent").originalEvent;
 
@@ -59,10 +71,8 @@ function MapList() {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
 
-     
-
-      timerRef.current = null;}
-      
+      timerRef.current = null;
+    }
 
     if (isLongTouch) {
       setIsLongTouch(false);
@@ -73,95 +83,106 @@ function MapList() {
     event.preventDefault();
     if (coords) {
       try {
-    
         const newPlace = await dispatch(
           addPlace({
             title,
             description,
             width: String(coords[0]),
             longitude: String(coords[1]),
+            tags: selectedTags,
           })
         ).unwrap();
 
-     
-        await dispatch(addPhoto({ imageUrl: photo, placeId: newPlace.id })).unwrap();
-        
-      
+        await dispatch(
+          addPhoto({ imageUrl: photo, placeId: newPlace.id })
+        ).unwrap();
+
         setModalActive(false);
         setTitle("");
         setDescription("");
         setPhoto("");
         setCoords(null);
+        setSelectedTags([]);
       } catch (error) {
         console.error("Ошибка при добавлении места или фото:", error);
       }
     }
   };
 
-
-
-
   return (
     <>
-    <div className={styles.navbar}>
-    </div>
-    
-    <div className={styles.mapContainer} style={{ height: "100%" }}>
-    <input className={styles.input} type="text" value= {search} onChange={(e) => setSearch(e.target.value)} placeholder='Поиск...'/>
-      <Map
-        defaultState={{ center: [59.95, 30.3], zoom: 9 }}
-        width={"100%"}
-        style={{ height: "calc(100vh)", marginTop: "" }}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-      >
-        <Clusterer
-          options={{
-            preset: "islands#blueRunCircleIcon",
-            groupByCoordinates: false,
-          }}
+      <div className={styles.navbar}></div>
+
+      <div className={styles.mapContainer} style={{ height: "100%" }}>
+        <input
+          className={styles.input}
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Поиск..."
+        />
+        <Map
+          defaultState={{ center: [59.95, 30.3], zoom: 9 }}
+          width={"100%"}
+          style={{ height: "calc(100vh)", marginTop: "" }}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
         >
-          {filteredPlaces.map((place) => (
-            <PlaceItem
-              key={place.id}
-              index={place.id}
-              coordinates={[Number(place.width), Number(place.longitude)]}
-              title={place.title}
-            />
-          ))}
-        </Clusterer>
-      </Map>
-      <ModalWindow active={modalActive} onToggle={() => setModalActive(false)}>
-        {modalActive && (
-          <form onSubmit={onSubmitHandler}>
-            <input
-              type='text'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder='Название места'
-            />
-            <input
-              type='text'
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
-              placeholder='Фото'
-            />
-            <textarea
-              className={styles.textarea}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder='Описание места'
-            />
-            <button type='submit'>Создать место</button>
-          </form>
-        )}
-      </ModalWindow>
-    </div>
-    <div className={styles.sidebar}>
-      
-      <Sidebar places={filteredPlaces} />
-    </div>
-    
+          <Clusterer
+            options={{
+              preset: "islands#blueRunCircleIcon",
+              groupByCoordinates: false,
+            }}
+          >
+            {filteredPlaces.map((place) => (
+              <PlaceItem
+                key={place.id}
+                index={place.id}
+                coordinates={[Number(place.width), Number(place.longitude)]}
+                title={place.title}
+              />
+            ))}
+          </Clusterer>
+        </Map>
+        <ModalWindow
+          active={modalActive}
+          onToggle={() => setModalActive(false)}
+        >
+          {modalActive && (
+            <form onSubmit={onSubmitHandler}>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Название места"
+              />
+              <input
+                type="text"
+                value={photo}
+                onChange={(e) => setPhoto(e.target.value)}
+                placeholder="Фото"
+              />
+              <textarea
+                className={styles.textarea}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Описание места"
+              />
+              <div className={styles.tags}>
+                <TagSelector tags={tags} onTagSelect={setSelectedTags} />
+              </div>
+              <button type="submit">Создать место</button>
+            </form>
+          )}
+        </ModalWindow>
+      </div>
+      <div className={styles.sidebar}>
+        <Sidebar places={filteredPlaces} />
+      </div>
+
+      <div className={styles.tags}>
+        <TagSelector tags={tags} onTagSelect={setSelectedTags} />
+      </div>
     </>
   );
 }

@@ -159,7 +159,7 @@ class PlaceService {
       place.longitude = longitude;
       await place.save();
      
-      // console.log(plainUser, '222222222222222222');
+      
       return { place };
 
   
