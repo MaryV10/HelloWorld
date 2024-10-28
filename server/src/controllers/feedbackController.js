@@ -4,20 +4,24 @@ const PlaceService = require("../services/PlaceServices");
 
 async function createFeedbackController(req, res) {
   const { score, comment, placeId } = req.body;
+
   const {user} = res.locals;
+
   
   
   try {
     
-    if (score.trim() === ""|| comment.trim() === "") {
+    if ( comment.trim() === "") {
       res.status(400).json({
         error: "Заполните данные",
       });
     } else {
       
-     await FeedbackService.createFeedback({score, comment, placeId, userId: user.id});
+     const yyyy = await FeedbackService.createFeedback({score, comment, placeId, userId: user.id});
+// console.log(yyyy,';;;;;;;;')
 
       const place = await PlaceService.getOnePlace(placeId);
+  
       res.status(201).json({ place });
     }
   } catch (error) {
@@ -26,18 +30,24 @@ async function createFeedbackController(req, res) {
 }
 async function updateFeedbackController(req, res) {
   const { id } = req.params;
+
   const { score, comment, placeId } = req.body;
+
   const { user } = res.locals;
+
   try {
-    if (score.trim() === ""|| comment.trim() === "") {
+    if ( comment.trim() === "") {
       res.status(400).json({
         message: "Not update",
       });
     } else {
-      await FeedbackService.updateFeedback(id, user.id, {
-        score, comment, placeId
+      // console.log(score, comment, placeId, "score, comment, placeId");
+      const newFeedback=await FeedbackService.updateFeedback(id, user.id, {
+        score, comment
       });
+console.log(newFeedback, "newFeedback")
       const place = await PlaceService.getOnePlace(placeId);
+      // console.log(place,';;;;;;;;')
       res.status(200).json({ place });
     }
   } catch (error) {

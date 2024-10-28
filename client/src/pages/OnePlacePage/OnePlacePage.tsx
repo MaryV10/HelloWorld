@@ -9,7 +9,7 @@ export const OnePlacePage: React.FC = () => {
           marginTop: "100px",
           padding: "10px",
           height: "100vh",
-          background: "gray",
+
         }}
       >
         OnePlacePage

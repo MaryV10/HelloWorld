@@ -9,10 +9,11 @@ export class FeedbackService {
 
   static async createFeedback(comment: string, score:number, placeId: number): Promise<Place> {
     try {
+      // console.log({comment, score, placeId}, "KFKFKFKF")
       const response = await axiosInstance.post('/feedbacks', {comment, score, placeId},
       );
-      
-      return response.data.feedback;
+      // console.log(response.data, 'daaaaataaaaaaaa')
+      return response.data.place;
     } catch (error) {
       console.error('Error creating feedback:', error);
       throw new Error('Failed to create feedback.');
@@ -32,11 +33,11 @@ export class FeedbackService {
 
   static async updateFeedback( id: number, comment: string, score:number, placeId: number): Promise<Place> {
     try {
-      return await axiosInstance.put(`/feedbacks/${id}`, {score,comment, placeId});
+      return await axiosInstance.put(`/feedbacks/${id}`, {comment, score, placeId});
       
     } catch (error) {
-      console.error('Error deleting feedback:', error);
-      throw new Error('Failed to delete feedback.');
+      console.error('Error updating feedback:', error);
+      throw new Error('Failed to update feedback.');
     }
   }
 

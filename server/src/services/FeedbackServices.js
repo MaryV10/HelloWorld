@@ -3,6 +3,7 @@ const { Feedback } = require("../../db/models");
 class FeedbackService {
   static async createFeedback(data) {
     try {
+      // console.log(data, "SERV")
       const newFeedback = await Feedback.create(data);
       return newFeedback;
     } catch (error) {
@@ -10,7 +11,9 @@ class FeedbackService {
     }
   }
 
-  static async updateFeedback(id, userId) {
+  static async updateFeedback(id, userId, {
+    score, comment
+  }) {
     try {
       const feedback = await Feedback.findOne({
         where: { id, userId },
@@ -21,7 +24,8 @@ class FeedbackService {
       feedback.comment = comment;
       feedback.score = score;
       await feedback.save();
-      return { feedback };
+
+      return feedback.dataValues;
     } catch (error) {
       console.error(error);
     }
