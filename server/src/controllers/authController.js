@@ -1,8 +1,7 @@
-const cookiesConfig = require('../configs/cookiesConfig');
-const userService = require('../services/userService');
-const generateTokens = require('../utils/generateToken');
+const cookiesConfig = require("../configs/cookiesConfig");
+const userService = require("../services/userService");
+const generateTokens = require("../utils/generateToken");
 // const axios = require('axios');
-
 
 // ====================== i dont haveAccount on HUNTER.IO
 // async function checkEmail(req, res) {
@@ -13,7 +12,7 @@ const generateTokens = require('../utils/generateToken');
 //       .status(400)
 //       .json({ exists: false, message: 'Email is required' });
 //   }
- //   try {
+//   try {
 //     const { data } = await axios.get(
 //       `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${process.env.HUNTER_IO_API_KEY}`
 //     );
@@ -31,21 +30,31 @@ const generateTokens = require('../utils/generateToken');
 //   }
 // }
 
-
-
 async function signUp(req, res) {
-  const { nickname, firstName, secondName, email, password, avatarUrl } = req.body;
+  const { nickname, firstName, secondName, email, password, avatarUrl } =
+    req.body;
 
-  if (!(nickname && email && password)) {
-    return res.status(400).json({ message: 'All fields are required' });
+  if (!(nickname && firstName && email && password)) {
+    return res
+      .status(400)
+      .json({
+        message: "Fields Nickname, firstName, Email and Password are required",
+      });
   }
- 
+
   try {
-    const { user } = await userService.signUp(nickname, firstName, secondName, email, password, avatarUrl);
+    const { user } = await userService.signUp(
+      nickname,
+      firstName,
+      secondName,
+      email,
+      password,
+      avatarUrl
+    );
     const { accessToken, refreshToken } = generateTokens({ user });
 
     res
-      .cookie('refreshToken', refreshToken, cookiesConfig.refresh)
+      .cookie("refreshToken", refreshToken, cookiesConfig.refresh)
       .json({ user, accessToken });
   } catch (error) {
     console.error(error);
@@ -53,12 +62,11 @@ async function signUp(req, res) {
   }
 }
 
-
 async function signIn(req, res) {
   const { email, password } = req.body;
 
   if (!(email && password)) {
-    return res.status(400).json({ message: 'All fields are required' });
+    return res.status(400).json({ message: "All fields are required" });
   }
 
   try {
@@ -66,7 +74,7 @@ async function signIn(req, res) {
     const { accessToken, refreshToken } = generateTokens({ user });
 
     res
-      .cookie('refreshToken', refreshToken, cookiesConfig.refresh)
+      .cookie("refreshToken", refreshToken, cookiesConfig.refresh)
       .json({ user, accessToken });
   } catch (error) {
     console.error(error);
@@ -74,10 +82,9 @@ async function signIn(req, res) {
   }
 }
 
-
 async function logout(req, res) {
   try {
-    res.clearCookie('refreshToken').sendStatus(200);
+    res.clearCookie("refreshToken").sendStatus(200);
   } catch (error) {
     console.error(error);
     res.sendStatus(400);
@@ -86,26 +93,21 @@ async function logout(req, res) {
 
 async function update(req, res) {
   // const { id } = req.params;
-  const { nickname, firstName, secondName} = req.body;
+  const { nickname, firstName, secondName } = req.body;
   const { user } = res.locals;
-  console.log(req.body, '66666666666666666666666');
-  console.log(user.id, 'useeeerIDD');
+
   try {
-    if (nickname.trim() === "" || firstName.trim() === "" ) {
+    if (nickname.trim() === "" || firstName.trim() === "") {
       res.status(400).json({
         message: "Not update",
       });
     } else {
-      console.log({nickname,
-        firstName,
-        secondName}, 'lllllllllllllllll');
-        
-      const updateUser = await userService.updateUser( user.id, {
+      const updateUser = await userService.updateUser(user.id, {
         nickname,
         firstName,
-        secondName
+        secondName,
       });
-      console.log(updateUser, 'updateUser');
+      console.log(updateUser, "updateUser");
 
       res.status(200).json({ updateUser });
     }
@@ -117,8 +119,8 @@ async function update(req, res) {
 async function getUser(req, res) {
   const { user } = res.locals;
   try {
-      const updateUser = await userService.getUser( user.id);
-      res.status(200).json({ updateUser });
+    const updateUser = await userService.getUser(user.id);
+    res.status(200).json({ updateUser });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -129,5 +131,5 @@ module.exports = {
   signIn,
   logout,
   update,
-  getUser
+  getUser,
 };

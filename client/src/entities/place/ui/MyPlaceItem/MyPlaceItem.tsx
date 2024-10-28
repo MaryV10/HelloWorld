@@ -88,7 +88,7 @@ export const MyPlaceItem: React.FC<Props> = ({
 }
 
 
-      <Steps items={steps} className={styles.customStep}/>
+      // <Steps items={steps} className={styles.customStep}/>
 {/* {isEditing ? (
         <>
           <input
