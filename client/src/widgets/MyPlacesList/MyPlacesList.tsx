@@ -1,6 +1,6 @@
 
 import React, { useEffect } from "react";
-import {  useAppSelector } from "@/shared/hooks/reduxHooks";
+import {  useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
 
 
@@ -12,7 +12,7 @@ import { isMobile } from "react-device-detect";
 import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselSharedMobile";
 
 export const MyPlacesList: React.FC = () => {
-
+  const dispatch = useAppDispatch();
   const { places } = useAppSelector((state) => state.place);
 
   const { user } = useAppSelector((state) => state.user);
@@ -22,6 +22,10 @@ export const MyPlacesList: React.FC = () => {
       dispatch(getMyPlaces());
     }
   }, [dispatch, user?.id]);
+
+  // useEffect(() => {
+  //   dispatch(getMyPlaces());
+  // }, [dispatch]);
 
   const renderContent = () => {
     if (isMobile) {
@@ -73,6 +77,9 @@ export const MyPlacesList: React.FC = () => {
       </>
     );
   };
+  if (!places || places.length === 0) {
+    return <p>Загрузка...</p>;
+  }
 
   console.log(user, "oooooooooooo");
   return <>{renderContent()}</>;
