@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd"; 
 
-
+import { LoadingOutlined,CloseOutlined} from '@ant-design/icons';
 import { useAppDispatch } from "@/shared/hooks/reduxHooks";
 
 import { removePhoto } from "@/entities/photo/api/photoThunks";
@@ -58,11 +58,12 @@ export const MyPlaceItem: React.FC<Props> = ({
     {
       title: 'На модерации',
       status: place.status === 'pending' ? 'finish' : 'wait',
+      icon: place.status !== 'pending' ? null : <LoadingOutlined />
     },
     {
       title: place.status === 'approved' ? 'Создано' : 'Отклонено',
       status: place.status === 'approved' ? 'finish' : (place.status === 'rejected' ? 'finish' : 'wait'),
-      
+      icon: place.status === 'rejected' ? <CloseOutlined style={{ color: 'red' }} /> : null
     },
   ];
 
@@ -70,6 +71,7 @@ export const MyPlaceItem: React.FC<Props> = ({
     <div className={styles.myPlaceItem}>
       
       <>
+      <Steps items={steps} className={styles.customStep}/>
         <Link to={`/profile/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
         </Link>
@@ -88,7 +90,6 @@ export const MyPlaceItem: React.FC<Props> = ({
 }
 
 
-      // <Steps items={steps} className={styles.customStep}/>
 {/* {isEditing ? (
         <>
           <input
