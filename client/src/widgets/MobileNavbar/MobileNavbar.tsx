@@ -15,6 +15,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd'; 
+import PersonIcon from '@mui/icons-material/Person';
+
 import styles from './MobileNavbar.module.css';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
 import { logout } from '@/entities/user';
@@ -113,7 +115,30 @@ const MobileMenu = () => {
             </>
           )}
           <ListItem style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {user && <Avatar alt={`${user.nickname}`} src={user.avatarUrl} style={{border: "3px solid #017247", width: "100px", height: "100px", marginTop: "10px", marginBottom: "20px"}}/>}
+          {user && <Avatar alt={`${user.nickname}`} src={user.avatarUrl} className={styles.avatar} style={{border: "3px solid #017247", width: "100px", height: "100px", marginTop: "10px", marginBottom: "20px"}}/>}
+
+     
+          
+            <Button
+              component={Link}
+              to="/profile"
+              fullWidth
+              variant="contained"
+              startIcon={<PersonIcon />}
+              onClick={handleMenuClick}
+              className={`${styles.shimmerButton} ${styles.buttonStyle}`} 
+              style={{
+                backgroundColor: '#007247',
+                color: 'white',
+                marginBottom: '20px',
+                borderRadius: '20px',
+                boxShadow: 'none',
+                fontFamily: 'Unbounded',
+              }}
+            >
+             Профиль
+            </Button>
+       
             <Button
               component={Link}
               to="/map"
@@ -128,6 +153,7 @@ const MobileMenu = () => {
                 borderRadius: '20px',
                 boxShadow: 'none',
                 fontFamily: 'Unbounded',
+                
               }}
             >
               Карта
@@ -153,6 +179,7 @@ const MobileMenu = () => {
               Домой
             </Button>
           </ListItem>
+          
           {user && (
             <ListItem>
           
@@ -173,6 +200,7 @@ const MobileMenu = () => {
                 Выйти
               </Button>
             </ListItem>
+            
           )}
         </List>
       </Drawer>

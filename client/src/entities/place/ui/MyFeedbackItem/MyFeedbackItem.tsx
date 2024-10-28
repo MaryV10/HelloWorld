@@ -15,6 +15,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
   feedback,
   isPlaceEnabled = false,
 }) => {
+  console.log(feedback)
   return (
     <div>
       <p>feedback.userId: {feedback.userId}</p>

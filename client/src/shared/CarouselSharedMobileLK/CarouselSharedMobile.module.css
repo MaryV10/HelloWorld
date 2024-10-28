@@ -1,0 +1,49 @@
+.container {
+  margin: 0;
+  max-height: 600px; /* Высота карусели */
+  width: 100%; /* Изменено на 100% для адаптивности */
+  color: white;
+  line-height: 270px;
+  text-align: center;
+  background: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.roundedCarousel {
+  border-radius: 20px; 
+  overflow: hidden;
+}
+
+.desktop {
+  max-width: 600px;
+}
+
+@media (max-width: 767px) {
+  .container {
+      height: 250px; 
+      line-height: 200px; 
+  }
+
+  .roundedCarousel {
+      height: 200px; 
+  }
+}
+
+
+
+.carouselSlide {
+  display: flex !important;
+  justify-content: flex-start;
+}
+
+.carouselItem {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  width: 100%; 
+  max-height: 600px;
+}
