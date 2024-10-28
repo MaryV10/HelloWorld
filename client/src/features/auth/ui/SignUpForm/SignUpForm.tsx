@@ -7,7 +7,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUpForm.module.css";
-import { on } from "events";
+
 
 interface SignUpFormProps {
   onToggle: () => void;

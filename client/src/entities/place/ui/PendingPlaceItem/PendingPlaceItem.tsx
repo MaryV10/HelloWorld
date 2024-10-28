@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./PendingPlaceItem.module.css";
 
 import { Place } from "../../model";
 import { useAppDispatch} from "@/shared/hooks/reduxHooks";
-import { approvePlace, getPendingPlaces, rejectPlace } from "../../api/placeThunks";
+import { approvePlace,  rejectPlace } from "../../api/placeThunks";
 
 // import { Place, PlaceWithoutStatusTagsPhotosFeedbacks } from "../../model";
 

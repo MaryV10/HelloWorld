@@ -20,7 +20,6 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
       <p>feedback.userId: {feedback.userId}</p>
       <p>Название: {place.title}</p>
       <p>Описание: {place.description}</p>
-
       <p>Моя оценка: {feedback.score}</p>
       <p>Мой коммент: {feedback.comment}</p>
     </div>
