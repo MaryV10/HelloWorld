@@ -90,7 +90,6 @@ export const MyPlaceItem: React.FC<Props> = ({
 }
 
 
-    
 {/* {isEditing ? (
         <>
           <input

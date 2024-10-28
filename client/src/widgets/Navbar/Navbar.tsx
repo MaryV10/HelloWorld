@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
 
       <>
         <Modal active={active} onToggle={onToggle}>
-          <SignUpForm setActive={setActive} />
+          <SignUpForm setActive={setActive} onToggle={onToggle}/>
           <button type="button" onClick={onToggle}>
             Закрыть
           </button>

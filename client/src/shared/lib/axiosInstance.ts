@@ -24,7 +24,7 @@ axiosInstance.interceptors.request.use(
   (config: ExtendedAxiosRequestConfig): ExtendedAxiosRequestConfig => {
     if (config.headers && !config.headers.Authorization) {
       config.headers.Authorization = `Bearer ${accessToken}`;
-      console.log(accessToken, "TOKEN in AxiosInstance"); 
+      
     }
     return config;
   }
@@ -44,7 +44,7 @@ axiosInstance.interceptors.response.use(
         if (prevRequest.headers) {
           prevRequest.headers.Authorization = `Bearer ${accessToken}`;
         }
-        console.log(accessToken, "TOKEN in AxiosInstanceBEARER"); 
+         
         return axiosInstance(prevRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);
