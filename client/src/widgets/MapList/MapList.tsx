@@ -32,7 +32,7 @@ function MapList() {
   const [coords, setCoords] = useState<[number, number] | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const places = useAppSelector((state) => state.place.places);
+  const places = useAppSelector((state) => state.place.approvedPlaces);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
