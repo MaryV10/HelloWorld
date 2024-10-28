@@ -25,7 +25,7 @@ export const Navbar: React.FC = () => {
   const [active, setActive] = useState(false);
   const [active1, setActive1] = useState(false);
 
-  // console.log(user?.avatarUrl)
+  
 
   useEffect(() => {
     const handleScroll = () => {

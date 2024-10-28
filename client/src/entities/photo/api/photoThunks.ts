@@ -20,7 +20,7 @@ export const addPhoto = createAsyncThunk<
   PHOTO_THUNKS_ACTIONS.ADD_PHOTO,
   async ({ imageUrl, placeId}, { rejectWithValue }) => {
     try {
-        console.log(imageUrl, placeId)
+        
       return await PhotoService.uploadPhoto(
         imageUrl, placeId
       );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from "./ProfileForm.module.css";
 
 import { getUser, updateUser } from '@/entities/user/api/userThunks';
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
@@ -56,7 +57,7 @@ const ProfileForm: React.FC = () => {
     
      dispatch(updateUser({ nickname, firstName, secondName }))
 
-      console.log(user,'00011')
+      
       setIsEditing(false);
     } catch (error) {
       console.error("Error updating task:", error);
@@ -65,16 +66,16 @@ const ProfileForm: React.FC = () => {
 
   return (
     <div
-      style={{
-        marginTop: "30px",
-        padding: "20px",
-        height: "35vh",
-        background: "green",
-        display: "flex",
-        justifyContent: "space-between",
-      }}
+      className={styles.container}
     >
-      <div>
+       <div>
+        {" "}
+        <img
+          style={{  height: "100px", width: "100px" , borderRadius: "50%",objectFit: "cover", marginBottom: "20px"}}
+          src={user?.avatarUrl}
+          alt="avatar"
+        />
+      <div style={{ textAlign: "left" , background: "#f1e8d9", padding: "10px", borderRadius: "10px"}}>
         <p>Карточка Профиля</p>
         <p>Никнейм: {user?.nickname}</p>
         <p>Имя: {user?.firstName}</p>
@@ -82,13 +83,7 @@ const ProfileForm: React.FC = () => {
         <p>Email: {user?.email}</p>
         {/* <p>Профиль создан: {user?.createdAt}</p> */}
       </div>
-      <div>
-        {" "}
-        <img
-          style={{ padding: "20px", height: "30vh" , border:'1px solid white'}}
-          src={user?.avatarUrl}
-          alt="avatar"
-        />
+     
       </div>
       {isEditing ? (
         <>

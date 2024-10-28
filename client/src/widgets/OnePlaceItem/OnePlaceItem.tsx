@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./OnePlaceItem.module.css";
 import {
@@ -16,9 +16,14 @@ export const OnePlaceItem: React.FC = () => {
   const [score, setScore] = useState(0);
   const [comment, setComment] = useState("");
   const onePlace = approvedPlaces.find((place) => place.id === Number(id));
+
+
+
   if (approvedPlaces.length === 0 && user?.id) {
     dispatch(getApprovedPlaces());
   }
+
+
   const totalScore = () => {
     if (!onePlace?.Feedbacks || onePlace?.Feedbacks.length === 0) {
       return "Нет оценок";

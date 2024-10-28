@@ -35,6 +35,7 @@ const tagSlice = createSlice({
       .addCase(getAllTags.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
+        
         state.tagList = action.payload;
       });
   },
