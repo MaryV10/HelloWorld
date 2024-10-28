@@ -12,14 +12,13 @@ export const MyPlacesList: React.FC = () => {
   const {user} = useAppSelector((state) => state.user);
 
 
-
-  useEffect(() => {
-if (user?.id) {
-    dispatch(getMyPlaces())
-}
-  }, [dispatch, user?.id]);  
+//   useEffect(() => {
+// if (user?.id) {
+//     dispatch(getMyPlaces())
+// }
+//   }, [dispatch]);  
   
-console.log(user,'oooooooooooo');
+
   return (
     <>
     <p    style={{
@@ -37,7 +36,7 @@ console.log(user,'oooooooooooo');
       }}
     >
 
-{places
+{places && places
 // .filter(p => p.status === 'approved')
 .filter(p => p.userId === user?.id)
 .map((p) => (
