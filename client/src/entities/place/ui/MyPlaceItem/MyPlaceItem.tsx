@@ -72,7 +72,7 @@ export const MyPlaceItem: React.FC<Props> = ({
       
       <>
       <Steps items={steps} className={styles.customStep}/>
-        <Link to={`/profile/${place.id}`}>
+        <Link to={`/OnePlacePage/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
         </Link>
           <p className={styles.description}>{place.description}</p>

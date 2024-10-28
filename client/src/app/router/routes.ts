@@ -4,5 +4,5 @@ export enum ROUTES {
   SIGNUP = '/signup',
   PROFILE = '/profile',
   MAP = '/map',
-  ONEPLACE = '/profile/:id',
+  ONEPLACE = '/OnePlacePage/:id',
 }
