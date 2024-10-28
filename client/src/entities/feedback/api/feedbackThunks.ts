@@ -18,15 +18,16 @@ type RejectValue = {
 
 export const addFeedback = createAsyncThunk<
   Place,
-  { score: string, comment: number, placeId: number },
+  { comment: string, score: number, placeId: number },
   { rejectValue: RejectValue }
 >(
   FEEDBACK_THUNKS_ACTIONS.ADD_FEEDBACK,
-  async ({ score, comment, placeId}, { rejectWithValue }) => {
+  async ({comment, score, placeId}, { rejectWithValue }) => {
+    // console.log({ score, comment, placeId}, "KFKFKFKF")
     try {
 
       return await FeedbackService.createFeedback(
-        score, comment, placeId
+        comment, score, placeId
       );
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;

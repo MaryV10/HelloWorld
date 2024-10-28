@@ -208,7 +208,7 @@ const placeSlice = createSlice({
       .addCase(addPhoto.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.map((place) =>
+        state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
       })
@@ -224,7 +224,7 @@ const placeSlice = createSlice({
       .addCase(removePhoto.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.map((place) =>
+        state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
       })
@@ -240,7 +240,7 @@ const placeSlice = createSlice({
       .addCase(addFeedback.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.map((place) =>
+        state.approvedPlaces= state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
       })
@@ -256,7 +256,7 @@ const placeSlice = createSlice({
       .addCase(removeFeedback.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.map((place) =>
+        state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
       })
@@ -273,7 +273,7 @@ const placeSlice = createSlice({
       .addCase(updateFeedback.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.places = state.places.map((place) =>
+        state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
       });

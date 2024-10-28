@@ -51,7 +51,7 @@ const ProfileForm: React.FC = () => {
 
   const handleSave = ( event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log({ nickname, firstName, secondName }, 111111111111111111111111111111);
+    
     try {
     
      dispatch(updateUser({ nickname, firstName, secondName }))
