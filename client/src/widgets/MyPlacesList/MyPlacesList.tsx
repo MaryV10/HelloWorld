@@ -14,11 +14,7 @@ export const MyPlacesList: React.FC = () => {
 
 
 
-  useEffect(() => {
-if (user?.id) {
-    dispatch(getMyPlaces())
-}
-  }, [dispatch, user?.id]);  
+
   
 
 

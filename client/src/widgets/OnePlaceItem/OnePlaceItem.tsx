@@ -1,10 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import styles from "./OnePlaceItem.module.css";
 import {
   getApprovedPlaces,
-  getOnePlace,
 } from "@/entities/place/api/placeThunks";
 
 export const OnePlaceItem: React.FC = () => {
