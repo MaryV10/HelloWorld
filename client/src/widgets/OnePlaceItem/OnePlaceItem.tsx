@@ -1,10 +1,15 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./OnePlaceItem.module.css";
-import { getApprovedPlaces } from "@/entities/place/api/placeThunks";
+import {
+  getApprovedPlaces,
+  removePlace,
+  updatePlace,
+} from "@/entities/place/api/placeThunks";
 import { addFeedback } from "@/entities/feedback/api/feedbackThunks";
 import { MyFeedbackItem } from "@/entities/place/ui/MyFeedbackItem";
+import { ROUTES } from "@/app/router/routes";
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
@@ -13,11 +18,67 @@ export const OnePlaceItem: React.FC = () => {
   const { id } = useParams();
   const [score, setScore] = useState(0);
   const [comment, setComment] = useState("");
-  const onePlace = approvedPlaces.find((place) => place.id === Number(id));
+  const [isEditing, setIsEditing] = useState(false);
 
-  if (approvedPlaces.length === 0 && user?.id) {
+  const onePlace = approvedPlaces.find((place) => place.id === Number(id));
+  const [title, setTitle] = useState(onePlace?.title);
+  const [description, setDescription] = useState(onePlace?.description);
+  const [longitude, setLongitude] = useState(onePlace?.longitude);
+  const [width, setWidth] = useState(onePlace?.width);
+  const navigate = useNavigate();
+
+  // ======================================== CHANGE PLACE =====================================
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
+
+  useEffect(() => {
     dispatch(getApprovedPlaces());
-  }
+  }, [dispatch]);
+
+  const handlerUpdatePlace = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (user?.id && onePlace) {
+      await dispatch(
+        updatePlace({
+          id: onePlace.id,
+          title: title!,
+          description: description!,
+          longitude: longitude!,
+          width: width!,
+        })
+      );
+      setIsEditing(false);
+      await dispatch(getApprovedPlaces());
+    }
+  };
+
+  const handlerDeletePlace = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (user?.id && onePlace) {
+      await dispatch(
+        removePlace({
+          id: onePlace.id,
+        })
+      );
+      setIsEditing(false);
+    }
+
+    navigate(ROUTES.PROFILE);
+  };
+
+  useEffect(() => {
+    if (isEditing) {
+      setTitle(onePlace?.title);
+      setDescription(onePlace?.description);
+      setLongitude(onePlace?.longitude);
+      setWidth(onePlace?.width);
+    }
+  }, [isEditing, onePlace]);
+  // ========================================  TOTAL SCORE FUNC =================================
 
   const totalScore = () => {
     if (!onePlace?.Feedbacks || onePlace?.Feedbacks.length === 0) {
@@ -32,6 +93,8 @@ export const OnePlaceItem: React.FC = () => {
       return averageScore.toPrecision(2);
     }
   };
+  // ======================================== ADD FEEDBACK =====================================
+
   const handlerAddFeedback = (e: React.FormEvent) => {
     e.preventDefault();
     if (user?.id) {
@@ -40,7 +103,7 @@ export const OnePlaceItem: React.FC = () => {
     setScore(0);
     setComment("");
   };
-
+  // ========================================RETURN=====================================
   return (
     <div
       style={{
@@ -49,21 +112,102 @@ export const OnePlaceItem: React.FC = () => {
         height: "50vh",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <p>Место: {onePlace?.title}</p>
+      {/* =======================================PLACE CHANGING======================== */}
 
-        <p>Средняя оценка: {totalScore()}</p>
+      <div style={{ backgroundColor: "green", margin: "15px 15px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <p>Место: {onePlace?.title}</p>
+          <p>Средняя оценка: {totalScore()}</p>
+        </div>
+        <div className={styles.photos}>
+          <p>Фотографии:</p>
+          {onePlace?.Photos.map((photo, index) => (
+            <div style={{ width: "300px" }} key={index}>
+              <img src={photo.imageUrl}></img>
+            </div>
+          ))}
+          <p>Описание: {onePlace?.description}</p>
+        </div>
+        {isEditing ? (
+          <>
+            <label>
+              Изменить название места:
+              <input
+                name="comment"
+                value={title}
+                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </label>
+            <label>
+              Изменить описание:
+              <input
+                name="comment"
+                value={description}
+                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </label>
+            <label>
+              Изменить ширину:
+              <input
+                type="number"
+                name="comment"
+                value={longitude}
+                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                onChange={(e) => setLongitude(e.target.value)}
+              />
+            </label>
+            <label>
+              Изменить долготу:
+              <input
+                type="number"
+                name="comment"
+                value={width}
+                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                onChange={(e) => setWidth(e.target.value)}
+              />
+            </label>
+            {user?.id && (
+              <>
+                {" "}
+                <button
+                  style={{ backgroundColor: "green", padding: "10px" }}
+                  onClick={handlerUpdatePlace}
+                >
+                  Сохранить
+                </button>
+                <button
+                  style={{ backgroundColor: "red", padding: "10px" }}
+                  onClick={handlerDeletePlace}
+                >
+                  Удалить
+                </button>
+                <button
+                  style={{ backgroundColor: "gray", padding: "10px" }}
+                  onClick={handleCancel}
+                >
+                  Отменить
+                </button>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            {user?.id && (
+              <button
+                style={{ backgroundColor: "grey", padding: "10px" }}
+                onClick={handleEdit}
+              >
+                РедактироватьМЕСТО
+              </button>
+            )}
+          </>
+        )}
       </div>
-      <div className={styles.photos}>
-        <p>Фотографии:</p>
-        {onePlace?.Photos.map((photo, index) => (
-          <div style={{ width: "300px" }} key={index}>
-            <img src={photo.imageUrl}></img>
-          </div>
-        ))}
-      </div>
-      <p>Описание: {onePlace?.description}</p>
-      <div>
+
+      {/* ================================   COMMENTS Creates and CHANGE ================================================== */}
+      <div style={{ backgroundColor: "green", margin: "15px 15px" }}>
         <label>
           Ваш комментарий:
           <textarea

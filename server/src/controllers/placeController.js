@@ -107,8 +107,9 @@ async function deletePlaceController(req, res) {
 // работает обновить созданное пользователем место (может только он сам)
 async function updatePlaceController(req, res) {
   const { id } = req.params;
-  const { title, description, userId, longitude, width } = req.body;
+  const { title, description, longitude, width } = req.body;
   const { user } = res.locals;
+  console.log(id, title, description, longitude, width, user, "id, title, description, userId, longitude, width, USER")
   try {
     if (title.trim() === "" || description.trim() === "") {
       res.status(400).json({
@@ -118,7 +119,7 @@ async function updatePlaceController(req, res) {
       const place = await PlaceService.updatePlace(id, user.id, {
         title,
         description,
-        userId,
+        
         longitude,
         width,
       });
