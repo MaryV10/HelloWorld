@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Place } from "../../model";  
 import { Feedback } from "@/entities/feedback";  
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";  
-import { updateFeedback } from "@/entities/feedback/api/feedbackThunks";  
+import { removeFeedback, updateFeedback } from "@/entities/feedback/api/feedbackThunks";  
+import { getApprovedPlaces } from "../../api/placeThunks";
+import { del } from "framer-motion/client";
 
 interface MyFeedbackItemProps {  
   place: Place;  
@@ -23,12 +25,12 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
   const [isEditing, setIsEditing] = useState(false);  
 
   useEffect(() => {  
-
     if (isEditing) {  
       setScore(feedback.score);  
       setComment(feedback.comment);  
     }  
   }, [isEditing, feedback]);  
+
 
   const handleEdit = () => {  
     setIsEditing(true);  
@@ -41,17 +43,26 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
     setComment(feedback.comment);  
   };  
 
-  const handlerUpdateFeedback = (e: React.FormEvent) => {  
+  const handlerUpdateFeedback = async (e: React.FormEvent) => {  
     e.preventDefault();  
     if (user?.id) {  
-      dispatch(updateFeedback({ id: feedback.id, comment, score, placeId: place.id }));  
+      await dispatch(updateFeedback({ id: feedback.id, comment, score, placeId: place.id }));  
       setIsEditing(false);
+      await dispatch(getApprovedPlaces()); 
     }  
   };  
 
+  const handlerDeleteFeedback = async (e: React.FormEvent) => {  
+    e.preventDefault();  
+    if (user?.id) {  
+      await dispatch(removeFeedback({ id: feedback.id}));  
+      setIsEditing(false);
+      await dispatch(getApprovedPlaces()); 
+    }  
+  };
+
   return (  
     <div>  
-      <p>feedback.id: {feedback.id}</p>  
       <div>  
         <div>Комментарий:</div>  
         <div>{feedback.comment}</div>  
@@ -82,7 +93,8 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
           </label>  
            {user?.id===feedback.userId&&(
             <> <button style={{ backgroundColor: 'green', padding: "10px" }} onClick={handlerUpdateFeedback}>Сохранить</button>  
-          <button style={{ backgroundColor: 'red', padding: "10px" }} onClick={handleCancel}>Отменить</button>
+            <button style={{ backgroundColor: 'red', padding: "10px" }} onClick={handlerDeleteFeedback}>Удалить</button>
+          <button style={{ backgroundColor: 'gray', padding: "10px" }} onClick={handleCancel}>Отменить</button>
           </>  )}
        
         </>  
