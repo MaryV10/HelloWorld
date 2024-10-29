@@ -29,7 +29,7 @@
 .bar {
   display: flex;
   align-items: center;
-  /* border: 2px solid #e9dbc1; */
+
   padding: 5px 20px;
   border-radius: 20px;
   gap: 10px;
