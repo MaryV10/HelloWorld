@@ -144,3 +144,11 @@ button {
 button:hover {
   transform: scale(1.1);
 }
+
+textarea {
+  border-radius: 15px;
+  background: white;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 10px;
+}

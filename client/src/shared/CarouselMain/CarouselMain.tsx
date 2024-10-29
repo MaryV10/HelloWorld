@@ -241,7 +241,8 @@ export default class Example extends Component {
 
   render() {
     return (
-      <div style={{ width: "800px", height: "500px", margin: "0 auto" }}>
+      <div style={{ width: "800px", height: "500px", margin: "0 auto" , display: "flex", gap: "20px", justifyContent: "center", alignItems: "center"}}>
+        <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide - 1 : this.slides.length - 1 })} src={left} alt="" />
         <Carousel
           slides={this.slides}
           goToSlide={this.state.goToSlide}
@@ -249,12 +250,12 @@ export default class Example extends Component {
           showNavigation={false}
           animationConfig={this.state.config}
         />
-        <div className={styles.buttonsContainer}>
+
          
-          <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide - 1 : this.slides.length - 1 })} src={left} alt="" />
+          
           <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide + 1 : this.slides.length + 1 })} src={right} alt="" />
          
-        </div>
+       
       </div>
     );
   }

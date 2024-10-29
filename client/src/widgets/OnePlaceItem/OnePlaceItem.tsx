@@ -5,6 +5,9 @@ import styles from "./OnePlaceItem.module.css";
 import { getApprovedPlaces } from "@/entities/place/api/placeThunks";
 import { addFeedback } from "@/entities/feedback/api/feedbackThunks";
 import { MyFeedbackItem } from "@/entities/place/ui/MyFeedbackItem";
+import BasicRating from "@/shared/Rating/Rating";
+
+
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
@@ -12,6 +15,7 @@ export const OnePlaceItem: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const [score, setScore] = useState(0);
+ 
   const [comment, setComment] = useState("");
   const onePlace = approvedPlaces.find((place) => place.id === Number(id));
 
@@ -41,6 +45,8 @@ export const OnePlaceItem: React.FC = () => {
     setComment("");
   };
 
+  
+
   return (
     <div
       style={{
@@ -53,6 +59,7 @@ export const OnePlaceItem: React.FC = () => {
         <p>Место: {onePlace?.title}</p>
 
         <p>Средняя оценка: {totalScore()}</p>
+        
       </div>
       <div className={styles.photos}>
         <p>Фотографии:</p>
@@ -75,7 +82,11 @@ export const OnePlaceItem: React.FC = () => {
           ></textarea>
         </label>
         <label>
+      
+        <BasicRating value={totalScore()}/>
+  
           Ваша оценка:
+          
           <input
             type="number"
             name="score"
