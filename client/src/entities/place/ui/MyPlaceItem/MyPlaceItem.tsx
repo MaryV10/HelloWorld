@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd"; 
-import Lottie from 'lottie-react';
 
-import animationData from '@/assets/Animation - 1730132037572.json'
-import { CloseOutlined} from '@ant-design/icons';
 
+
+import { LoadingOutlined,CloseOutlined, UserOutlined, SolutionOutlined, SmileOutlined} from '@ant-design/icons';
 
 
 
@@ -22,17 +21,15 @@ export const MyPlaceItem: React.FC<Props> = ({
 
 }) => {
 
+  console.log(place)
+
   const steps = [
     {
       title: 'На модерации',
       status: place.status === 'pending' ? 'process' : 'finish',
-      icon: place.status === 'pending' ?  <Lottie 
-      animationData={animationData} 
-      loop 
 
-      style={{ width: '100%', height: '100%', overflow: 'hidden'}} 
+      icon: place.status === 'pending' && < LoadingOutlined />,
 
-    /> : null,
       className: place.status === 'approved' || place.status === 'rejected' ? styles.gray : '',
     },
     {
@@ -47,15 +44,21 @@ export const MyPlaceItem: React.FC<Props> = ({
     <div className={styles.myPlaceItem}>
       
       <>
-      <Steps items={steps} className={styles.customStep}/>
-        <Link to={`/OnePlacePage/${place.id}`}>
+      {/* <Steps items={steps} className={styles.customStep}/> */}
+        {/* <Link to={`/OnePlacePage/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
         </Link>
-          <p className={styles.description}>{place.description}</p>
+           */}
+                  <>
+                  <Steps items={steps} className={styles.customStep}/>
+                  <Link to={`/OnePlacePage/${place.id}`}>
+          <h2 className={styles.title}>{place.title}</h2>
+        </Link>
+                  <p className={styles.description}>{place.description}</p>
           <p>{place.status}</p>
-          <p>{place.userId}</p>
+          <p>{place.userId}</p></>
           
-    <img style={{height: '20vh', margin: '10px', borderRadius: '10px'}} src={place.Photos[0].imageUrl} alt='1' />  
+    <img style={{height: '20vh', margin: '10px', borderRadius: '10px'}} src={place.Photos[0]?.imageUrl} alt='1' />  
 
       </>
       </div>

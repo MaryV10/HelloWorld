@@ -4,7 +4,7 @@ const PlaceService = require("../services/PlaceServices");
 
 async function uploadPhotoController(req, res) {
   const { imageUrl, placeId } = req.body;
-  
+
   
   try {
     
@@ -17,6 +17,7 @@ async function uploadPhotoController(req, res) {
      await PhotoService.uploadPhoto({imageUrl, placeId});
 
       const place = await PlaceService.getOnePlace(placeId);
+       console.log(place.Photos , "111111111111");
       res.status(201).json({ place });
     }
   } catch (error) {
