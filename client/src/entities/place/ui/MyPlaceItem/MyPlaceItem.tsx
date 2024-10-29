@@ -5,7 +5,7 @@ import { Steps } from "antd";
 
 
 
-import { LoadingOutlined,CloseOutlined, UserOutlined, SolutionOutlined, SmileOutlined} from '@ant-design/icons';
+import { LoadingOutlined,CloseOutlined} from '@ant-design/icons';
 
 
 
@@ -52,9 +52,10 @@ export const MyPlaceItem: React.FC<Props> = ({
            */}
                   <>
                   <Steps items={steps} className={styles.customStep}/>
-                  <Link to={`/OnePlacePage/${place.id}`}>
+                  {place?.status==='approved' ?  (<Link to={`/OnePlacePage/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
-        </Link>
+        </Link>) : (<h2 className={styles.title}>{place.title}</h2>)}
+                 
                   <p className={styles.description}>{place.description}</p>
           <p>{place.status}</p>
 

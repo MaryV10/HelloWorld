@@ -7,11 +7,11 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import styles from "./SignInForm.module.css";
 
 interface SignInFormProps {
-  onToggle1: () => void;
-  setActive1: (active1: boolean) => void; // Add this line
+  onToggle1?: () => void;
+  setActive1?: (active1: boolean) => void; // Add this line
 }
 
-export const SignInForm: React.FC<SignInFormProps> = ({ onToggle1 }) => {
+export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const [showError, setShowError] = useState(false);
@@ -36,7 +36,9 @@ export const SignInForm: React.FC<SignInFormProps> = ({ onToggle1 }) => {
       }
       const resultAction = await dispatch(signIn({ email, password }));
       unwrapResult(resultAction);
-      onToggle1();
+      if (onToggle1) {
+        onToggle1();
+      }
       navigate(ROUTES.HOME);
       setInputs({ email: "", password: "" });
     } catch (error) {

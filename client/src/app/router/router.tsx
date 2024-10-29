@@ -9,6 +9,7 @@ import { SignUpPage } from '@/pages/SignUpPage';
 import MapPage from '@/pages/MapPage/MapPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { OnePlacePage } from '@/pages/OnePlacePage';
+import { ProtectedRoute } from '@/shared/ui/Modal/ProtectedRoute';
 
 
 export const router = createBrowserRouter([
@@ -34,7 +35,10 @@ export const router = createBrowserRouter([
       },
       {
         path: AppRoutes.PROFILE,
-        element: <ProfilePage />,
+        element: 
+        <ProtectedRoute>
+          <ProfilePage /> 
+          </ProtectedRoute>
       },
       {
         path: AppRoutes.ONEPLACE,

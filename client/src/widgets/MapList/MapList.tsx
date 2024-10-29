@@ -11,7 +11,7 @@ import { addPhoto } from "@/entities/photo/api/photoThunks";
 import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
-import { combineReducers } from "@reduxjs/toolkit";
+
 
 interface YMapsMouseEvent {
   get: (key: string) => {
