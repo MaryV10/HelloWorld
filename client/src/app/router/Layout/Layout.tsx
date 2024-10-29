@@ -33,7 +33,9 @@ const dispatch = useAppDispatch();
       <main>
         <Outlet />
       </main>
+      <footer className={styles.footer}>
       <Footer />
+      </footer>
     </div>
   );
 };

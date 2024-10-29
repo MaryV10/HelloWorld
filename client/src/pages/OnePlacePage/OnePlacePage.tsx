@@ -6,10 +6,10 @@ export const OnePlacePage: React.FC = () => {
     <>
       <div
         style={{
-          marginTop: "100px",
+    
           padding: "10px",
-          height: "100vh",
-
+          
+background: "#ebe3d6",
         }}
       >
         <OnePlaceItem />
