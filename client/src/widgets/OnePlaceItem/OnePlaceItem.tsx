@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./OnePlaceItem.module.css";
 import {
@@ -65,7 +65,7 @@ export const OnePlaceItem: React.FC = () => {
           </div>
         ))}
       </div>
-      <p>Description: {onePlace?.description}</p>
+      <p>Описание: {onePlace?.description}</p>
       <div>
         <label >
         Ваш отзыв:
@@ -78,7 +78,7 @@ export const OnePlaceItem: React.FC = () => {
         ></input>
         </label>
         <label >
-        Ваша оценка
+        Ваша оценка:
         <input
         type="number"
           name="score"

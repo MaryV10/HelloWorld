@@ -23,7 +23,6 @@ export const addFeedback = createAsyncThunk<
 >(
   FEEDBACK_THUNKS_ACTIONS.ADD_FEEDBACK,
   async ({comment, score, placeId}, { rejectWithValue }) => {
-    // console.log({ score, comment, placeId}, "KFKFKFKF")
     try {
 
       return await FeedbackService.createFeedback(
