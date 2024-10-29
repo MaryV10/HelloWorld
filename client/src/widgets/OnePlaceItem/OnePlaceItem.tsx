@@ -16,14 +16,13 @@ import BasicRating from "@/shared/Rating/Rating";
 import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselSharedMobile";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
 
-
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const [score, setScore] = useState(0);
- 
+
   const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -224,7 +223,6 @@ export const OnePlaceItem: React.FC = () => {
             )}
           </>
         )}
-
       </div>
 
       {/* ================================   COMMENTS Creates and CHANGE ================================================== */}
@@ -239,17 +237,16 @@ export const OnePlaceItem: React.FC = () => {
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </label>
-        <label style={{display: 'flex', flexDirection: 'column'}}>
-      
-     
-  
+
+        <label>
+          <BasicRating value={totalScore()} />
+
           Ваша оценка:
-          
           <input
             type="number"
             name="score"
             min="0"
-            max="10"
+            max="5"
             value={score}
             style={{ backgroundColor: "white" }}
             onChange={(e) => {
