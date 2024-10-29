@@ -10,11 +10,11 @@ export class PhotoService {
     try {
       const response = await axiosInstance.post('/photos', {imageUrl, placeId},
       );
-      
-      return response.data.photo;
+      console.log(response.data, 'service==========>>>>')
+      return response.data.place;
     } catch (error) {
       console.error('Error creating place:', error);
-      throw new Error('Failed to create place.');
+      throw new Error('Failed to create photo.');
     }
   }
 
