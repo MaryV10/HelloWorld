@@ -14,14 +14,13 @@ import { ROUTES } from "@/app/router/routes";
 
 import BasicRating from "@/shared/Rating/Rating";
 
-
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const [score, setScore] = useState(0);
- 
+
   const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -211,7 +210,6 @@ export const OnePlaceItem: React.FC = () => {
             )}
           </>
         )}
-
       </div>
 
       {/* ================================   COMMENTS Creates and CHANGE ================================================== */}
@@ -227,16 +225,13 @@ export const OnePlaceItem: React.FC = () => {
           ></textarea>
         </label>
         <label>
-      
-        <BasicRating value={totalScore()}/>
-  
+          <BasicRating value={totalScore()} />
           Ваша оценка:
-          
           <input
             type="number"
             name="score"
             min="0"
-            max="10"
+            max="5"
             value={score}
             style={{ backgroundColor: "white" }}
             onChange={(e) => {

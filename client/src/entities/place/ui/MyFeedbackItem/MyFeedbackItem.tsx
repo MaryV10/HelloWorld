@@ -101,7 +101,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
               type="number"
               name="score"
               min="0"
-              max="10"
+              max="5"
               value={score}
               style={{ backgroundColor: "white" }}
               onChange={(e) => {
