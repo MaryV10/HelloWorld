@@ -3,11 +3,8 @@ import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd"; 
 import Lottie from 'lottie-react';
 
-import animationData from '@/assets/Animation - 1730132037572.json'
+import animationData from '@/assets/Animation - 1730182436442.json';
 import { CloseOutlined} from '@ant-design/icons';
-
-
-
 
 import { Place } from "../../model";
 import { Link } from "react-router-dom";
@@ -41,9 +38,9 @@ export const MyPlaceItem: React.FC<Props> = ({
       icon: place.status === 'rejected' ? <CloseOutlined style={{ color: 'red' }} /> : null,
     },
   ];
-  
-
+    
   return (
+    
     <div className={styles.myPlaceItem}>
       
       <>
@@ -51,6 +48,7 @@ export const MyPlaceItem: React.FC<Props> = ({
         <Link to={`/OnePlacePage/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
         </Link>
+        
           <p className={styles.description}>{place.description}</p>
           <p>{place.status}</p>
           <p>{place.userId}</p>

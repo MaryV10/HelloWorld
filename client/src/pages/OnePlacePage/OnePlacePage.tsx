@@ -12,7 +12,6 @@ export const OnePlacePage: React.FC = () => {
 
         }}
       >
-        OnePlacePage
         <OnePlaceItem />
       </div>
     </>
