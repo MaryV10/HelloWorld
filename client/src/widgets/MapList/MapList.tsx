@@ -109,6 +109,7 @@ function MapList() {
         setPhoto("");
         setCoords(null);
         setSelectedTags([]);
+        setModalActive(false);
       } catch (error) {
         console.error("Ошибка при добавлении места или фото:", error);
       }
@@ -120,7 +121,7 @@ function MapList() {
       <div className={styles.navbar}></div>
 
       <div className={styles.mapContainer} style={{ height: "100%" }}>
-        <input
+        <input style={{marginLeft: "20px"}}
           className={styles.input}
           type="text"
           value={search}
@@ -156,7 +157,11 @@ function MapList() {
           onToggle={() => setModalActive(false)}
         >
           {modalActive && (
-            <form onSubmit={onSubmitHandler}>
+            
+            <form style={{ display: "flex", flexDirection: "column", gap: "20px" }} onSubmit={onSubmitHandler}>
+              <div >
+                <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
+              </div>
               <input
                 type="text"
                 value={title}
@@ -175,10 +180,8 @@ function MapList() {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Описание места"
               />
-              <div className={styles.tags}>
-                <TagSelector tags={tags} onTagSelect={setSelectedTags} />
-              </div>
-              <button type="submit">Создать место</button>
+              
+              <button style={{color: "white"}} type="submit">Создать место</button>
             </form>
           )}
         </ModalWindow>
