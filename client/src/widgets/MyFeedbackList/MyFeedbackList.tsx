@@ -30,7 +30,8 @@ export const MyFeedbackList: React.FC = () => {
         {userFeedbacks.map(({ feedback, place }) => ( 
               <MyFeedbackItem key={feedback.id} feedback={feedback} place={place}  isPlaceEnabled/>
             ))}
-      </CarouselSharedMobile></div>
+      </CarouselSharedMobile>
+      </div>
       </div>
     }
     return (

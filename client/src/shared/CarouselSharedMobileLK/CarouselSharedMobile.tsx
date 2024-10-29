@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'antd';
 import styles from './CarouselSharedMobile.module.css';
 
-const CarouselSharedMobile: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: number }> = ( {children}) => {
+const CarouselSharedMobile: React.FC<{ children: React.ReactNode[] }> = ( {children}) => {
 
 
   return (

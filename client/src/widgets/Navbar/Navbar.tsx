@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
       return <div><MobileMenu /></div>;
     }
     return <div><div className={styles.bar}>
-    {user && <Avatar alt={`${user.nickname}`} src={user.avatarUrl} style={{border: "3px solid #017247"}}/>}
+    {user && <Avatar alt={`${user.nickname}`} src={user.avatarUrl} style={{border: "3px solid #141213"}}/>}
     <Link to={ROUTES.MAP}>
       <button className={styles.navButton}>Карта</button>
     </Link>

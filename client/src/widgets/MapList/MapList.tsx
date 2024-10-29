@@ -146,6 +146,7 @@ function MapList() {
                 index={place.id}
                 coordinates={[Number(place.width), Number(place.longitude)]}
                 title={place.title}
+                Photos={place.Photos}
               />
             ))}
           </Clusterer>

@@ -71,7 +71,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
 
   return (
     <div>
-      <div>
+      <div style={{margin: "15px"}}>
         {isPlaceEnabled && (
           <>
             <Link to={`/OnePlacePage/${place?.id}`}><p>Название: {place?.title}</p></Link>
@@ -80,8 +80,9 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
         )}
         <div>Комментарий:</div>
         <div>{feedback.comment}</div>
+        <div>Оценка: {feedback.score}</div>
       </div>
-      <div>Оценка: {feedback.score}</div>
+     
 
       {isEditing ? (
         <>
@@ -91,7 +92,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
               placeholder="Комментарий ..."
               name="comment"
               value={comment}
-              style={{ backgroundColor: "pink", margin: "15px 15px" }}
+              style={{ backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
               onChange={(e) => setComment(e.target.value)}
             />
           </label>
