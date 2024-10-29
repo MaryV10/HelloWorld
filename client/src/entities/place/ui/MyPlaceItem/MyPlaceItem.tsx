@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd"; 
-import Lottie from 'lottie-react';
-import animationData from '@/assets/Animation - 1730182436442.json'
+
+
+
 import { LoadingOutlined,CloseOutlined, UserOutlined, SolutionOutlined, SmileOutlined} from '@ant-design/icons';
 
 
@@ -26,7 +27,9 @@ export const MyPlaceItem: React.FC<Props> = ({
     {
       title: 'На модерации',
       status: place.status === 'pending' ? 'process' : 'finish',
+
       icon: place.status === 'pending' && < LoadingOutlined />,
+
       className: place.status === 'approved' || place.status === 'rejected' ? styles.gray : '',
     },
     {
