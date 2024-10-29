@@ -12,7 +12,8 @@ type TagSelectorProps = {
 const TagSelector: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
   <Select
     mode="multiple"
-    style={{ width: 200 }}
+    style={{ width: 200, fontFamily: "Unbounded",
+      fontWeight: "normal",}}
     placeholder="Выберите теги"
     onChange={onTagSelect} 
     tagRender={(props) => {
