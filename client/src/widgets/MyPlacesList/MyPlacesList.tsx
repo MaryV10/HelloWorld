@@ -1,10 +1,11 @@
-import React from "react";
-import {  useAppSelector } from "@/shared/hooks/reduxHooks";
+import React, { useEffect } from "react";
+import {  useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
 
 import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
 import { isMobile } from "react-device-detect";
+import { getMyPlaces } from "@/entities/place/api/placeThunks";
 // import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselSharedMobile";
 
 

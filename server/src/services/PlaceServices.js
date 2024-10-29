@@ -94,7 +94,7 @@ class PlaceService {
   static async approvePlace(id, userId) {
     try {
       const place = await Place.findOne({
-        where: { id, userId, status: "pending" },
+        where: { id, status: "pending" },
         include: [
           { model: Tag, as: "tags", through: { attributes: [] } },
           { model: Feedback },
@@ -115,7 +115,7 @@ class PlaceService {
   static async rejectPlace(id, userId) {
     try {
       const place = await Place.findOne({
-        where: { id, userId: 1, status: "pending" },
+        where: { id,  status: "pending" },
         include: [
           { model: Tag, as: "tags", through: { attributes: [] } },
           { model: Feedback },
@@ -153,6 +153,7 @@ class PlaceService {
     { title, description, width, longitude }
   ) {
     try {
+      console.log(id, userId, title, description, width, longitude, "SERVICE UPD");
       const place = await Place.findOne({
         where: { id, userId },
         include: [

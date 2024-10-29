@@ -1,7 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { ROUTES as AppRoutes } from './routes';
-import Layout from './Layout/Layout';
-import { HomePage } from '../../pages/HomePage/HomePage';
+import { createBrowserRouter } from "react-router-dom";
+import { ROUTES as AppRoutes } from "./routes";
+import Layout from "./Layout/Layout";
+import { HomePage } from "../../pages/HomePage/HomePage";
 
 import { SignInPage } from '@/pages/SignInPage';
 import { SignUpPage } from '@/pages/SignUpPage';
@@ -11,6 +11,11 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { OnePlacePage } from '@/pages/OnePlacePage';
 // import { ProtectedRoute } from '@/shared/ui/Modal/ProtectedRoute';
 
+
+import MapPage from "@/pages/MapPage/MapPage";
+import { ProfilePage } from "@/pages/ProfilePage";
+import { OnePlacePage } from "@/pages/OnePlacePage";
+// import { ProtectedRoute } from '@/shared/ui/Modal/ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +49,6 @@ export const router = createBrowserRouter([
         path: AppRoutes.ONEPLACE,
         element: <OnePlacePage />,
       },
-      
     ],
   },
 ]);

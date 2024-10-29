@@ -24,7 +24,7 @@ export const MyPlaceItem: React.FC<Props> = ({
 
 }) => {
 
-  console.log(place)
+  // console.log(place)
 
   const steps = [
     {
