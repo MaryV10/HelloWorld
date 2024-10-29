@@ -212,10 +212,12 @@ const placeSlice = createSlice({
         state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
+
         state.pendingPlaces = state.pendingPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
         state.places = state.places.map((place) =>
+
           place.id === action.payload.id ? action.payload : place
         );
       })
