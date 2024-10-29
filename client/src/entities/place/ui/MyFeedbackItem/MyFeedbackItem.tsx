@@ -153,7 +153,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
               style={{ backgroundColor: "grey", padding: "10px" }}
               onClick={handleEdit}
             >
-              Редактировать
+              Edit
             </button>
           )}
         </>
