@@ -5,7 +5,7 @@ import { Steps } from "antd";
 
 
 
-import { LoadingOutlined,CloseOutlined, UserOutlined, SolutionOutlined, SmileOutlined} from '@ant-design/icons';
+import { LoadingOutlined,CloseOutlined} from '@ant-design/icons';
 
 
 

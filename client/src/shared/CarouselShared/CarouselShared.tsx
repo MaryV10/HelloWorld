@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'antd';
 import styles from './Carousel.module.css';
 
-const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: number }> = ({ children, autoplaySpeed = 4000 }) => {
+const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: number }> = ({ children}) => {
   const groupedChildren = React.Children.toArray(children).reduce<React.ReactNode[][]>(
     (acc, child, index) => {
       if (index % 3 === 0) acc.push([]);
