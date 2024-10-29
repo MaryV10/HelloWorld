@@ -2,12 +2,11 @@ import React from "react";
 import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd"; 
 import Lottie from 'lottie-react';
-import animationData from '@/assets/Animation - 1730182436442.json'
-import { LoadingOutlined,CloseOutlined} from '@ant-design/icons';
 
-import { useAppDispatch } from "@/shared/hooks/reduxHooks";
-import icon from "@/assets/approved.gif"
-import { removePhoto } from "@/entities/photo/api/photoThunks";
+import animationData from '@/assets/Animation - 1730132037572.json'
+import { CloseOutlined} from '@ant-design/icons';
+
+
 
 
 import { Place } from "../../model";
@@ -30,7 +29,9 @@ export const MyPlaceItem: React.FC<Props> = ({
       icon: place.status === 'pending' ?  <Lottie 
       animationData={animationData} 
       loop 
-      style={{ width: '35px', height: '35px', overflow: 'hidden'}} // Установите нужные размеры
+
+      style={{ width: '100%', height: '100%', overflow: 'hidden'}} 
+
     /> : null,
       className: place.status === 'approved' || place.status === 'rejected' ? styles.gray : '',
     },
