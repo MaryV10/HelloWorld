@@ -3,15 +3,17 @@ const { Place, Tag, Photo, Feedback } = require("../../db/models");
 class PlaceService {
   // параметризированный запрос для OnePlacePage (только со статусом "approved")
   static async getOnePlace(id) {
+
     try {
       const place = await Place.findOne({
-        where: { id, status: "approved" },
+        where: { id },
         include: [
           { model: Tag, as: "tags", through: { attributes: [] } },
           { model: Feedback },
           { model: Photo },
         ],
       });
+     
       return place;
     } catch (error) {
       console.error(error);

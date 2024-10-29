@@ -26,10 +26,13 @@ export const ProfilePage: React.FC = () => {
         +
       </button> */}
       {/* <Suspense fallback={<Loader />}> */}
-        <ProfileForm />
-        <MyFeedbackList/>
+      <ProfileForm />
+      <MyFeedbackList/>
+      <MyPlacesList/>
+      {user?.id===1 && <PendingPlacesList/>} 
+        {/*
         <MyPlacesList/>
-        {user?.id===1 && <PendingPlacesList/>}
+        {user?.id===1 && <PendingPlacesList/>} */}
       {/* </Suspense> */}
       {/* <Suspense fallback={<Loader />}> */}
         {/* <LazyTaskList /> */}
