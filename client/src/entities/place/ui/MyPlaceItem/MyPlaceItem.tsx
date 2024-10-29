@@ -2,8 +2,10 @@ import React from "react";
 import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd"; 
 import Lottie from 'lottie-react';
+
 import animationData from '@/assets/Animation - 1730132037572.json'
 import { CloseOutlined} from '@ant-design/icons';
+
 
 
 
@@ -27,7 +29,9 @@ export const MyPlaceItem: React.FC<Props> = ({
       icon: place.status === 'pending' ?  <Lottie 
       animationData={animationData} 
       loop 
+
       style={{ width: '100%', height: '100%', overflow: 'hidden'}} 
+
     /> : null,
       className: place.status === 'approved' || place.status === 'rejected' ? styles.gray : '',
     },
