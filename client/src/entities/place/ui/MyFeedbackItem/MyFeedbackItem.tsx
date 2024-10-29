@@ -5,17 +5,20 @@ import { Feedback } from "@/entities/feedback";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";  
 import { removeFeedback, updateFeedback } from "@/entities/feedback/api/feedbackThunks";  
 import { getApprovedPlaces } from "../../api/placeThunks";
-import { del } from "framer-motion/client";
+
 
 interface MyFeedbackItemProps {  
-  place: Place;  
-  feedback: Feedback;  
+  place?: Place; 
+  feedback: Feedback; 
+  isPlaceEnabled?: boolean; 
 }  
 
 // Используем интерфейс в компоненте  
 export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({  
   place,  
   feedback,  
+  isPlaceEnabled,
+  
 }) => {  
   const { user } = useAppSelector((state) => state.user);  
   const dispatch = useAppDispatch();  
@@ -45,7 +48,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
 
   const handlerUpdateFeedback = async (e: React.FormEvent) => {  
     e.preventDefault();  
-    if (user?.id) {  
+    if (user?.id && place) {  
       await dispatch(updateFeedback({ id: feedback.id, comment, score, placeId: place.id }));  
       setIsEditing(false);
       await dispatch(getApprovedPlaces()); 
@@ -64,6 +67,12 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
   return (  
     <div>  
       <div>  
+      {isPlaceEnabled && (
+        <>
+          <p>Название: {place?.title}</p>
+          <p>Описание: {place?.description}</p>
+        </>
+      )}
         <div>Комментарий:</div>  
         <div>{feedback.comment}</div>  
       </div>  

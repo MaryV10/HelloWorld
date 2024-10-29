@@ -28,7 +28,7 @@ export const MyFeedbackList: React.FC = () => {
         <div style={{ marginTop: "20px" }}>
         <CarouselSharedMobile>
         {userFeedbacks.map(({ feedback, place }) => ( 
-              <MyFeedbackItem key={feedback.id} feedback={feedback} place={place} />
+              <MyFeedbackItem key={feedback.id} feedback={feedback} place={place}  isPlaceEnabled/>
             ))}
       </CarouselSharedMobile></div>
       </div>
@@ -39,7 +39,7 @@ export const MyFeedbackList: React.FC = () => {
         <div style={{ marginTop: "10px", padding: "20px", height: "auto", background: "none" }}>
           <CarouselShared>
             {userFeedbacks.map(({ feedback, place }) => ( 
-              <MyFeedbackItem key={feedback.id} feedback={feedback} place={place} />
+              <MyFeedbackItem key={feedback.id} feedback={feedback} place={place} isPlaceEnabled/>
             ))}
           </CarouselShared>
         </div>
