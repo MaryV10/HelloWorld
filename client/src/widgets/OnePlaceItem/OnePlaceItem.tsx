@@ -218,7 +218,7 @@ export const OnePlaceItem: React.FC = () => {
                 style={{ backgroundColor: "#141213", padding: "10px", color: "white" }}
                 onClick={handleEdit}
               >
-                Редактировать
+                Edit
               </button>
             )}
           </>
@@ -226,6 +226,7 @@ export const OnePlaceItem: React.FC = () => {
       </div>
 
       {/* ================================   COMMENTS Creates and CHANGE ================================================== */}
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'right'}}>
       <div style={{color: "black", borderRadius: "15px", padding: '20px', margin: "15px 15px"}}>
         <label style={{display: 'flex', flexDirection: 'column'}}>
           Ваш комментарий:
@@ -236,10 +237,10 @@ export const OnePlaceItem: React.FC = () => {
             style={{ backgroundColor: "white",color: "black" , margin: "15px 15px" , height: "150px"}}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
-        </label>
+      
 
         <label>
-          <BasicRating value={totalScore()} />
+          {/* <BasicRating value={totalScore()} /> */}
 
           Ваша оценка:
           <input
@@ -265,6 +266,7 @@ export const OnePlaceItem: React.FC = () => {
           ></input>
           <button onClick={handlerAddFeedback}>Добавить отзыв</button>
         </label>
+        </label>
         
       </div>
       
@@ -279,6 +281,7 @@ export const OnePlaceItem: React.FC = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

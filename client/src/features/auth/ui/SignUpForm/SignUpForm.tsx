@@ -7,6 +7,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUpForm.module.css";
+import { message } from "antd";
 
 
 interface SignUpFormProps {
@@ -42,12 +43,15 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
       if (!emailRegex.test(email)) {
-        setErrorMessage("Не верный формат почты !!!");
+        message.error('Неверный формат почты');
+    
         setShowError(true);
         return;
       } else if (password !== rpassword) {
-        setErrorMessage("Пароли не совпадают");
+      
+     
         setShowError(true);
+        message.error('Пароли не совпадают');
         return;
       } else if (
         !nickname.trim() ||
