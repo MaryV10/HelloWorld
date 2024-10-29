@@ -5,7 +5,7 @@ import { Steps } from "antd";
 
 
 
-import { LoadingOutlined,CloseOutlined, UserOutlined, SolutionOutlined, SmileOutlined} from '@ant-design/icons';
+import { LoadingOutlined,CloseOutlined} from '@ant-design/icons';
 
 
 
@@ -65,7 +65,7 @@ export const MyPlaceItem: React.FC<Props> = ({
 
           <p>{place.userId}</p></>
           
-    <img style={{height: '20vh', margin: '10px', borderRadius: '10px'}} src={place.Photos[0]?.imageUrl} alt='1' />  
+    <img style={{height: '20vh', margin: '10px', borderRadius: '10px', objectFit: 'cover'}} src={place.Photos[0]?.imageUrl} alt='1' />  
 
 
       </>

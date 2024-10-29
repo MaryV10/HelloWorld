@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Carousel } from 'antd';
 import styles from './Carousel.module.css';
 
-const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: number }> = ({ children, autoplaySpeed = 4000 }) => {
+
+import left from "@/assets/free-icon-rewind-left-gpng.png"
+import right from "@/assets/free-icon-rewind-right-g.png"
+
+const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: number }> = ({ children}) => {
+  const carouselRef = useRef<any>(null);
+
+
   const groupedChildren = React.Children.toArray(children).reduce<React.ReactNode[][]>(
     (acc, child, index) => {
       if (index % 3 === 0) acc.push([]);
@@ -12,9 +19,23 @@ const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: nu
     []
   );
 
+
+
+  const nextSlide = () => {
+    if (carouselRef.current) {
+      carouselRef.current.next();
+    }
+  };
+
+  const prevSlide = () => {
+    if (carouselRef.current) {
+      carouselRef.current.prev();
+    }
+  };
+
   return (
     <div className={styles.carouselContainer}>
-      <Carousel draggable >
+      <Carousel ref={carouselRef} draggable>
         {groupedChildren.map((group, index) => (
           <div className={styles.carouselSlide} key={index}>
             {group.map((child, subIndex) => (
@@ -25,6 +46,10 @@ const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: nu
           </div>
         ))}
       </Carousel>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+<img style={{height: "40px", width: "40px", marginLeft: '10px'}} src={left} onClick={prevSlide} alt="" />
+<img style={{height: "40px", width: "40px",  marginLeft: '10px'}} src={right} onClick={nextSlide} alt="" />
+</div>
     </div>
   );
 };

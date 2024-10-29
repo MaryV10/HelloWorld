@@ -9,7 +9,11 @@ import {
 } from "@/entities/place/api/placeThunks";
 import { addFeedback } from "@/entities/feedback/api/feedbackThunks";
 import { MyFeedbackItem } from "@/entities/place/ui/MyFeedbackItem";
+
 import { ROUTES } from "@/app/router/routes";
+
+import BasicRating from "@/shared/Rating/Rating";
+
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
@@ -17,6 +21,7 @@ export const OnePlaceItem: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const [score, setScore] = useState(0);
+ 
   const [comment, setComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -103,7 +108,9 @@ export const OnePlaceItem: React.FC = () => {
     setScore(0);
     setComment("");
   };
+
   // ========================================RETURN=====================================
+
   return (
     <div
       style={{
@@ -204,6 +211,7 @@ export const OnePlaceItem: React.FC = () => {
             )}
           </>
         )}
+
       </div>
 
       {/* ================================   COMMENTS Creates and CHANGE ================================================== */}
@@ -219,7 +227,11 @@ export const OnePlaceItem: React.FC = () => {
           ></textarea>
         </label>
         <label>
+      
+        <BasicRating value={totalScore()}/>
+  
           Ваша оценка:
+          
           <input
             type="number"
             name="score"

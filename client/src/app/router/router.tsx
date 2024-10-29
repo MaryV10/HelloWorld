@@ -3,8 +3,14 @@ import { ROUTES as AppRoutes } from "./routes";
 import Layout from "./Layout/Layout";
 import { HomePage } from "../../pages/HomePage/HomePage";
 
-import { SignInPage } from "@/pages/SignInPage";
-import { SignUpPage } from "@/pages/SignUpPage";
+import { SignInPage } from '@/pages/SignInPage';
+import { SignUpPage } from '@/pages/SignUpPage';
+
+import MapPage from '@/pages/MapPage/MapPage';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { OnePlacePage } from '@/pages/OnePlacePage';
+// import { ProtectedRoute } from '@/shared/ui/Modal/ProtectedRoute';
+
 
 import MapPage from "@/pages/MapPage/MapPage";
 import { ProfilePage } from "@/pages/ProfilePage";
@@ -34,11 +40,10 @@ export const router = createBrowserRouter([
       },
       {
         path: AppRoutes.PROFILE,
-        element: (
-          // <ProtectedRoute>
-          <ProfilePage />
-        ),
-        //  </ProtectedRoute>
+        element: 
+        // <ProtectedRoute>
+          <ProfilePage /> 
+          // </ProtectedRoute>
       },
       {
         path: AppRoutes.ONEPLACE,

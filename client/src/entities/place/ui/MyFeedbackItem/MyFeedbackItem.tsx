@@ -8,6 +8,7 @@ import {
   updateFeedback,
 } from "@/entities/feedback/api/feedbackThunks";
 import { getApprovedPlaces } from "../../api/placeThunks";
+import { Link } from "react-router-dom";
 
 interface MyFeedbackItemProps {
   place?: Place;
@@ -73,7 +74,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
       <div>
         {isPlaceEnabled && (
           <>
-            <p>Название: {place?.title}</p>
+            <Link to={`/OnePlacePage/${place?.id}`}><p>Название: {place?.title}</p></Link>
             <p>Описание: {place?.description}</p>
           </>
         )}

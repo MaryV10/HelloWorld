@@ -11,7 +11,11 @@ export const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({
 
 
   if (!user) {
-    return <Navigate to={ROUTES.HOME} />;
+    setTimeout(() => {
+      
+      return <Navigate to={ROUTES.HOME} />;
+    },0)
+    
   }
   return children;
 };

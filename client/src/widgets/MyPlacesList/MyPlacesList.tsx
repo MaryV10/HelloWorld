@@ -13,6 +13,7 @@ export const MyPlacesList: React.FC = () => {
 
 
   const { places } = useAppSelector((state) => state.place);
+  const { user } = useAppSelector((state) => state.user);
 
 
 
@@ -52,6 +53,7 @@ export const MyPlacesList: React.FC = () => {
 <div style={{display: 'flex', justifyContent: 'center'}}>
 <CarouselShared>
 {places
+.filter((p) => p.userId === user?.id)
             .map((p) => (
               <MyPlaceItem key={p.id} place={p} />
             ))}
