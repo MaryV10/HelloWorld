@@ -4,8 +4,8 @@ import { Steps } from "antd";
 
 
 
-
 import { LoadingOutlined,CloseOutlined, UserOutlined, SolutionOutlined, SmileOutlined} from '@ant-design/icons';
+
 
 
 
@@ -39,9 +39,9 @@ export const MyPlaceItem: React.FC<Props> = ({
       icon: place.status === 'rejected' ? <CloseOutlined style={{ color: 'red' }} /> : null,
     },
   ];
-  
-
+    
   return (
+    
     <div className={styles.myPlaceItem}>
       
       <>
@@ -49,6 +49,7 @@ export const MyPlaceItem: React.FC<Props> = ({
         {/* <Link to={`/OnePlacePage/${place.id}`}>
           <h2 className={styles.title}>{place.title}</h2>
         </Link>
+
            */}
                   <>
                   <Steps items={steps} className={styles.customStep}/>
@@ -56,6 +57,7 @@ export const MyPlaceItem: React.FC<Props> = ({
           <h2 className={styles.title}>{place.title}</h2>
         </Link>
                   <p className={styles.description}>{place.description}</p>
+
           <p>{place.status}</p>
 
           <p>{place.userId}</p></>
