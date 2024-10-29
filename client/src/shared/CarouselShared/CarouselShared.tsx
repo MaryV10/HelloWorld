@@ -2,11 +2,13 @@ import React, { useRef } from 'react';
 import { Carousel } from 'antd';
 import styles from './Carousel.module.css';
 
+
 import left from "@/assets/free-icon-rewind-left-gpng.png"
 import right from "@/assets/free-icon-rewind-right-g.png"
 
 const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: number }> = ({ children}) => {
   const carouselRef = useRef<any>(null);
+
 
   const groupedChildren = React.Children.toArray(children).reduce<React.ReactNode[][]>(
     (acc, child, index) => {

@@ -12,7 +12,6 @@ import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
 
-
 interface YMapsMouseEvent {
   get: (key: string) => {
     originalEvent: {
