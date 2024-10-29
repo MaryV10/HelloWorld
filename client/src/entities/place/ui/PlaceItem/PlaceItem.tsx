@@ -1,5 +1,6 @@
 import { Placemark } from "@pbe/react-yandex-maps"
 import { useNavigate } from "react-router-dom";
+import pin from "@/assets/pin2.png"
 
 interface PlaceItemProps {
     index: number;             
@@ -17,7 +18,7 @@ export const PlaceItem: React.FC<PlaceItemProps> = ({index, coordinates, title }
     options={
       {
         iconLayout: "default#image",
-        iconImageHref: "https://cdn-icons-png.flaticon.com/512/645/645777.png",
+        iconImageHref: `${pin}`,
         iconImageSize: [30, 30],
         iconImageOffset: [-15, -15],
     }}
