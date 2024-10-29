@@ -7,7 +7,7 @@ const photoRouter = require('express').Router();
 
 photoRouter
 
-.post("/",   uploadPhotoController)
+.post("/",  verifyAccessToken, uploadPhotoController)
 
 .delete("/:id",  verifyAccessToken,deletePhotoController);
 

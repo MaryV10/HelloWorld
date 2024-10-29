@@ -11,6 +11,7 @@ import { addPhoto } from "@/entities/photo/api/photoThunks";
 import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
+import { combineReducers } from "@reduxjs/toolkit";
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -96,6 +97,8 @@ function MapList() {
             tags: selectedTags,
           })
         ).unwrap();
+
+        console.log(photo,newPlace.id, "imageUrl");
 
         await dispatch(
           addPhoto({ imageUrl: photo, placeId: newPlace.id })

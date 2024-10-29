@@ -206,12 +206,18 @@ const placeSlice = createSlice({
         message.error(state.error);
       })
       .addCase(addPhoto.fulfilled, (state, action) => {
+        console.log(action.payload, '======>>>> payload');
         state.loading = false;
         state.error = null;
         state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
-        state.pendingPlaces = state.approvedPlaces.map((place) =>
+
+        state.pendingPlaces = state.pendingPlaces.map((place) =>
+          place.id === action.payload.id ? action.payload : place
+        );
+        state.places = state.places.map((place) =>
+
           place.id === action.payload.id ? action.payload : place
         );
       })

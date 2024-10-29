@@ -252,7 +252,7 @@ export default class Example extends Component {
         <div className={styles.buttonsContainer}>
          
           <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide - 1 : this.slides.length - 1 })} src={left} alt="" />
-          <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide + 1 : this.slides.length - 1 })} src={right} alt="" />
+          <img className={styles.button} onClick={() => this.setState({ goToSlide: this.state.goToSlide > 0 ? this.state.goToSlide + 1 : this.slides.length + 1 })} src={right} alt="" />
          
         </div>
       </div>
