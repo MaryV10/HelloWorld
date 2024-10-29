@@ -211,6 +211,9 @@ const placeSlice = createSlice({
         state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
+        state.pendingPlaces = state.approvedPlaces.map((place) =>
+          place.id === action.payload.id ? action.payload : place
+        );
       })
       // -----------------------
       .addCase(removePhoto.pending, (state) => {

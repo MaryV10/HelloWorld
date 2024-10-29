@@ -3,7 +3,7 @@ import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd"; 
 import Lottie from 'lottie-react';
 
-import animationData from '@/assets/Animation - 1730132037572.json'
+import animationData from '@/assets/Animation - 1730182436442.json'
 import { CloseOutlined} from '@ant-design/icons';
 
 
@@ -54,7 +54,7 @@ export const MyPlaceItem: React.FC<Props> = ({
           <p className={styles.description}>{place.description}</p>
           <p>{place.status}</p>
           <p>{place.userId}</p>
-          
+        
     <img style={{height: '20vh', margin: '10px', borderRadius: '10px'}} src={place.Photos[0].imageUrl} alt='1' />  
 
       </>
