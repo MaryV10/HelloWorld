@@ -39,9 +39,28 @@
 .feedback {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   gap: 35px;
   margin-top: 15px;
   padding: 20px;
 }
+
+* {
+    font-family: Unbounded;
+}
+
+.textarea1 {
+    max-width: 200px !important;
+  
+}
+
+.delIcon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .delIcon:hover {
+    transform: scale(1.3);
+   }

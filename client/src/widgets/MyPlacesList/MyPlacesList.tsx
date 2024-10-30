@@ -40,14 +40,15 @@ export const MyPlacesList: React.FC = () => {
           Мои места
         </p>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <CarouselShared>
-            {places
-              .filter((p) => p.userId === user?.id)
-              .map((p) => (
-                <MyPlaceItem key={p.id} place={p} />
-              ))}
-          </CarouselShared>
-        </div>
+  <CarouselShared>
+    {places
+      .filter((p) => p.userId === user?.id)
+      .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+      .map((p) => (
+        <MyPlaceItem key={p.id} place={p} />
+      ))}
+  </CarouselShared>
+</div>
       </>
     );
   };

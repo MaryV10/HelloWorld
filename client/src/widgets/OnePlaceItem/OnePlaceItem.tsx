@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import deleteIcon from "@/assets/free-icon-delete-7104075.png";
 import styles from "./OnePlaceItem.module.css";
 import {
   getApprovedPlaces,
@@ -14,6 +15,7 @@ import { ROUTES } from "@/app/router/routes";
 
 import BasicRating from "@/shared/Rating/Rating";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
+import { Modal } from "antd";
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
@@ -158,6 +160,12 @@ export const OnePlaceItem: React.FC = () => {
           </div>
      
         {isEditing ? (
+              <Modal
+
+              visible={isEditing}
+              onCancel={handleCancel}
+              footer={null}
+            >
           <>
             <label>
               Изменить название места:
@@ -165,7 +173,7 @@ export const OnePlaceItem: React.FC = () => {
                 name="comment"
                 maxLength={35}
                 value={title}
-                style={{  margin: "15px 15px" }}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </label>
@@ -174,7 +182,8 @@ export const OnePlaceItem: React.FC = () => {
               <input
                 name="comment"
                 value={description}
-                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                className={styles.textarea1}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </label>
@@ -184,7 +193,7 @@ export const OnePlaceItem: React.FC = () => {
                 type="number"
                 name="comment"
                 value={longitude}
-                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setLongitude(e.target.value)}
               />
             </label>
@@ -194,7 +203,7 @@ export const OnePlaceItem: React.FC = () => {
                 type="number"
                 name="comment"
                 value={width}
-                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setWidth(e.target.value)}
               />
             </label>
@@ -202,26 +211,26 @@ export const OnePlaceItem: React.FC = () => {
               <>
                 {" "}
                 <button
-                  style={{ backgroundColor: "green", padding: "10px" }}
+                  style={{ backgroundColor: "#03754a",color: "white", padding: "10px" }}
                   onClick={handlerUpdatePlace}
                 >
                   Сохранить
                 </button>
-                <button
-                  style={{ backgroundColor: "red", padding: "10px" }}
-                  onClick={handlerDeletePlace}
-                >
-                  Удалить
-                </button>
-                <button
-                  style={{ backgroundColor: "gray", padding: "10px" }}
-                  onClick={handleCancel}
-                >
-                  Отменить
-                </button>
+            
+<img
+            className={styles.delIcon}
+            src={deleteIcon}
+            alt="Редактировать отзыв"
+            onClick={handlerDeletePlace}
+          />
+              
+      
               </>
+                   
             )}
           </>
+          </Modal>
+          
         ) : (
           <>
             {user?.id && (
@@ -233,6 +242,7 @@ export const OnePlaceItem: React.FC = () => {
               </button>
             )}
           </>
+          
         )}
       </div>
 
