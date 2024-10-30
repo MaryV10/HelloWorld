@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import {isMobile} from 'react-device-detect';
 import { ROUTES } from "@/app/router/routes";
@@ -19,12 +19,13 @@ import { SignInForm } from "@/features/auth/ui/SignInForm";
 
 
 
+
 export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
   const [active, setActive] = useState(false);
   const [active1, setActive1] = useState(false);
-
+const navigate = useNavigate()
   
 
   useEffect(() => {
@@ -43,7 +44,11 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout())
+    navigate(ROUTES.HOME)
+
+    
+
   };
   // REGISTRATIOn INTO MODAL =============================
   const onToggle = (): void => {
