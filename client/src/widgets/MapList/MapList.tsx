@@ -97,8 +97,7 @@ function MapList() {
           })
         ).unwrap();
 
-        console.log(photo,newPlace.id, "imageUrl");
-
+        
         await dispatch(
           addPhoto({ imageUrl: photo, placeId: newPlace.id })
         ).unwrap();
@@ -176,6 +175,7 @@ function MapList() {
               />
               <input
                 type="text"
+                required
                 value={photo}
                 onChange={(e) => setPhoto(e.target.value)}
                 placeholder="Фото"

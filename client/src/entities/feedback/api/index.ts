@@ -9,10 +9,10 @@ export class FeedbackService {
 
   static async createFeedback(comment: string, score:number, placeId: number): Promise<Place> {
     try {
-      // console.log({comment, score, placeId}, "KFKFKFKF")
+      
       const response = await axiosInstance.post('/feedbacks', {comment, score, placeId},
       );
-      // console.log(response.data, 'daaaaataaaaaaaa')
+      
       return response.data.place;
     } catch (error) {
       console.error('Error creating feedback:', error);
