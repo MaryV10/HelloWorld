@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+import editIcon from "@/assets/free-icon-edit-992664.png";
+import deleteIcon from "@/assets/free-icon-delete-7104075.png";
 import { Place } from "../../model";
 import { Feedback } from "@/entities/feedback";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
-import {
-  removeFeedback,
-  updateFeedback,
-} from "@/entities/feedback/api/feedbackThunks";
+import { removeFeedback, updateFeedback } from "@/entities/feedback/api/feedbackThunks";
 import { getApprovedPlaces } from "../../api/placeThunks";
 import { Link } from "react-router-dom";
+import styles from "./MyFeedbackItem.module.css"; 
+import { Modal } from "antd";
 
 interface MyFeedbackItemProps {
   place?: Place;
@@ -16,7 +16,6 @@ interface MyFeedbackItemProps {
   isPlaceEnabled?: boolean;
 }
 
-// Используем интерфейс в компоненте
 export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
   place,
   feedback,
@@ -42,7 +41,6 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
 
   const handleCancel = () => {
     setIsEditing(false);
-
     setScore(feedback.score);
     setComment(feedback.comment);
   };
@@ -50,12 +48,8 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
   const handlerUpdateFeedback = async (e: React.FormEvent) => {
     e.preventDefault();
     if (user?.id && place) {
-      await dispatch(
-        updateFeedback({ id: feedback.id, comment, score, placeId: place.id })
-      );
-
+      await dispatch(updateFeedback({ id: feedback.id, comment, score, placeId: place.id }));
       await dispatch(getApprovedPlaces());
-
       setIsEditing(false);
     }
   };
@@ -71,10 +65,12 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
 
   return (
     <div>
-      <div style={{margin: "15px"}}>
+      <div style={{ margin: "15px" }}>
         {isPlaceEnabled && (
           <>
-            <Link to={`/OnePlacePage/${place?.id}`}><p>Название: {place?.title}</p></Link>
+            <Link to={`/OnePlacePage/${place?.id}`}>
+              <h1 className={styles.title}>Название: {place?.title}</h1>
+            </Link>
             <p>Описание: {place?.description}</p>
           </>
         )}
@@ -82,81 +78,71 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
         <div>{feedback.comment}</div>
         <div>Оценка: {feedback.score}</div>
       </div>
-     
 
       {isEditing ? (
-        <>
-          <label>
+        
+        <Modal
+
+          visible={isEditing}
+          onCancel={handleCancel}
+          footer={null}
+        >
+          
+          <label style={{display: 'flex', flexDirection: 'column', justifyContent: 'left', fontWeight: 'bold', fontSize: '18px'}}>
             Изменить комментарий:
             <textarea
               placeholder="Комментарий ..."
-              name="comment"
               value={comment}
-              style={{ backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
+              className={styles.textarea}
               onChange={(e) => setComment(e.target.value)}
             />
           </label>
-          <label>
+          <label style={{display: 'flex', justifyContent: 'left', fontWeight: 'bold', fontSize: '18px', marginTop: '10px'}}>
             Изменить оценку:
-            <input
+            <input 
+            style={{background: '#141213', color: 'white', border: 'none', borderRadius: '10px', padding: '5px 10px', fontSize: '18px', marginTop: '10px', marginBottom: '10px'}} 
               type="number"
-              name="score"
               min="0"
               max="5"
               value={score}
-              style={{ backgroundColor: "white" }}
+              className={styles.input}
               onChange={(e) => {
                 const value = Number(e.target.value);
-                if (value >= 0 && value <= 10) {
+                if (value >= 0 && value <= 5) {
                   setScore(value);
                 }
               }}
               onKeyDown={(e) => {
-                if (
-                  !["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(
-                    e.key
-                  )
-                ) {
+                if (!["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(e.key)) {
                   e.preventDefault();
                 }
               }}
-            ></input>
+            />
           </label>
           {user?.id === feedback.userId && (
             <>
-              {" "}
-              <button
-                style={{ backgroundColor: "green", padding: "10px" }}
-                onClick={handlerUpdateFeedback}
-              >
+              <button className={styles.saveButton} onClick={handlerUpdateFeedback}>
                 Сохранить
               </button>
-              <button
-                style={{ backgroundColor: "red", padding: "10px" }}
-                onClick={handlerDeleteFeedback}
-              >
-                Удалить
-              </button>
-              <button
-                style={{ backgroundColor: "gray", padding: "10px" }}
-                onClick={handleCancel}
-              >
-                Отменить
-              </button>
+              <img
+            className={styles.delIcon}
+            src={deleteIcon}
+            alt="Редактировать отзыв"
+            onClick={handleEdit}
+          />
             </>
           )}
-        </>
+        
+        </Modal>
       ) : (
-        <>
-          {user?.id === feedback.userId && (
-            <button
-              style={{ backgroundColor: "grey", padding: "10px" }}
-              onClick={handleEdit}
-            >
-              Edit
-            </button>
-          )}
-        </>
+        user?.id === feedback.userId && (
+          <img
+            className={styles.editIcon}
+            src={editIcon}
+            alt="Редактировать отзыв"
+            onClick={handleEdit}
+          />
+        )
       )}
     </div>
   );
