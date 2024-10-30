@@ -52,12 +52,12 @@
     
   }
 
-  textarea {
-    min-width: 500px;
+  .textarea2 {
+  width: 300px;
     max-width: 500px;
     min-height: 50px;
     max-height: 800px;
-    width: 10px;
+    
     background: #141213;
     color: white;
     border-radius: 15px;
@@ -78,7 +78,7 @@
     font-family: Unbounded;
   }
 
- .myFeedback {
+  .myFeedback {
   font-size: 14px;
   border: none;
 
