@@ -118,13 +118,14 @@ export const OnePlaceItem: React.FC = () => {
         marginTop: "100px"
       
       }}
-    >
+    > 
       {/* =======================================PLACE CHANGING======================== */}
 
       <div style={{ backgroundColor: "#027147", borderRadius: "15px", padding: '20px' }}>
-      <p style={{background: 'white', maxWidth: '500px', padding: '10px', borderRadius: '20px', fontWeight: 'bold'}}> {onePlace?.title}</p>
+        <div className={styles.name}>
+      <p style={{textAlign: 'center', background: 'white', maxWidth: '500px', padding: '10px', borderRadius: '20px', fontWeight: 'bold'}}> {onePlace?.title}</p>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          
+        </div>
           <p></p>
 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "20px", background: 'white', borderRadius: '20px', padding: '10px', paddingRight: '15px', paddingLeft: '15px' }}>
   <p>{totalScore()}</p>
@@ -153,6 +154,7 @@ export const OnePlaceItem: React.FC = () => {
               Изменить название места:
               <input
                 name="comment"
+                maxLength={35}
                 value={title}
                 style={{  margin: "15px 15px" }}
                 onChange={(e) => setTitle(e.target.value)}
@@ -168,7 +170,7 @@ export const OnePlaceItem: React.FC = () => {
               />
             </label>
             <label>
-              Изменить ширину:
+              Изменить широту:
               <input
                 type="number"
                 name="comment"
@@ -218,7 +220,7 @@ export const OnePlaceItem: React.FC = () => {
                 style={{ backgroundColor: "#141213", padding: "10px", color: "white" }}
                 onClick={handleEdit}
               >
-                Edit
+                Редактировать
               </button>
             )}
           </>
@@ -226,8 +228,8 @@ export const OnePlaceItem: React.FC = () => {
       </div>
 
       {/* ================================   COMMENTS Creates and CHANGE ================================================== */}
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'right'}}>
-      <div style={{color: "black", borderRadius: "15px", padding: '20px', margin: "15px 15px"}}>
+    <div className={styles.container} >
+      <div className={styles.feedback} style={{color: "black", borderRadius: "15px"}}>
         <label style={{display: 'flex', flexDirection: 'column'}}>
           Ваш комментарий:
           <textarea
@@ -270,7 +272,7 @@ export const OnePlaceItem: React.FC = () => {
         
       </div>
       
-      <div className={styles.feedbacks}>
+      <div className={styles.feedback}>Все комментарии:
         {onePlace?.Feedbacks.map((feedback) => (
           <div className={styles.feedbacksOneLine}>
             <MyFeedbackItem
