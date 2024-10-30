@@ -17,6 +17,8 @@ import left from "@/assets/free-icon-rewind-left-gpng.png";
 import right from "@/assets/free-icon-rewind-right-g.png";
 
 import styles from "./Carousel.module.css";
+import { Link } from "react-router-dom";
+import { ROUTES } from "@/app/router/routes";
 
 export default class Example extends Component {
   state = {
@@ -32,20 +34,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -56,6 +59,7 @@ export default class Example extends Component {
             src={background}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -64,20 +68,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -88,6 +93,7 @@ export default class Example extends Component {
             src={background2}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -96,20 +102,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -120,6 +127,7 @@ export default class Example extends Component {
             src={background3}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -128,20 +136,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -152,6 +161,7 @@ export default class Example extends Component {
             src={background4}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -160,20 +170,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -184,6 +195,7 @@ export default class Example extends Component {
             src={background5}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -192,20 +204,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -216,6 +229,7 @@ export default class Example extends Component {
             src={background6}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -224,20 +238,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -248,6 +263,7 @@ export default class Example extends Component {
             src={background7}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -256,20 +272,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -280,6 +297,7 @@ export default class Example extends Component {
             src={background8}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -288,20 +306,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -312,6 +331,7 @@ export default class Example extends Component {
             src={background12}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -320,20 +340,21 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "4px solid #e9dbc1",
+            border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
             color: "white",
             textAlign: "center",
-            width: "300px",
-            height: "400px",
+            width: "30vw",
+            height: "50vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
           }}
         >
+          <Link to={ROUTES.MAP}>
           <img
             className={styles.heroImage}
             style={{
@@ -344,6 +365,7 @@ export default class Example extends Component {
             src={background11}
             alt="foto1"
           />
+          </Link>
         </div>
       ),
     },
@@ -395,8 +417,8 @@ export default class Example extends Component {
     return (
       <div
         style={{
-          width: "800px",
-          height: "500px",
+          width: "70vw",
+          height: "60vh",
           margin: "0 auto",
           display: "flex",
           gap: "20px",

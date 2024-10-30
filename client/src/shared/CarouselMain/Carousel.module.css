@@ -1,10 +1,11 @@
 
 .button {
   height: 50px;
-
+  margin: 100px;
   border-radius: 100px;
   transition: all 0.2s ease;
 }
+
 
 .button:hover {
     transform: scale(1.1);

@@ -18,9 +18,16 @@
   color: white;
   text-align: center;
   backdrop-filter: blur(40px);
-  border: 4px solid #e9dbc1;
+  border: 1px solid #e9dbc1;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 20px;
 }
