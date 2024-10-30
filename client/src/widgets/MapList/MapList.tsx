@@ -121,13 +121,19 @@ function MapList() {
       <div className={styles.navbar}></div>
 
       <div className={styles.mapContainer} style={{ height: "100%" }}>
-        <input style={{marginLeft: "20px"}}
+        <div className={styles.leftbar}>
+        <input 
           className={styles.input}
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Поиск..."
         />
+
+<div className={styles.tags}>
+        <TagSelector tags={tags} onTagSelect={setSelectedTags} />
+      </div>
+      </div>
         <Map
           defaultState={{ center: [59.95, 30.3], zoom: 9 }}
           width={"100%"}
@@ -190,9 +196,7 @@ function MapList() {
         <Sidebar places={filteredPlaces} />
       </div>
 
-      <div className={styles.tags}>
-        <TagSelector tags={tags} onTagSelect={setSelectedTags} />
-      </div>
+      
     </>
   );
 }
