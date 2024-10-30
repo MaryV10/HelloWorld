@@ -1,5 +1,5 @@
 
-import { useAppDispatch } from '@/shared/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
 import styles from './Layout.module.css';
 import { Footer } from '@/widgets/Footer';
 import { Navbar } from '@/widgets/Navbar';
@@ -11,19 +11,24 @@ import { getMyPlaces } from '@/entities/place/api/placeThunks';
 
 const Layout: React.FC = () => {
 const dispatch = useAppDispatch();
+const user= useAppSelector((state) => state.user.user);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await dispatch(refreshAccessToken()).unwrap();
-        await dispatch(getMyPlaces()).unwrap();
+        if(user?.id) {
+        await dispatch(getMyPlaces()).unwrap()
+      }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     }
     fetchData();
     
-  }, [dispatch]);
+  }, [dispatch, user?.id]);
+
+
 
 
   return (
