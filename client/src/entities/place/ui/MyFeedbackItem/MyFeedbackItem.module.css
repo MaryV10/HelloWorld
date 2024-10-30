@@ -49,11 +49,13 @@
 
   textarea {
     min-width: 500px;
+    max-width: 500px;
     min-height: 20px;
     width: 10px;
     background: #141213;
     color: white;
     border-radius: 15px;
+    padding: 10px;
   }
   .delIcon {
     width: 30px;
