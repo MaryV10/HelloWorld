@@ -23,18 +23,18 @@ export const MyPlaceItem: React.FC<Props> = ({ place }) => {
 
   if (place.status === "pending") {
     steps.push({
-      title: <span style={{ fontWeight: "bold" }}>На модерации</span>,
+      title: <span >На модерации</span>,
       status: "process",
       icon: <Loader />,
     });
   } else if (place.status === "approved") {
     steps.push({
-      title: <span style={{ fontWeight: "bold" }}>Опубликовано</span>,
+      title: <span >Опубликовано</span>,
       status: "finish",
     });
   } else if (place.status === "rejected") {
     steps.push({
-      title: <span style={{ fontWeight: "bold" }}>Отклонено</span>,
+      title: <span >Отклонено</span>,
       status: "finish",
       icon: <CloseOutlined style={{ color: "red" }} />,
     });
@@ -53,7 +53,7 @@ export const MyPlaceItem: React.FC<Props> = ({ place }) => {
           ) : (
             <h2 className={styles.title}>{place.title}</h2>
           )}
-          <p className={styles.description}><h1 style={{ fontWeight: "bold" }}>Описание:</h1>  {truncateText(place.description, 100)}</p>
+          <p className={styles.description}><h1 >Описание:</h1>  {truncateText(place.description, 100)}</p>
           <p >  
           {place.tags.map((tag) => (  
     <span key={tag.id} style={{ backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  

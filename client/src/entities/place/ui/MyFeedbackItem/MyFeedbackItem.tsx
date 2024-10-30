@@ -71,12 +71,14 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
             <Link to={`/OnePlacePage/${place?.id}`}>
               <h1 className={styles.title}>Название: {place?.title}</h1>
             </Link>
-            <p>Описание: {place?.description}</p>
+            <p className={styles.myFeedback}>Описание: {place?.description}</p>
           </>
         )}
+        <div className={styles.myFeedback}>
         <div>Комментарий:</div>
         <div>{feedback.comment}</div>
         <div>Оценка: {feedback.score}</div>
+      </div>
       </div>
 
       {isEditing ? (
