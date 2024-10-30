@@ -20,8 +20,8 @@ export const MyPlacesList: React.FC = () => {
           <div style={{ marginTop: "20px" }}>
             <CarouselSharedMobile>
               {places
-                .filter((p) => p.status === "approved")
                 .filter((p) => p.userId === user?.id)
+                .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
                 .map((p) => (
                   <MyPlaceItem key={p.id} place={p} />
                 ))}

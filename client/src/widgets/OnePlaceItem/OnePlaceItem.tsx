@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import deleteIcon from "@/assets/free-icon-delete-7104075.png";
 import styles from "./OnePlaceItem.module.css";
+import {isMobile} from 'react-device-detect';
 import {
   getApprovedPlaces,
   removePlace,
@@ -45,6 +46,54 @@ export const OnePlaceItem: React.FC = () => {
   useEffect(() => {
     dispatch(getApprovedPlaces());
   }, [dispatch]);
+
+  const renderContent = () => {
+    if (isMobile) {
+      return (
+        <select
+          name="score"
+          value={score}
+          style={{ backgroundColor: "white", width: '60px', borderRadius:'15px', padding: '5px' }}
+          onChange={(e) => {
+            const value = Number(e.target.value);
+            if (value >= 0 && value <= 5) {
+              setScore(value);
+            }
+          }}
+        >
+          <option value="">Выберите оценку</option>
+          {[...Array(6).keys()].map((num) => (
+            <option key={num} value={num}>
+              {num}
+            </option>
+          ))}
+        </select>
+      )
+    
+    } else {
+    return ( <input
+    type="number"
+    name="score"
+    min="0"
+    max="5"
+    value={score}
+    style={{ backgroundColor: "white" }}
+    onChange={(e) => {
+      const value = Number(e.target.value);
+      if (value >= 0 && value <= 10) {
+        setScore(value);
+      }
+    }}
+    onKeyDown={(e) => {
+      if (
+        !["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(e.key)
+      ) {
+        e.preventDefault();
+      }
+    }}
+  ></input>)
+  }
+  }
 
   const handlerUpdatePlace = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -255,7 +304,8 @@ export const OnePlaceItem: React.FC = () => {
             placeholder="Комментарий ..."
             name="comment"
             value={comment}
-            style={{ backgroundColor: "white",color: "black" , margin: "15px 15px" , height: "150px"}}
+            className={styles.textarea1}
+            style={{ backgroundColor: "white",color: "black" , margin: "15px 15px" , height: "150px", maxWidth: "100px" }}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
       
@@ -264,27 +314,7 @@ export const OnePlaceItem: React.FC = () => {
           {/* <BasicRating value={totalScore()} /> */}
 
           Ваша оценка:
-          <input
-            type="number"
-            name="score"
-            min="0"
-            max="5"
-            value={score}
-            style={{ backgroundColor: "white" }}
-            onChange={(e) => {
-              const value = Number(e.target.value);
-              if (value >= 0 && value <= 10) {
-                setScore(value);
-              }
-            }}
-            onKeyDown={(e) => {
-              if (
-                !["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(e.key)
-              ) {
-                e.preventDefault();
-              }
-            }}
-          ></input>
+         <div>{renderContent()}</div>
           <button onClick={handlerAddFeedback}>Добавить отзыв</button>
         </label>
         </label>
