@@ -49,6 +49,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
 
   return (
     <form className={styles.signInForm} onSubmit={handleSubmit}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <label>
         Email:
         <input
@@ -76,8 +77,9 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
           onChange={changeInputsHandler}
         />
       </label>
+      </div>
       <button type="submit">
-        <span>Авторизоваться</span>
+        <div ><span>Авторизоваться</span></div>
       </button>
     </form>
   );

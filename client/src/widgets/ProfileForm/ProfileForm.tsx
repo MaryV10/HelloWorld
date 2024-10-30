@@ -109,13 +109,13 @@ const ProfileForm: React.FC = () => {
             style={{ backgroundColor: "white" }}
           />
           <button
-            style={{ backgroundColor: "white", padding: "10px" }}
+           style={{ border: "2px solid rgb(20, 18, 19)"}}
             onClick={handleSave}
           >
             Save
           </button>
           <button
-            style={{ backgroundColor: "white", padding: "10px" }}
+            style={{ backgroundColor: "rgb(20, 18, 19)"}}
             onClick={handleCancel}
           >
             Cancel
@@ -124,7 +124,7 @@ const ProfileForm: React.FC = () => {
       ) : (
         <>
           <button
-            style={{ backgroundColor: "white", padding: "10px" }}
+           style={{ backgroundColor: "rgb(20, 18, 19)"}}
             onClick={handleEdit}
           >
             Редактировать

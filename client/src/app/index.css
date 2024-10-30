@@ -139,6 +139,8 @@ button {
   padding: 10px;
   max-width: 300px;
   transition: all 0.2s ease;
+  font-family: Unbounded;
+  color: white;
 }
 
 button:hover {

@@ -31,7 +31,7 @@ export const PendingPlacesList: React.FC = () => {
        
         background: "grey",
        display: "flex",
-        justifyContent: "space-between",
+
         flexWrap: "wrap",
         gap: '20px'
       }}

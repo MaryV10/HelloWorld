@@ -30,12 +30,10 @@ export const PendingPlaceItem: React.FC<Props> = ({
 };
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', width: '400px', background: 'white', padding: '10px', gap: '10px', borderRadius: '15px'}}>
-           
+    <div style={{display: 'flex',  flexDirection: 'column', justifyContent:'flex-start',width: '400px', background: 'white', padding: '10px', gap: '10px', borderRadius: '15px'}}>
+         <div>
       <h2 className={styles.title}>{place.title}</h2>
       <p className={styles.description}>{place.description}</p>
-      <p>Статус: {place.status}</p>
-      <p>{place.userId}</p>
       {place.Photos.map((photo, index) => (
         <img
           style={{ height: "20vh", margin: "10px" , objectFit: "cover", borderRadius: "15px"}}
@@ -44,8 +42,11 @@ export const PendingPlaceItem: React.FC<Props> = ({
           alt={`Photo ${index + 1}`}
         />
       ))}
-      <button onClick={() => handleReject()}>Reject</button>
-      <button onClick={() => handleApprove()}>Approve</button>
+      </div>  
+      <div>
+      <button  onClick={() => handleReject()}>Отклонить</button>
+      <button onClick={() => handleApprove()}>Одобрить</button>
+      </div>
     </div>
   );
 };

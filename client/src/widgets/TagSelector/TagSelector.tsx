@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 import { TagList } from '@/entities/tag';
+import styles from "./TagSelector.module.css";
 
 
 
@@ -10,10 +11,10 @@ type TagSelectorProps = {
 };
 
 const TagSelector: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
-  <Select
+  <Select className={styles.select}
     mode="multiple"
-    style={{ width: 200, fontFamily: "Unbounded",
-      fontWeight: "normal",}}
+    style={{ width: 215, fontFamily: "Unbounded",
+      fontWeight: "normal"}}
     placeholder="Выберите теги"
     onChange={onTagSelect} 
     tagRender={(props) => {
@@ -51,6 +52,7 @@ const TagSelector: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
     filterOption={(input, option) =>
       (option?.label as string).toLowerCase().includes(input.toLowerCase())
     }
+
   />
 );
 

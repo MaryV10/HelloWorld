@@ -97,7 +97,9 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
   return (
     <>
       <form className={styles.signUpForm} onSubmit={handleSubmit}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <label>
+          
           <p>Nickname:</p>
 
           <input
@@ -168,6 +170,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
             onChange={(e) => setAvatarUrl(e.target.value)}
           />
         </label>
+        </div>
         <button type="submit">Зарегистрироваться</button>
       </form>
       {showError && (

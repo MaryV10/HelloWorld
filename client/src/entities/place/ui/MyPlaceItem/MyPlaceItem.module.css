@@ -18,11 +18,13 @@ background: none;
 .myPlaceItem h2 {
   color: black;
   margin: 0 0 10px;
+  font-size: 14px;
 }
 
 .myPlaceItem p {
   color: black;
   margin: 0 0 20px;
+  font-size: 14px;
 }
 
 .customStep .ant-steps-item-finish .ant-steps-item-icon {
