@@ -91,6 +91,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
           <label style={{display: 'flex', flexDirection: 'column', justifyContent: 'left', fontWeight: 'bold', fontSize: '18px'}}>
             Изменить комментарий:
             <textarea
+            maxLength={200}
               placeholder="Комментарий ..."
               value={comment}
               className={styles.textarea}

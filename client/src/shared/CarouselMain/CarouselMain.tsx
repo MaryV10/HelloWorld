@@ -13,8 +13,8 @@ import background8 from "@/assets/photo_2024-10-29_19-12-34.jpg";
 import background11 from "@/assets/photo_2024-10-29_19-18-56.jpg";
 import background12 from "@/assets/photo_2024-10-29_19-20-54.jpg";
 
-import left from "@/assets/free-icon-rewind-left-gpng.png";
-import right from "@/assets/free-icon-rewind-right-g.png";
+import left from "@/assets/strelka_vlevo_3nervmnj5u7h_32.png";
+import right from "@/assets/strelka_vpravo_3nervmnj5u7h_32.png";
 
 import styles from "./Carousel.module.css";
 import { Link } from "react-router-dom";
