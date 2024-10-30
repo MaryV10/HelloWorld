@@ -358,7 +358,7 @@ export default class Example extends Component {
   };
 
   goToPreviousSlide = () => {
-    this.setState((prevState) => ({
+    this.setState((prevState: { goToSlide: number }) => ({
       goToSlide:
         prevState.goToSlide > 0
           ? prevState.goToSlide - 1
@@ -367,7 +367,7 @@ export default class Example extends Component {
   };
 
   goToNextSlide = () => {
-    this.setState((prevState) => ({
+    this.setState((prevState: { goToSlide: number }) => ({
       goToSlide:
         prevState.goToSlide < this.slides.length - 1
           ? prevState.goToSlide + 1

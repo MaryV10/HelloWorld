@@ -13,7 +13,6 @@ import { MyFeedbackItem } from "@/entities/place/ui/MyFeedbackItem";
 import { ROUTES } from "@/app/router/routes";
 
 import BasicRating from "@/shared/Rating/Rating";
-import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselSharedMobile";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
 
 export const OnePlaceItem: React.FC = () => {
@@ -128,13 +127,23 @@ export const OnePlaceItem: React.FC = () => {
           <p></p>
 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "20px", background: 'white', borderRadius: '20px', padding: '10px', paddingRight: '15px', paddingLeft: '15px' }}>
   <p>{totalScore()}</p>
-         <BasicRating value={totalScore()}  />
+         <BasicRating value={Number(totalScore())}  />
          </div>
         </div>
+        <p >  
+          {onePlace?.tags.map((tag) => (  
+    <span key={tag.id} style={{ backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
+      #{tag.title}  
+    </span>  
+  ))}   
+</p> 
         <div className={styles.photos}>
-          
+
           <p>Фотографии:</p>
+
+          {/* @ts-ignore */}  
           <CarouselShared>
+           
           {onePlace?.Photos.map((photo, index) => (
             <div style={{ width: "100%", height: "100%" }} key={index}>
               <img style={{borderRadius: "10px", width: "100%", height: "100%", objectFit: "cover"}} src={photo.imageUrl}></img>
