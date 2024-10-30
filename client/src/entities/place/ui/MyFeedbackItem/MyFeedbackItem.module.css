@@ -48,9 +48,9 @@
   }
 
   textarea {
-    max-width: 200px;
-    min-height: 200px;
-    width: 100px;
+    min-width: 500px;
+    min-height: 20px;
+    width: 10px;
     background: #141213;
     color: white;
     border-radius: 15px;
