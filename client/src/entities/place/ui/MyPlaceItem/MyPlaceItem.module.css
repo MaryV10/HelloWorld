@@ -89,13 +89,23 @@ justify-content: center;
 
 }
 
-.title {
+/* .title {
   color: black;
   margin: 0 0 10px;
+} */
+
+.title {
+  font-weight: bold;
+  color: #007345 !important;
+}
+
+.title:hover {
+  color: rgb(46, 137, 248) !important;
+  
 }
 
 .description {
-  color: black;
+  /* color: black; */
   margin: 0 0 20px;
 }
 
