@@ -34,7 +34,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -68,7 +68,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -102,7 +102,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -136,7 +136,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -170,7 +170,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -204,7 +204,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -238,7 +238,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -272,7 +272,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -306,7 +306,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",
@@ -340,7 +340,7 @@ export default class Example extends Component {
       content: (
         <div
           style={{
-            border: "1px solid #e9dbc1",
+            // border: "1px solid #e9dbc1",
             background: "rgba(233, 219, 193, 0.2)",
             boxShadow: "0 4px 20px #00000033",
             borderRadius: "20px",

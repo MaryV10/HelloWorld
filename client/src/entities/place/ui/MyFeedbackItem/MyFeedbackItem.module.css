@@ -25,3 +25,43 @@
     color: black;
     margin: 0 0 20px;
   }
+
+  .title {
+    font-weight: bold;
+    color: #007345;
+  }
+
+  .title:hover {
+    color: rgb(46, 137, 248);
+    
+  }
+
+  .editIcon {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    transition: all 0.2s ease;
+  }
+  .editIcon:hover {
+    transform: scale(1.1);
+    
+  }
+
+  textarea {
+    max-width: 200px;
+    min-height: 200px;
+    width: 100px;
+    background: #141213;
+    color: white;
+    border-radius: 15px;
+  }
+  .delIcon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .saveButton {
+    color: white;
+    font-family: Unbounded;
+  }
