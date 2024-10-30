@@ -25,15 +25,17 @@ export const PendingPlacesList: React.FC = () => {
         Заявки
       </p>
       <div
-        style={{
-          marginTop: "10px",
-          padding: "20px",
-          height: "auto",
-          background: "grey",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
+      style={{
+        marginTop: "10px",
+        padding: "20px",
+       
+        background: "grey",
+       display: "flex",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: '20px'
+      }}
+    >
         {pendingPlaces
 
           .map((p) => (
