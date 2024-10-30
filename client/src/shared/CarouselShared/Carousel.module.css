@@ -10,11 +10,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  
+
   }
-  *, *::before, *::after {
-    box-sizing: border-box;
-}
+
   
   
   .roundedCarousel {
@@ -22,10 +20,7 @@
     overflow: hidden;
     height: 270px;
   }
-.desctop {
-    max-width: 600px;
-    
-}
+
 
 @media (max-width: 767px) {
     .container {
@@ -40,7 +35,7 @@
 
 
 .carouselContainer {
-  
+
     justify-content: center;
     max-width: 1400px;
     align-items: center;
