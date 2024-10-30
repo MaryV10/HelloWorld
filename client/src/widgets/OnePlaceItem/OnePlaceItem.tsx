@@ -133,9 +133,9 @@ export const OnePlaceItem: React.FC = () => {
         </div>
         <p >  
           {onePlace?.tags.map((tag) => (  
-    <span key={tag.id} style={{ backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
+    <p key={tag.id} style={{ display:"inline-block", marginTop: "15px", backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
       #{tag.title}  
-    </span>  
+    </p>  
   ))}   
 </p> 
         <div className={styles.photos}>

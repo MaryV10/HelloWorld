@@ -65,7 +65,7 @@ export const Navbar: React.FC = () => {
     {user ? (
       <>
         <button className={styles.navButton} onClick={handleLogout}>
-          Logout
+          Выйти
         </button>
         <Link to={ROUTES.PROFILE}> <button className={styles.navButton} >
             Личный кабинет

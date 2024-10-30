@@ -128,7 +128,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
             className={styles.delIcon}
             src={deleteIcon}
             alt="Редактировать отзыв"
-            onClick={handleEdit}
+            onClick={handlerDeleteFeedback}
           />
             </>
           )}
