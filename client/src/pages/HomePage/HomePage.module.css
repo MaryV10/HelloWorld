@@ -4,6 +4,7 @@
     height: 100vh;
     width: 100%;
     margin: 0;
+    backdrop-filter: blur(40px);
     padding: 0; 
     object-fit: cover;
 }
