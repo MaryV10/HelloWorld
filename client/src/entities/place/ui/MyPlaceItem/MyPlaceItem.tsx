@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MyPlaceItem.module.css";
 import { Steps } from "antd";
-import { LoadingOutlined, CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 import { Place } from "../../model";
 import { Link } from "react-router-dom";
 import Loader from "@/shared/Loader/Loader";
@@ -12,7 +12,7 @@ type Props = {
 
 export const MyPlaceItem: React.FC<Props> = ({ place }) => {
 
-  const truncateText = (text, maxLength) => {
+  const truncateText = (text: string, maxLength: number) => {
     if (text.length > maxLength) {
       return text.slice(0, maxLength) + '...';
     }
