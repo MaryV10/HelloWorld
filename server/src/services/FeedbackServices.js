@@ -3,7 +3,7 @@ const { Feedback } = require("../../db/models");
 class FeedbackService {
   static async createFeedback(data) {
     try {
-      // console.log(data, "SERV")
+      
       const newFeedback = await Feedback.create(data);
       return newFeedback;
     } catch (error) {

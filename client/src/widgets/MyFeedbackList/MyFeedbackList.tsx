@@ -23,7 +23,7 @@ export const MyFeedbackList: React.FC = () => {
 
   const renderContent = () => {
     if (isMobile) {
-      return <div style={{ marginTop: "20px" }}>
+      return <div style={{ marginTop: "20px"}}>
         <h1 style={{ marginTop: "20px" }}>Мои отзывы:</h1>
         <div style={{ marginTop: "20px" }}>
         <CarouselSharedMobile>
@@ -36,7 +36,7 @@ export const MyFeedbackList: React.FC = () => {
     }
     return (
       <>
-        <p style={{ marginTop: "20px" }}>Мои отзывы</p>
+        <p style={{ marginTop: "20px", paddingTop: "15px", borderTop: "1px solid white", display: "flex", flexDirection: "column", alignItems: "center" }}>Мои отзывы</p>
         <div style={{ marginTop: "10px", padding: "20px", height: "auto", background: "none" }}>
           <CarouselShared>
             {userFeedbacks.map(({ feedback, place }) => ( 

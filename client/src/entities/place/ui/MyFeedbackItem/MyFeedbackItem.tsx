@@ -88,7 +88,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
           footer={null}
         >
           
-          <label style={{display: 'flex', flexDirection: 'column', justifyContent: 'left', fontWeight: 'bold', fontSize: '18px'}}>
+          <label style={{display: 'flex', flexDirection: 'column', fontWeight: 'bold', fontSize: '18px'}}>
             Изменить комментарий:
             <textarea
             maxLength={200}

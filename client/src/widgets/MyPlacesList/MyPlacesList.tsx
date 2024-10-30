@@ -13,7 +13,7 @@ export const MyPlacesList: React.FC = () => {
 
   const renderContent = () => {
     if (isMobile) {
-      console.log(123456);
+      
       return (
         <div style={{ marginTop: "20px" }}>
           <h1>Мои места:</h1>
@@ -34,7 +34,7 @@ export const MyPlacesList: React.FC = () => {
       <>
         <p
           style={{
-            marginTop: "20px",
+            marginTop: "20px", borderTop: "1px solid white", paddingTop: "15px", display: "flex", flexDirection: "column", alignItems: "center"
           }}
         >
           Мои места

@@ -153,7 +153,7 @@ class PlaceService {
     { title, description, width, longitude }
   ) {
     try {
-      console.log(id, userId, title, description, width, longitude, "SERVICE UPD");
+      
       const place = await Place.findOne({
         where: { id, userId },
         include: [

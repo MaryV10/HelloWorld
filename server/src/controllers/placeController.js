@@ -109,7 +109,7 @@ async function updatePlaceController(req, res) {
   const { id } = req.params;
   const { title, description, longitude, width } = req.body;
   const { user } = res.locals;
-  console.log(id, title, description, longitude, width, user, "id, title, description, userId, longitude, width, USER")
+  
   try {
     if (title.trim() === "" || description.trim() === "") {
       res.status(400).json({
