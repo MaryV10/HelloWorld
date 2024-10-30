@@ -4,50 +4,48 @@ import { Steps } from "antd";
 import { LoadingOutlined, CloseOutlined } from "@ant-design/icons";
 import { Place } from "../../model";
 import { Link } from "react-router-dom";
+import Loader from "@/shared/Loader/Loader";
 
 type Props = {
   place: Place;
 };
 
 export const MyPlaceItem: React.FC<Props> = ({ place }) => {
-  const steps = [
-    {
-      title: "На модерации",
-      status: place.status === "pending" ? "process" : "finish",
 
-      icon: place.status === "pending" && <LoadingOutlined />,
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + '...';
+    }
+    return text;
+  };
 
-      className:
-        place.status === "approved" || place.status === "rejected"
-          ? styles.gray
-          : "",
-    },
-    {
-      title:
-        place.status === "pending"
-          ? "Создано"
-          : place.status === "approved"
-          ? "Создано"
-          : "Отклонено",
-      status:
-        place.status === "approved"
-          ? "finish"
-          : place.status === "rejected"
-          ? "finish"
-          : "wait",
-      icon:
-        place.status === "rejected" ? (
-          <CloseOutlined style={{ color: "red" }} />
-        ) : null,
-    },
-  ];
+  const steps = [];
+
+  if (place.status === "pending") {
+    steps.push({
+      title: <span style={{ fontWeight: "bold" }}>На модерации</span>,
+      status: "process",
+      icon: <Loader />,
+    });
+  } else if (place.status === "approved") {
+    steps.push({
+      title: <span style={{ fontWeight: "bold" }}>Опубликовано</span>,
+      status: "finish",
+    });
+  } else if (place.status === "rejected") {
+    steps.push({
+      title: <span style={{ fontWeight: "bold" }}>Отклонено</span>,
+      status: "finish",
+      icon: <CloseOutlined style={{ color: "red" }} />,
+    });
+  }
 
   return (
     <div className={styles.myPlaceItem}>
       <>
         <>
           {/* @ts-ignore */}
-          <Steps items={steps} className={styles.customStep} />
+          <Steps items={steps} className={styles.customStep} style={{ marginBottom: "20px" }} />
           {place?.status === "approved" ? (
             <Link to={`/OnePlacePage/${place.id}`}>
               <h2 className={styles.title}>{place.title}</h2>
@@ -55,7 +53,7 @@ export const MyPlaceItem: React.FC<Props> = ({ place }) => {
           ) : (
             <h2 className={styles.title}>{place.title}</h2>
           )}
-          <p className={styles.description}>{place.description}</p>
+          <p className={styles.description}><h1 style={{ fontWeight: "bold" }}>Описание:</h1>  {truncateText(place.description, 100)}</p>
           <p >  
           {place.tags.map((tag) => (  
     <span key={tag.id} style={{ backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  

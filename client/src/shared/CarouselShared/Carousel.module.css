@@ -40,8 +40,13 @@
 
 
 .carouselContainer {
-    max-width: 1200px;
+  
+    justify-content: center;
+    max-width: 1400px;
+    align-items: center;
     margin: 0 auto;
+    
+    
   }
   
   .carouselSlide {

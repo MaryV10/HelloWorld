@@ -30,15 +30,15 @@ export const PendingPlaceItem: React.FC<Props> = ({
 };
 
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column', width: '400px', background: 'white', padding: '10px', gap: '10px', borderRadius: '15px'}}>
            
       <h2 className={styles.title}>{place.title}</h2>
       <p className={styles.description}>{place.description}</p>
-      <p>{place.status}</p>
+      <p>Статус: {place.status}</p>
       <p>{place.userId}</p>
       {place.Photos.map((photo, index) => (
         <img
-          style={{ height: "20vh", margin: "10px" }}
+          style={{ height: "20vh", margin: "10px" , objectFit: "cover", borderRadius: "15px"}}
           key={index}
           src={photo.imageUrl}
           alt={`Photo ${index + 1}`}

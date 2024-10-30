@@ -35,6 +35,7 @@ const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: nu
 
   return (
     <div className={styles.carouselContainer}>
+
       <Carousel ref={carouselRef} draggable>
         {groupedChildren.map((group, index) => (
           <div className={styles.carouselSlide} key={index}>
@@ -46,8 +47,9 @@ const CarouselShared: React.FC<{ children: React.ReactNode[]; autoplaySpeed?: nu
           </div>
         ))}
       </Carousel>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-<img style={{height: "40px", width: "40px", marginLeft: '10px'}} src={left} onClick={prevSlide} alt="" />
+    
+<div>
+      <img style={{height: "40px", width: "40px",  marginLeft: '10px'}} src={left} onClick={prevSlide} alt="" />
 <img style={{height: "40px", width: "40px",  marginLeft: '10px'}} src={right} onClick={nextSlide} alt="" />
 </div>
     </div>
