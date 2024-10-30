@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import background from "@/assets/0061.jpg";
+import background from "@/assets/05.jpg";
 import styles from "./HomePage.module.css";
 
 import {isMobile} from 'react-device-detect';
