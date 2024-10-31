@@ -81,12 +81,7 @@
   border: none;
 }
 
-.myFeedback,
-p,
-a,
-div {
-  margin-bottom: 10px;
-}
+
 a {
   display: inline-block;
 }
