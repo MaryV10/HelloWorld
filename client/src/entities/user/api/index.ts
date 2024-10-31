@@ -46,8 +46,9 @@ export class UserService {
       secondName,
       email,
       password,
-      avatarUrl,
-    });
+      avatarUrl
+    }, 
+    );
 
     setAccessToken(response.data.accessToken);
 

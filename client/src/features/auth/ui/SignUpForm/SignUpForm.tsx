@@ -7,7 +7,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUpForm.module.css";
 
-import { notification } from 'antd';
+
+
+
+
+import { notification } from "antd";
 
 
 interface SignUpFormProps {
@@ -22,39 +26,39 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rpassword, setRPassword] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
-
+  // const [avatarUrl, setAvatarUrl] = useState("");
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
     try {
-      // REGEXP on password
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
       if (!passwordRegex.test(password)) {
-        notification.error(     {message: 'Ошибка',  
-          description: 'Пароль должен содержать не менее 8 символов и содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один спецсимвол'} )
-       
+        notification.error({
+          message: "Ошибка",
+          description:
+            "Пароль должен содержать не менее 8 символов и содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один спецсимвол",
+        });
         return;
       }
 
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
       if (!emailRegex.test(email)) {
-       
-        notification.error(     {message: 'Ошибка',  
-          description: 'Неверный формат почты'} )
-       
+        notification.error({
+          message: "Ошибка",
+          description: "Неверный формат почты",
+        });
         return;
       } else if (password !== rpassword) {
-      
-     
-        notification.error(     {message: 'Ошибка',  
-          description: 'Пароли не совпадают'} )
-          return
-
+        notification.error({
+          message: "Ошибка",
+          description: "Пароли не совпадают",
+        });
+        return;
       } else if (
         !nickname.trim() ||
         !firstName.trim() ||
@@ -62,14 +66,12 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
         !rpassword.trim() ||
         !email.trim()
       ) {
-        notification.error(     {message: 'Ошибка',  
-          description: 'Пожалуйста, введите данные'} )
-          return
-        // setShowError(true);
-        // return;
+        notification.error({
+          message: "Ошибка",
+          description: "Пожалуйста, введите данные",
+        });
+        return;
       } else {
-
-
         const resultAction = await dispatch(
           signUp({
             nickname,
@@ -77,7 +79,8 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
             secondName,
             email,
             password,
-            avatarUrl,
+            avatarUrl:
+              "https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg",
           })
         );
         unwrapResult(resultAction);
@@ -88,7 +91,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
         setEmail("");
         setPassword("");
         setRPassword("");
-        setAvatarUrl("");
+
         navigate(ROUTES.HOME);
       }
     } catch (error) {
@@ -99,70 +102,68 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
   return (
     <>
       <form className={styles.signUpForm} onSubmit={handleSubmit}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-        <label>
-          
-          <p>Никнейм:</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <label>
+            <p>Никнейм:</p>
 
-          <input
-            type="text"
-            placeholder="Никнейм"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-        </label>
-        <label>
-          <p>Имя:</p>
+            <input
+              type="text"
+              placeholder="Никнейм"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+          </label>
+          <label>
+            <p>Имя:</p>
 
-          <input
-            type="text"
-            placeholder="Имя"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </label>
-        <label>
-          <p>Фамилия:</p>
+            <input
+              type="text"
+              placeholder="Имя"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </label>
+          <label>
+            <p>Фамилия:</p>
 
-          <input
-            type="text"
-            placeholder="Фамилия"
-            value={secondName}
-            onChange={(e) => setSecondName(e.target.value)}
-          />
-        </label>
-        <label>
-          <p>Email:</p>
+            <input
+              type="text"
+              placeholder="Фамилия"
+              value={secondName}
+              onChange={(e) => setSecondName(e.target.value)}
+            />
+          </label>
+          <label>
+            <p>Email:</p>
 
-          <input
-            type="Email"
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value.trim())}
-          />
-        </label>
-        <label>
-          <p>Пароль:</p>
+            <input
+              type="Email"
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value.trim())}
+            />
+          </label>
+          <label>
+            <p>Пароль:</p>
 
-          <input
-            type="password"
-            placeholder="Пароль"
-          
-            value={password}
-            onChange={(e) => setPassword(e.target.value.trim())}
-          />
-        </label>
-        <label>
-          <p>Повторите пароль:</p>
+            <input
+              type="password"
+              placeholder="Пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value.trim())}
+            />
+          </label>
+          <label>
+            <p>Повторите пароль:</p>
 
-          <input
-            type="password"
-            placeholder="Повторите пароль"
-            value={rpassword}
-            onChange={(e) => setRPassword(e.target.value.trim())}
-          />
-        </label>
-        <label>
+            <input
+              type="password"
+              placeholder="Повторите пароль"
+              value={rpassword}
+              onChange={(e) => setRPassword(e.target.value.trim())}
+            />
+          </label>
+          {/* <label>
           <p>Аватар:</p>
 
           <input
@@ -171,12 +172,22 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
             value={avatarUrl}
             onChange={(e) => setAvatarUrl(e.target.value)}
           />
-        </label>
+        </label> */}
+          {/* <label style={{display: "flex", alignItems: "center"}}><p>Загрузить аватар: </p> 
+            <Upload
+                onChange={handleFileChange}
+                listType="picture"
+                beforeUpload={() => false}
+                
+              >
+                <UploadButton  icon={<CloudUploadOutlined  />}>
+                Нажмите для загрузки
+                </UploadButton>
+              </Upload>
+              </label> */}
         </div>
         <button type="submit">Зарегистрироваться</button>
       </form>
-
-      
     </>
   );
 };

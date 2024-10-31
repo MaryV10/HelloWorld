@@ -215,7 +215,7 @@ export const OnePlaceItem: React.FC = () => {
 </p> 
         <div className={styles.photos}>
 
-          <p>Фотографии:</p>
+          <p className={styles.photoTitle}>Фотографии:</p>
 
           {/* @ts-ignore */}  
           <CarouselShared>
@@ -254,8 +254,11 @@ export const OnePlaceItem: React.FC = () => {
             </label>
             <label>
               Изменить описание:
-              <input
+              <textarea
                 name="comment"
+                
+                minLength={100}
+                maxLength={100}
                 value={description}
                 className={styles.textarea1}
                 style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
