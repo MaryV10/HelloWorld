@@ -1,0 +1,402 @@
+:root {
+    --space-color1: rgb(0, 0, 0); /* темный фон */
+    --planet-color1: rgb(20, 180, 145); /* цвет планеты */
+    --planet-color2: #0cae8e; /* цвет планеты 2 */
+    --planet-color3: #0b9d7a; /* цвет планеты 3 */
+    
+    --ring-color1: rgb(100, 225, 150); /* цвет колец */
+    --ring-color2: #64e196; /* цвет колец 2 */
+    
+    --font-color: #eee; /* цвет шрифта */
+  }
+  
+  body {
+    margin: 0;
+    background-color: var(--space-color1);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .planet {
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  
+  .planet::after, .planet::before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(to top, transparent, rgba(255, 255, 255, 0.05));
+    border-radius: 50%;
+    transform: translateZ(-40em);
+  }
+  
+  .planet::after {
+    top: calc(50% - 18em);
+    left: calc(50% - 18em);
+    width: 36em;
+    height: 36em;
+    animation-delay: 2s;
+  }
+  
+  .planet::before {
+    top: calc(50% - 25em);
+    left: calc(50% - 25em);
+    width: 50em;
+    height: 50em;
+  }
+  
+  .planet .inner {
+    transform: rotate3d(0, 0, 1, -30deg) translateZ(1em);
+    position: absolute;
+    top: calc(50% - 13em);
+    left: calc(50% - 13em);
+    width: 26em;
+    height: 26em;
+    background: linear-gradient(90deg, var(--planet-color3) 50%, var(--planet-color1) 50%);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .planet .inner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(transparent 66%, rgba(0, 0, 0, 0.1) 66.1%);
+  }
+  
+  @media (max-width: 1200px) {
+    .planet {
+      font-size: 0.75em;
+    }
+  }
+  
+  @media (max-width: 950px) {
+    .planet {
+      font-size: 0.5em;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .planet {
+      font-size: 0.4em;
+    }
+  }
+  
+  .ring {
+    position: absolute;
+    top: calc(50% - 19em);
+    left: calc(50% - 20em);
+    width: 42em;
+    height: 42em;
+    border-radius: 50%;
+    background: radial-gradient(
+      transparent 50%,
+      var(--ring-color2) 50.1%,
+      var(--ring-color2) 60%,
+      var(--ring-color1) 60.1%
+    );
+    transform: rotateX(78deg) rotateY(-30deg) translateY(-3.125px);
+  }
+  
+  .surface {
+    margin: -1.4em auto 0;
+    border-radius: 1.5em; 
+    width: 14em;
+    height: 1.5em; 
+    background-color: var(--planet-color2);
+    box-shadow: 
+      9.2em 1.5em var(--planet-color1),
+      -11em 1.5em var(--planet-color3),
+      0em 1.5em var(--planet-color2),
+      2em 3em var(--planet-color2),
+      -2em 3em var(--planet-color2),
+      12.5em 4.5em var(--planet-color1),
+      -8em 4.5em var(--planet-color3),
+      0 4.5em var(--planet-color2), 
+      1em 6em var(--planet-color2),
+      10.5em 7.5em var(--planet-color1),
+      -10em 7.5em var(--planet-color3),
+      0 7.5em var(--planet-color2), 
+      3em 9em var(--planet-color2),
+      -3em 9em var(--planet-color2),
+      14em 10.5em var(--planet-color1),
+      -6.8em 10.5em var(--planet-color3),
+      2em 10.5em var(--planet-color2), 
+      2em 12em var(--planet-color2),
+      -0.5em 12em var(--planet-color2),
+      10em 13.5em var(--planet-color1),
+      -8.4em 13.5em var(--planet-color3),
+      -2em 13.5em var(--planet-color2), 
+      -2em 15em var(--planet-color2),
+      6.3em 16.5em var(--planet-color1),
+      -11.6em 16.5em var(--planet-color3),
+      -6em 16.5em var(--planet-color2), 
+      0em 18em var(--planet-color2),
+      5em 16.5em var(--planet-color1),
+      -12em 16.5em var(--planet-color3),
+      -6em 16.5em var(--planet-color2), 
+      0em 18em var(--planet-color2),
+      10.5em 19.5em var(--planet-color1),
+      -9.6em 19.5em var(--planet-color3),
+      0em 19.5em var(--planet-color2), 
+      -1.3em 21em var(--planet-color2),
+      3em 21em var(--planet-color2),
+      8em 22.5em var(--planet-color1),
+      -11.4em 22.5em var(--planet-color3),
+      0em 22.5em var(--planet-color2),
+      0em 24em var(--planet-color2),
+      12em 25.5em var(--planet-color1),
+      -8em 25.5em var(--planet-color3),
+      0em 25.5em var(--planet-color2),
+      2.2em 27em var(--planet-color2),
+      12em 28.5em var(--planet-color1),
+      -10em 28.5em var(--planet-color3),
+      0em 28.5em var(--planet-color2),
+      0em 30em var(--planet-color2);
+  }
+  
+  .moon {
+    position: absolute;
+    top: -16em;
+    left: 6em;
+    width: 8em;
+    height: 8em;
+    background: radial-gradient(
+      at bottom left,
+      var(--planet-color3) 50%,
+      var(--planet-color2) 50.1%,
+      var(--planet-color2) 70%, var(--planet-color1) 70.1%);
+    border-radius: 50%;
+    overflow: hidden;
+    transform: translateZ(22em);
+    animation: moon 7s linear infinite;
+  }
+  
+  .moon::after, .moon::before {
+    content: "";
+    position: absolute;
+  }
+  
+  .moon::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(transparent 64%, rgba(0, 0, 0, 0.1) 64.1%);
+  }
+  
+  .moon::before {
+    top: 2.5em;
+    left: 2.2em;
+    width: 1em;
+    height: 1em;
+    background-color: var(--planet-color3);
+    border-radius: 50%;
+  } 
+  
+  span {
+    font-size: 32em;
+    font-weight: bold; 
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+  }
+  
+  span:nth-of-type(1) {
+    right: 0.55em;
+    color: var(--planet-color2);
+  }
+  
+  span:nth-of-type(2) {
+    left: 0.50em;
+    color: var(--planet-color1);
+  }
+  
+  @media (max-width: 460px) {
+    span {
+      display: none;	
+    }
+  }
+  
+  .alt {
+    position: fixed;
+    bottom: 1.25em;
+    font-size: 4.5em;
+    font-weight: bold;
+    margin: 0;
+    color: var(--font-color);
+    letter-spacing: 0.2em;
+  }
+  
+  @media (min-width: 461px) {
+    .alt {
+      display: none;
+    }
+  }
+  
+  .info {
+    position: fixed;
+    bottom: 1.8em;
+    font-size: 2.4em;
+    font-weight: bold;
+    margin: 0;
+    color: var(--font-color);
+    letter-spacing: 0.2em;
+  }
+  
+  @media (max-width: 460px) {
+    .info {
+      bottom: 1em;	
+    }
+  }
+  
+  .stars, .stars::after, .stars::before {
+    position: fixed;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: var(--font-color);
+    animation: blink 5s infinite ease-in-out;
+  }
+  
+  .stars::after, .stars::before {
+    content: "";
+    display: block;
+  }
+  
+  .s1 {
+    top: -15em;
+    left: -40em;
+  }
+  
+  .s1::after {
+    animation-delay: 0.5s;
+    top: 10em;
+    left: 24em;
+  }
+  
+  .s1::before {
+    top: 20em;
+    left: -15em;
+  }
+  
+  .s2 {
+    animation-delay: 0.25s;
+    top: -30em;
+    left: 80em;
+    font-size: 0.6em;
+  }
+  
+  .s2::after {
+    top: 20em;
+    left: 60em;
+  }
+  
+  .s2::before {
+    animation-delay: 0.5s;
+    top: 16em;
+    left: -52em;
+  }
+  
+  .s3 {
+    animation-delay: 0.5s;
+    top: -30em;
+    left: 60em;
+    font-size: 0.5em;
+  }
+  
+  .s3::after {
+    animation-delay: 0.75s;
+    top: -46em;
+    left: -30em;
+  }
+  
+  .s3::before {
+    animation-delay: 0.25s;
+    top: 36em;
+    left: 38em;
+  }
+  
+  .s4 {
+    top: -30em;
+    left: -30em;
+    font-size: 0.3em;
+  }
+  
+  .s4::after {
+    animation-delay: 0.5s;
+    top: -50em;
+    left: 30em;
+  }
+  
+  .s4::before {
+    top: 34em;
+    left: 22em;
+  }
+  
+  @keyframes blink {
+    0% {
+      opacity: 0.85;
+    }
+    25% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.85;
+    }
+    75% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 0.85;
+    }
+  }
+  
+  @keyframes moon {
+    0% {
+      top: 13em;
+      left: -13em;
+      transform: translateZ(-30em);
+    }
+    1% {
+      transform: translateZ(30em);
+    }
+    50% {
+      top: -19em;
+      left: 7em;
+      transform: translateZ(30em);
+    }
+    51% {
+      transform: translateZ(-30em);
+    }
+    60% {
+      transform: scale(0.8);
+    }
+    95% {
+      transform: scale(0.8);
+    }
+    100% {
+      top: 13em;
+      left: -13em;
+      transform: translateZ(-30em);
+    }
+  }
+  
+  .planetImage {
+ 
+    height: 60em; 
+    width: auto; 
+    position: absolute;
+    
+  }
+  
+  
