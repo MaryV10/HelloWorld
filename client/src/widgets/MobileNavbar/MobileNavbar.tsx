@@ -118,26 +118,27 @@ const MobileMenu = () => {
           {user && <Avatar alt={`${user.nickname}`} src={user.avatarUrl} className={styles.avatar} style={{border: "3px solid #017247", width: "100px", height: "100px", marginTop: "10px", marginBottom: "20px"}}/>}
 
      
-          
+          {user && 
             <Button
-              component={Link}
-              to="/profile"
-              fullWidth
-              variant="contained"
-              startIcon={<PersonIcon />}
-              onClick={handleMenuClick}
-              className={`${styles.shimmerButton} ${styles.buttonStyle}`} 
-              style={{
-                backgroundColor: '#007247',
-                color: 'white',
-                marginBottom: '20px',
-                borderRadius: '20px',
-                boxShadow: 'none',
-                fontFamily: 'Unbounded',
-              }}
-            >
-             Профиль
-            </Button>
+            component={Link}
+            to="/profile"
+            fullWidth
+            variant="contained"
+            startIcon={<PersonIcon />}
+            onClick={handleMenuClick}
+            className={`${styles.shimmerButton} ${styles.buttonStyle}`} 
+            style={{
+              backgroundColor: '#007247',
+              color: 'white',
+              marginBottom: '20px',
+              borderRadius: '20px',
+              boxShadow: 'none',
+              fontFamily: 'Unbounded',
+            }}
+          >
+           Профиль
+          </Button>}
+          
        
             <Button
               component={Link}

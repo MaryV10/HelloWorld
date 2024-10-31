@@ -131,7 +131,7 @@ function MapList() {
         />
 
 <div className={styles.tags}>
-        <TagSelector tags={tags} onTagSelect={setSelectedTags} />
+        <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
       </div>
       </div>
         <Map

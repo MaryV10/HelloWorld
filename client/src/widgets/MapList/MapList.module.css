@@ -24,7 +24,7 @@
     right: 0;
 }
 .input{
-   
+   width: 90%;
     z-index: 50;
 }
 .navbar {
@@ -41,8 +41,8 @@
     z-index: 290;
   }
   .tags{
-    
-    z-index: 250;
+ width: 90%;
+ 
   }
   .leftbar{
     align-items: center;
