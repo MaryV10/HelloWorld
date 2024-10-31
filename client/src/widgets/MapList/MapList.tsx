@@ -122,20 +122,8 @@ function MapList() {
 
   const renderContent = () => {
     if (isMobile) {
-      return <div><SidebarMobile places={filteredPlaces}/></div>;
-    }
-
-    return  (<div className={styles.sidebar}>
-    <Sidebar places={filteredPlaces} />
-  </div>)
-  }
-
-  return (
-    <>
-      <div className={styles.navbar}></div>
-
-      <div className={styles.mapContainer} style={{ height: "100%" }}>
-        <div className={styles.leftbar}>
+      return <div>
+        <div className={styles.bottomBar}>
         <input 
           className={styles.input}
           type="text"
@@ -148,6 +136,37 @@ function MapList() {
         <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
       </div>
       </div>
+        <SidebarMobile places={filteredPlaces}/></div>;
+    }
+
+    return  (
+    <>
+    <div className={styles.sidebar}>
+    <Sidebar places={filteredPlaces} />
+  </div>
+  
+  <div className={styles.leftbar}>
+  <input 
+    className={styles.input}
+    type="text"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    placeholder="Поиск..."
+  />
+<div className={styles.tags}>
+  <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
+</div>
+
+</div>
+</>)
+  }
+
+  return (
+    <>
+      <div className={styles.navbar}></div>
+
+      <div className={styles.mapContainer} style={{ height: "100%" }}>
+     
         <Map
           defaultState={{ center: [59.95, 30.3], zoom: 9 }}
           width={"100%"}
