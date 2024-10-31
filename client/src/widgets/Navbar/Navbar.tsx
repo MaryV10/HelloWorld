@@ -69,9 +69,11 @@ const navigate = useNavigate()
     </Link>
     {user ? (
       <>
+      <a>
         <button className={styles.navButton} onClick={handleLogout}>
           Выйти
         </button>
+        </a>
         <Link to={ROUTES.PROFILE}> <button className={styles.navButton} >
             Личный кабинет
         </button>
@@ -80,12 +82,12 @@ const navigate = useNavigate()
     ) : (
       <>
         
-          
+          <a>
           <button onClick={onToggle1} className={styles.navButton}>Вход</button>
-       
-        
+          </a>
+          <a>
           <button onClick={onToggle} className={styles.navButton}>Регистрация</button>
-        
+          </a>
       </>
     )}
   </div></div>;
