@@ -2,19 +2,23 @@ const PhotoService = require("../services/PhotoServices");
 const PlaceService = require("../services/PlaceServices");
 
 async function uploadPhotoController(req, res) {
-  const { imageUrl, placeId } = req.body;
+  console.log(req.body, 'body');
+  const {  placeId} = req.params;
+  const imageUrl = req.file ? req.file.filename : null;
+  console.log(req.file,'============>>>>>');
+  console.log(placeId,'-------------------');
 
   try {
-    if (imageUrl.trim() === "") {
-      res.status(400).json({
-        error: "Заполните данные",
-      });
-    } else {
-      await PhotoService.uploadPhoto({ imageUrl, placeId });
+
+    console.log(imageUrl, 'imageUrl');
+
+     await PhotoService.uploadPhoto({imageUrl, placeId});
 
       const place = await PlaceService.getOnePlace(placeId);
-        res.status(201).json({ place });
-    }
+       console.log(place.Photos , "111111111111");  
+           res.status(201).json({ place });
+    
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

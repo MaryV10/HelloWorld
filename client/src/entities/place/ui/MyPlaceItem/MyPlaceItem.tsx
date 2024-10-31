@@ -70,7 +70,10 @@ export const MyPlaceItem: React.FC<Props> = ({ place }) => {
             borderRadius: "10px",
             objectFit: "cover",
           }}
-          src={place.Photos[0]?.imageUrl}
+          // src={place.Photos[0]?.imageUrl}
+          src={`${window.location.origin}/images/${place.Photos[0]?.imageUrl}`}
+          
+         
           alt="1"
         />
       </>

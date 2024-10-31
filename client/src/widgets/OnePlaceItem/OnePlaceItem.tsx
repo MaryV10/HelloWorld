@@ -198,7 +198,7 @@ export const OnePlaceItem: React.FC = () => {
            
           {onePlace?.Photos.map((photo, index) => (
             <div style={{ width: "100%", height: "100%" }} key={index}>
-              <img style={{borderRadius: "10px", width: "100%", height: "100%", objectFit: "cover"}} src={photo.imageUrl}></img>
+              <img style={{borderRadius: "10px", width: "100%", height: "100%", objectFit: "cover"}} src={`${window.location.origin}/images/${photo.imageUrl}`}></img>
             </div>
           ))}
             </CarouselShared>
