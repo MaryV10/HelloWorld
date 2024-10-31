@@ -1,5 +1,6 @@
 import { PlaceItem } from "@/entities/place";
 import { Clusterer, Map } from "@pbe/react-yandex-maps";
+import {isMobile} from 'react-device-detect';
 import { useEffect, useRef, useState } from "react";
 import styles from "./MapList.module.css";
 import ModalWindow from "@/shared/ui/Modal/Modal";
@@ -11,6 +12,7 @@ import { addPhoto } from "@/entities/photo/api/photoThunks";
 import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
+import SidebarMobile from "../SidebarMobile/SidebarMobile";
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -71,6 +73,8 @@ function MapList() {
     }
   };
 
+
+
   const handleMouseUp = () => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -115,6 +119,16 @@ function MapList() {
       }
     }
   };
+
+  const renderContent = () => {
+    if (isMobile) {
+      return <div><SidebarMobile places={filteredPlaces}/></div>;
+    }
+
+    return  (<div className={styles.sidebar}>
+    <Sidebar places={filteredPlaces} />
+  </div>)
+  }
 
   return (
     <>
@@ -192,9 +206,7 @@ function MapList() {
           )}
         </ModalWindow>
       </div>
-      <div className={styles.sidebar}>
-        <Sidebar places={filteredPlaces} />
-      </div>
+     <div>{renderContent()}</div>
 
       
     </>

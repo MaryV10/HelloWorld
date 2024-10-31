@@ -12,6 +12,9 @@
     max-width: 500px;
     min-height: 200px;
     max-height: 500px;
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
 }
 .mapContainer{
     position: relative;

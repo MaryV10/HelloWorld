@@ -5,9 +5,9 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
-import styles from "./Sidebar.module.css";
+import styles from "./SidebarMobile.module.css";
 
-export default function Sidebar({ places: [...places] }) {
+export default function SidebarMobile({ places: [...places] }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleSidebar = () => {
@@ -18,15 +18,14 @@ export default function Sidebar({ places: [...places] }) {
     <Box
       sx={{
 
-        width: "30vw",
+        width: "100vw",
         position: "fixed",
         marginTop: "100px",
-        top: 0,
-        right: open ? 0 : "-30vw",
-        height: "100vh",
+        bottom: open ? 0 : "-100%",
+        height: "50vh",
         backdropFilter: "blur(20px)",
         boxShadow: 3,
-        transition: "right 0.3s ease-in-out",
+        transition: "bottom 0.3s ease-in-out",
         zIndex: 300,
         overflowY: "auto",
         borderRadius: "10px 0px 0px 0px",
@@ -87,10 +86,13 @@ export default function Sidebar({ places: [...places] }) {
 
   return (
     <div>
-      {/* Toggle button to open Sidebar */}
+      
       <Button
         onClick={toggleSidebar}
         sx={{
+          position: "absolute",
+
+          bottom: "5vh",
           fontFamily: "Unbounded",
           fontWeight: "normal",
           marginTop: "20px",
@@ -98,7 +100,7 @@ export default function Sidebar({ places: [...places] }) {
           backgroundColor: "#141213",
           borderRadius: "15px",
           padding: "5px 10px",
-          marginRight: "10px",
+          marginLeft: "10px",
         }}
       >
         Список мест
