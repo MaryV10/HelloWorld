@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignUpForm.module.css";
 import { message } from "antd";
+import { notification } from 'antd';
 
 
 interface SignUpFormProps {
@@ -23,8 +24,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
   const [password, setPassword] = useState("");
   const [rpassword, setRPassword] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showError, setShowError] = useState(false);
+
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -33,26 +33,29 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
     event.preventDefault();
     try {
       // REGEXP on password
-      // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-      // if (!passwordRegex.test(password)) {
-      //   return res.status(400).json({
-      //     message: 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.'
-      //   });
-      // }
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if (!passwordRegex.test(password)) {
+        notification.error(     {message: 'Ошибка',  
+          description: 'Пароль должен содержать не менее 8 символов и содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один спецсимвол'} )
+       
+        return;
+      }
 
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
       if (!emailRegex.test(email)) {
-        message.error('Неверный формат почты');
-    
-        setShowError(true);
+       
+        notification.error(     {message: 'Ошибка',  
+          description: 'Неверный формат почты'} )
+       
         return;
       } else if (password !== rpassword) {
       
      
-        setShowError(true);
-        message.error('Пароли не совпадают');
-        return;
+        notification.error(     {message: 'Ошибка',  
+          description: 'Пароли не совпадают'} )
+          return
+
       } else if (
         !nickname.trim() ||
         !firstName.trim() ||
@@ -60,13 +63,13 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
         !rpassword.trim() ||
         !email.trim()
       ) {
-        setErrorMessage(
-          "Поля Nickname, firstName, Password, Email обязательные !"
-        );
-        setShowError(true);
-        return;
+        notification.error(     {message: 'Ошибка',  
+          description: 'Пожалуйста, введите данные'} )
+          return
+        // setShowError(true);
+        // return;
       } else {
-        setShowError(false);
+
 
         const resultAction = await dispatch(
           signUp({
@@ -100,31 +103,31 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <label>
           
-          <p>Nickname:</p>
+          <p>Никнейм:</p>
 
           <input
             type="text"
-            placeholder="nickname"
+            placeholder="Никнейм"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
         </label>
         <label>
-          <p>FirstName:</p>
+          <p>Имя:</p>
 
           <input
             type="text"
-            placeholder="firstName"
+            placeholder="Имя"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
         </label>
         <label>
-          <p>SecondName:</p>
+          <p>Фамилия:</p>
 
           <input
             type="text"
-            placeholder="secondName"
+            placeholder="Фамилия"
             value={secondName}
             onChange={(e) => setSecondName(e.target.value)}
           />
@@ -133,39 +136,39 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
           <p>Email:</p>
 
           <input
-            type="email"
+            type="Email"
             placeholder="email"
             value={email}
             onChange={(e) => setEmail(e.target.value.trim())}
           />
         </label>
         <label>
-          <p>Password:</p>
+          <p>Пароль:</p>
 
           <input
             type="password"
-            placeholder="password"
-            minLength={6}
+            placeholder="Пароль"
+          
             value={password}
             onChange={(e) => setPassword(e.target.value.trim())}
           />
         </label>
         <label>
-          <p>Repeat password:</p>
+          <p>Повторите пароль:</p>
 
           <input
             type="password"
-            placeholder="Repeat password"
+            placeholder="Повторите пароль"
             value={rpassword}
             onChange={(e) => setRPassword(e.target.value.trim())}
           />
         </label>
         <label>
-          <p>AvatarUrl:</p>
+          <p>Аватар:</p>
 
           <input
             type="text"
-            placeholder="AvatarUrl"
+            placeholder="Аватар"
             value={avatarUrl}
             onChange={(e) => setAvatarUrl(e.target.value)}
           />
@@ -173,11 +176,8 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
         </div>
         <button type="submit">Зарегистрироваться</button>
       </form>
-      {showError && (
-        <div style={{ border: "3px solid red", padding: "10px" }}>
-          {errorMessage}
-        </div>
-      )}
+
+      
     </>
   );
 };

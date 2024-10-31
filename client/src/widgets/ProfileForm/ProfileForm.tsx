@@ -91,34 +91,34 @@ const ProfileForm: React.FC = () => {
             type="text"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-            placeholder="Nickname"
+            placeholder="Никнейм"
             style={{ backgroundColor: "white" }}
           />
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First Name"
+            placeholder="Имя"
             style={{ backgroundColor: "white" }}
           />
           <input
             type="text"
             value={secondName}
             onChange={(e) => setSecondName(e.target.value)}
-            placeholder="Second Name"
+            placeholder="Фамилия"
             style={{ backgroundColor: "white" }}
           />
           <button
            style={{ border: "2px solid rgb(20, 18, 19)"}}
             onClick={handleSave}
           >
-            Save
+            Сохранить
           </button>
           <button
             style={{ backgroundColor: "rgb(20, 18, 19)"}}
             onClick={handleCancel}
           >
-            Cancel
+            Выйти
           </button>
         </>
       ) : (

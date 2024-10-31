@@ -100,12 +100,12 @@ export const OnePlaceItem: React.FC = () => {
 
   const handlerUpdatePlace = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !description || !longitude || !width) {  
+    if (title?.trim()==='' || description?.trim()==='' || longitude?.trim()==='' || width?.trim()==='') {  
       notification.error({  
         message: 'Ошибка',  
         description: 'Пожалуйста, заполните все поля.',  
       });  
-      return; // Прекращаем выполнение функции, если есть пустые поля  
+      return;  
     }  
     if (user?.id && onePlace) {
       await dispatch(
