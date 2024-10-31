@@ -136,7 +136,7 @@ function MapList() {
   const renderContent = () => {
     if (isMobile) {
 
-      return <div>
+      return <div >
         <div className={styles.bottomBar}>
         <input 
           className={styles.input}
@@ -150,7 +150,8 @@ function MapList() {
         <TagSelectorMobile  tags={tags} onTagSelect={setSelectedTags} />
       </div>
       </div>
-        <SidebarMobile places={filteredPlaces}/></div>;
+        <SidebarMobile places={filteredPlaces}/>
+        </div>;
 
     }
 
