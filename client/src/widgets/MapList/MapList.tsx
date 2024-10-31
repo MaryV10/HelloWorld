@@ -17,6 +17,7 @@ import { Upload } from "antd";
 import { Button as UploadButton } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/es/upload";
+import TagSelectorMobile from "../TagSelectorMobile/TagSelectorMobile";
 
 
 interface YMapsMouseEvent {
@@ -161,7 +162,7 @@ function MapList() {
         />
 
 <div className={styles.tags}>
-        <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
+        <TagSelectorMobile  tags={tags} onTagSelect={setSelectedTags} />
       </div>
       </div>
         <SidebarMobile places={filteredPlaces}/></div>;
