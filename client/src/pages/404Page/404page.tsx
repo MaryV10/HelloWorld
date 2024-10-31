@@ -5,6 +5,7 @@ import planetImage from '../../assets/globe-earth.png'
 export const NotFoundPage: React.FC = () => {
   return (
     <>
+    <div className={styles.back}>
       <div className={styles.planet}>
         <img src={planetImage} alt="Planet" className={styles.planetImage} />
         <div className={styles.inner}>
@@ -20,7 +21,8 @@ export const NotFoundPage: React.FC = () => {
         <div className={`${styles.stars} ${styles.s4}`}></div>
       </div>
       <p className={styles.alt}>404</p>
-      <p className={styles.info}>Lost in space?</p>
+      <p className={styles.info}>Тебе земли мало?</p>
+      </div>
     </>
   );
 };

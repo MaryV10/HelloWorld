@@ -1,16 +1,14 @@
 :root {
     --space-color1: rgb(0, 0, 0); /* темный фон */
-    --planet-color1: rgb(20, 180, 145); /* цвет планеты */
-    --planet-color2: #0cae8e; /* цвет планеты 2 */
-    --planet-color3: #0b9d7a; /* цвет планеты 3 */
+    --planet-color1: #017247; 
+    --planet-color2: #028955; 
+    --planet-color3: #019a5f;    
+  
     
-    --ring-color1: rgb(100, 225, 150); /* цвет колец */
-    --ring-color2: #64e196; /* цвет колец 2 */
-    
-    --font-color: #eee; /* цвет шрифта */
+    --font-color: #eee;
   }
   
-  body {
+.back {
     margin: 0;
     background-color: var(--space-color1);
     height: 100vh;
@@ -91,21 +89,6 @@
     }
   }
   
-  .ring {
-    position: absolute;
-    top: calc(50% - 19em);
-    left: calc(50% - 20em);
-    width: 42em;
-    height: 42em;
-    border-radius: 50%;
-    background: radial-gradient(
-      transparent 50%,
-      var(--ring-color2) 50.1%,
-      var(--ring-color2) 60%,
-      var(--ring-color1) 60.1%
-    );
-    transform: rotateX(78deg) rotateY(-30deg) translateY(-3.125px);
-  }
   
   .surface {
     margin: -1.4em auto 0;
@@ -203,7 +186,7 @@
     border-radius: 50%;
   } 
   
-  span {
+  .number {
     font-size: 32em;
     font-weight: bold; 
     position: absolute;
@@ -211,18 +194,18 @@
     transform: translateY(-50%);
   }
   
-  span:nth-of-type(1) {
+  .number:nth-of-type(1) {
     right: 0.55em;
     color: var(--planet-color2);
   }
   
-  span:nth-of-type(2) {
+  .number:nth-of-type(2) {
     left: 0.50em;
     color: var(--planet-color1);
   }
   
   @media (max-width: 460px) {
-    span {
+    .number {
       display: none;	
     }
   }

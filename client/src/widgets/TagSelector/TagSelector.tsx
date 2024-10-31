@@ -13,10 +13,11 @@ type TagSelectorProps = {
 const TagSelector: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
   <Select className={styles.select}
     mode="multiple"
-    style={{ width: 215, fontFamily: "Unbounded",
+    style={{ fontFamily: "Unbounded",
       fontWeight: "normal"}}
     placeholder="Выберите теги"
     onChange={onTagSelect} 
+   
     tagRender={(props) => {
       const { label, value, closable, onClose } = props;
       const tag = tags.find((tag) => tag.id === value);

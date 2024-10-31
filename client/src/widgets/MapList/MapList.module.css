@@ -12,6 +12,9 @@
     max-width: 500px;
     min-height: 200px;
     max-height: 500px;
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
 }
 .mapContainer{
     position: relative;
@@ -24,7 +27,7 @@
     right: 0;
 }
 .input{
-   
+   width: 90%;
     z-index: 50;
 }
 .navbar {
@@ -41,8 +44,8 @@
     z-index: 290;
   }
   .tags{
-    
-    z-index: 250;
+ width: 90%;
+ 
   }
   .leftbar{
     align-items: center;
@@ -58,4 +61,20 @@
     border-radius: 0 15px 15px 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 200;
+  }
+
+  .bottomBar {
+    align-items: center;
+    background-color: #027147;
+     width: 100vw;
+     position: absolute;
+     top: 10vh;
+     left: 0;
+     display: flex;
+   
+     gap: 10px;
+     padding: 10px;
+    
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+     z-index: 1001;
   }

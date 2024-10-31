@@ -1,5 +1,6 @@
 import { PlaceItem } from "@/entities/place";
 import { Clusterer, Map } from "@pbe/react-yandex-maps";
+import {isMobile} from 'react-device-detect';
 import { useEffect, useRef, useState } from "react";
 import styles from "./MapList.module.css";
 import ModalWindow from "@/shared/ui/Modal/Modal";
@@ -11,10 +12,12 @@ import { addPlace, getApprovedPlaces } from "@/entities/place/api/placeThunks";
 import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
+import SidebarMobile from "../SidebarMobile/SidebarMobile";
 import { Upload } from "antd";
 import { Button as UploadButton } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/es/upload";
+
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -89,6 +92,8 @@ function MapList() {
     }
   };
 
+
+
   const handleMouseUp = () => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -143,24 +148,54 @@ function MapList() {
   };
          
 
+  const renderContent = () => {
+    if (isMobile) {
+      return <div>
+        <div className={styles.bottomBar}>
+        <input 
+          className={styles.input}
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Поиск..."
+        />
+
+<div className={styles.tags}>
+        <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
+      </div>
+      </div>
+        <SidebarMobile places={filteredPlaces}/></div>;
+    }
+
+    return  (
+    <>
+    <div className={styles.sidebar}>
+    <Sidebar places={filteredPlaces} />
+  </div>
+  
+  <div className={styles.leftbar}>
+  <input 
+    className={styles.input}
+    type="text"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    placeholder="Поиск..."
+  />
+<div className={styles.tags}>
+  <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
+</div>
+
+</div>
+</>)
+  }
+
+
   return (
     <>
       <div className={styles.navbar}></div>
 
       <div className={styles.mapContainer} style={{ height: "100%" }}>
-        <div className={styles.leftbar}>
-          <input
-            className={styles.input}
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Поиск..."
-          />
 
-          <div className={styles.tags}>
-            <TagSelector tags={tags} onTagSelect={setSelectedTags} />
-          </div>
-        </div>
         <Map
           defaultState={{ center: [59.95, 30.3], zoom: 9 }}
           width={"100%"}
@@ -233,9 +268,11 @@ function MapList() {
           )}
         </ModalWindow>
       </div>
-      <div className={styles.sidebar}>
-        <Sidebar places={filteredPlaces} />
-      </div>
+
+     <div>{renderContent()}</div>
+
+      
+
     </>
   );
 }
