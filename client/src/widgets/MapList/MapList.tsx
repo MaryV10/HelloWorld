@@ -33,12 +33,11 @@ function MapList() {
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const places = useAppSelector((state) => state.place.approvedPlaces);
   const tags = useAppSelector((state) => state.tag.tagList);
   const dispatch = useAppDispatch();
-
+ 
   useEffect(() => {
 
     dispatch(getApprovedPlaces());
@@ -114,6 +113,7 @@ function MapList() {
       }
     }
   };
+         
 
   return (
     <>
