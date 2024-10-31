@@ -9,49 +9,44 @@ module.exports = {
       [
         {
           placeId: 1,
-          tagId: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          placeId: 2,
-          tagId: 2,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          placeId: 3,
-          tagId: 3,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          placeId: 4,
-          tagId: 4,
+          tagId: 6,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           placeId: 1,
-          tagId: 4,
+          tagId: 9,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          placeId: 1,
+          tagId: 12,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          placeId: 1,
+          tagId: 21,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+
+        {
+          placeId: 2,
+          tagId: 18,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           placeId: 2,
-          tagId: 4,
+          tagId: 7,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           placeId: 2,
-          tagId: 3,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          placeId: 5,
-          tagId: 3,
+          tagId: 5,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
