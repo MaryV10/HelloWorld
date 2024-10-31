@@ -55,13 +55,14 @@ export const MyPlaceItem: React.FC<Props> = ({ place }) => {
             <h2 className={styles.title}>{place.title}</h2>
           )}
           <p className={styles.description}><h1 >Описание:</h1>  {truncateText(place.description, 100)}</p>
-          <p >  
+          <div style={{  display:'flex', flexWrap:'wrap', overflow: 'hidden', whiteSpace: 'nowrap'  }}>
           {place.tags.map((tag) => (  
-    <span key={tag.id} style={{ backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
+      <span key={tag.id} style={{ backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
       #{tag.title}  
-    </span>  
+    </span>   
   ))}   
-</p>  
+  </div>
+ 
 
         </>
         <img

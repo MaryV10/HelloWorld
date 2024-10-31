@@ -71,7 +71,7 @@ export default function SidebarMobile({ places: [...places] }) {
               >
                 <List>
                   <ListItem>
-                  <img src={place.Photos[0]?.imageUrl} alt="img" style={{ width: "100px", height: "100px", borderRadius: "10px", marginRight: "15px", objectFit: "cover" }}/>
+                  <img src={`${window.location.origin}/images/${place.Photos[0]?.imageUrl}`} alt="img" style={{ width: "100px", height: "100px", borderRadius: "10px", marginRight: "15px", objectFit: "cover" }}/>
                     <h1 className={styles.title}>{place.title}</h1>
                   </ListItem>
                 </List>
