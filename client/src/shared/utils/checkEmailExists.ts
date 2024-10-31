@@ -5,7 +5,7 @@
 //     const { data } = await axiosInstance.post('/auth/checkEmail', { email });
 //     return data.exists;
 //   } catch (error) {
-//     console.log(error);
+//     
 //     return false;
 //   }
 // };

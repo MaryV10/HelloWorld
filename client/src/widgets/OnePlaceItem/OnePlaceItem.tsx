@@ -1,7 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import deleteIcon from "@/assets/free-icon-delete-7104075.png";
 import styles from "./OnePlaceItem.module.css";
+import {isMobile} from 'react-device-detect';
 import {
   getApprovedPlaces,
   removePlace,
@@ -14,6 +16,7 @@ import { ROUTES } from "@/app/router/routes";
 
 import BasicRating from "@/shared/Rating/Rating";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
+import { Modal } from "antd";
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
@@ -43,6 +46,54 @@ export const OnePlaceItem: React.FC = () => {
   useEffect(() => {
     dispatch(getApprovedPlaces());
   }, [dispatch]);
+
+  const renderContent = () => {
+    if (isMobile) {
+      return (
+        <select
+          name="score"
+          value={score}
+          style={{ backgroundColor: "white", width: '60px', borderRadius:'15px', padding: '5px' }}
+          onChange={(e) => {
+            const value = Number(e.target.value);
+            if (value >= 0 && value <= 5) {
+              setScore(value);
+            }
+          }}
+        >
+          <option value="">Выберите оценку</option>
+          {[...Array(6).keys()].map((num) => (
+            <option key={num} value={num}>
+              {num}
+            </option>
+          ))}
+        </select>
+      )
+    
+    } else {
+    return ( <input
+    type="number"
+    name="score"
+    min="0"
+    max="5"
+    value={score}
+    style={{ backgroundColor: "white" }}
+    onChange={(e) => {
+      const value = Number(e.target.value);
+      if (value >= 0 && value <= 10) {
+        setScore(value);
+      }
+    }}
+    onKeyDown={(e) => {
+      if (
+        !["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(e.key)
+      ) {
+        e.preventDefault();
+      }
+    }}
+  ></input>)
+  }
+  }
 
   const handlerUpdatePlace = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -158,6 +209,12 @@ export const OnePlaceItem: React.FC = () => {
           </div>
      
         {isEditing ? (
+              <Modal
+
+              visible={isEditing}
+              onCancel={handleCancel}
+              footer={null}
+            >
           <>
             <label>
               Изменить название места:
@@ -165,7 +222,7 @@ export const OnePlaceItem: React.FC = () => {
                 name="comment"
                 maxLength={35}
                 value={title}
-                style={{  margin: "15px 15px" }}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </label>
@@ -174,7 +231,8 @@ export const OnePlaceItem: React.FC = () => {
               <input
                 name="comment"
                 value={description}
-                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                className={styles.textarea1}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </label>
@@ -184,7 +242,7 @@ export const OnePlaceItem: React.FC = () => {
                 type="number"
                 name="comment"
                 value={longitude}
-                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setLongitude(e.target.value)}
               />
             </label>
@@ -194,7 +252,7 @@ export const OnePlaceItem: React.FC = () => {
                 type="number"
                 name="comment"
                 value={width}
-                style={{ backgroundColor: "pink", margin: "15px 15px" }}
+                style={{backgroundColor: "#141213",color: "white", margin: "15px 15px" }}
                 onChange={(e) => setWidth(e.target.value)}
               />
             </label>
@@ -202,26 +260,26 @@ export const OnePlaceItem: React.FC = () => {
               <>
                 {" "}
                 <button
-                  style={{ backgroundColor: "green", padding: "10px" }}
+                  style={{ backgroundColor: "#03754a",color: "white", padding: "10px" }}
                   onClick={handlerUpdatePlace}
                 >
                   Сохранить
                 </button>
-                <button
-                  style={{ backgroundColor: "red", padding: "10px" }}
-                  onClick={handlerDeletePlace}
-                >
-                  Удалить
-                </button>
-                <button
-                  style={{ backgroundColor: "gray", padding: "10px" }}
-                  onClick={handleCancel}
-                >
-                  Отменить
-                </button>
+            
+<img
+            className={styles.delIcon}
+            src={deleteIcon}
+            alt="Редактировать отзыв"
+            onClick={handlerDeletePlace}
+          />
+              
+      
               </>
+                   
             )}
           </>
+          </Modal>
+          
         ) : (
           <>
             {user?.id && (
@@ -233,6 +291,7 @@ export const OnePlaceItem: React.FC = () => {
               </button>
             )}
           </>
+          
         )}
       </div>
 
@@ -245,7 +304,8 @@ export const OnePlaceItem: React.FC = () => {
             placeholder="Комментарий ..."
             name="comment"
             value={comment}
-            style={{ backgroundColor: "white",color: "black" , margin: "15px 15px" , height: "150px"}}
+            className={styles.textarea1}
+            style={{ backgroundColor: "white",color: "black" , margin: "15px 15px" , height: "150px", maxWidth: "100px" }}
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
       
@@ -254,27 +314,7 @@ export const OnePlaceItem: React.FC = () => {
           {/* <BasicRating value={totalScore()} /> */}
 
           Ваша оценка:
-          <input
-            type="number"
-            name="score"
-            min="0"
-            max="5"
-            value={score}
-            style={{ backgroundColor: "white" }}
-            onChange={(e) => {
-              const value = Number(e.target.value);
-              if (value >= 0 && value <= 10) {
-                setScore(value);
-              }
-            }}
-            onKeyDown={(e) => {
-              if (
-                !["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(e.key)
-              ) {
-                e.preventDefault();
-              }
-            }}
-          ></input>
+         <div>{renderContent()}</div>
           <button onClick={handlerAddFeedback}>Добавить отзыв</button>
         </label>
         </label>

@@ -117,11 +117,11 @@ if (tags) {
     }
   }
 
-  //* обновить задачу по ID
+  
   static async updatePlace( id: number,
      title: string, description: string, longitude: string, width: string): Promise<Place> {
     try {
-      // console.log({ id,title, description, longitude, width })
+      
       const response = await axiosInstance.put(`/places/${id}`, {title, description, longitude, width})
      return response.data.place
     } catch (error) {

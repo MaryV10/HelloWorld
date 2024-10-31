@@ -10,13 +10,15 @@
 .container {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+
 }
 .feedbacks p {
   margin: 10px;
 }
 
 .feedbacksOneLine {
-  width: 700px;
+  width: 70vw;
   display: flex;
   justify-content: space-between;
   background: white;
@@ -39,9 +41,36 @@
 .feedback {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   gap: 35px;
   margin-top: 15px;
   padding: 20px;
+}
+
+* {
+    font-family: Unbounded;
+}
+
+.textarea1 {
+    max-width: 200px !important;
+  
+}
+
+.delIcon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .delIcon:hover {
+    transform: scale(1.3);
+   }
+
+.textarea1 {
+    padding: 10px;
+    border-radius: 20px !important;
+    width: 300px !important;
+    max-width: 500px !important;
+min-height: 200px;
 }

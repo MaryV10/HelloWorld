@@ -1,11 +1,15 @@
 import React from 'react';
-import { SignInForm } from '@/features/auth/ui/SignInForm';
+
+import styles from "./SignInPage.module.css"
+import { SignInFormMobile } from '@/features/auth/ui/SignInFormMobile/SignInForm';
 
 export const SignInPage: React.FC = () => {
   return (
     <>
-      <h1>SignInPage</h1>
-      <SignInForm />
+    <div className={styles.container}>
+     
+      <SignInFormMobile />
+      </div>
     </>
   );
 };

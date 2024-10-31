@@ -36,15 +36,17 @@ function MapList() {
   const [coords, setCoords] = useState<[number, number] | null>(null);
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
   const [file, setFile] = useState<File | null>(null);
+
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const places = useAppSelector((state) => state.place.approvedPlaces);
   const tags = useAppSelector((state) => state.tag.tagList);
   const dispatch = useAppDispatch();
 
-  // const formDataRef = useRef(null); // Андрей ========================================
+ 
+  useEffect(() => {
 
-  // =========================================================================
 
   const handleFileChange = (info: UploadChangeParam) => {
     const file = info.fileList[0].originFileObj;
@@ -113,7 +115,7 @@ function MapList() {
     // formData.append("tags", selectedTags);
     if (coords) {
       try {
-        console.log(formData, title, description, String(coords[1]), String(coords[0]), selectedTags,'----')
+
         await dispatch(
           addPlace({formData, title, description, longitude: String(coords[1]), width: String(coords[0]), tags: selectedTags})
         )
@@ -139,6 +141,7 @@ function MapList() {
       }
     }
   };
+         
 
   return (
     <>
@@ -202,6 +205,7 @@ function MapList() {
               />
               {/* <input
                 type="text"
+                required
                 value={photo}
                 onChange={(e) => setPhoto(e.target.value)}
                 placeholder="Фото"

@@ -9,6 +9,7 @@ import { getApprovedPlaces } from "../../api/placeThunks";
 import { Link } from "react-router-dom";
 import styles from "./MyFeedbackItem.module.css"; 
 import { Modal } from "antd";
+import {isMobile} from 'react-device-detect';
 
 interface MyFeedbackItemProps {
   place?: Place;
@@ -63,9 +64,57 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
     }
   };
 
+  const renderContent = () => {
+    if (isMobile) {
+      return (
+        <select
+          name="score"
+          value={score}
+          style={{ backgroundColor: "white", width: '60px' , borderRadius:'15px' }}
+          onChange={(e) => {
+            const value = Number(e.target.value);
+            if (value >= 0 && value <= 5) {
+              setScore(value);
+            }
+          }}
+        >
+          <option value="">Выберите оценку</option>
+          {[...Array(6).keys()].map((num) => (
+            <option key={num} value={num}>
+              {num}
+            </option>
+          ))}
+        </select>
+      )
+    
+    } else {
+    return ( <input
+    type="number"
+    name="score"
+    min="0"
+    max="5"
+    value={score}
+    style={{ backgroundColor: "white" }}
+    onChange={(e) => {
+      const value = Number(e.target.value);
+      if (value >= 0 && value <= 10) {
+        setScore(value);
+      }
+    }}
+    onKeyDown={(e) => {
+      if (
+        !["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(e.key)
+      ) {
+        e.preventDefault();
+      }
+    }}
+  ></input>)
+  }
+  }
+
   return (
     <div>
-      <div style={{ margin: "15px" }}>
+      <div className={styles.myFeedback}>
         {isPlaceEnabled && (
           <>
             <Link to={`/OnePlacePage/${place?.id}`}>
@@ -90,37 +139,19 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
           footer={null}
         >
           
-          <label style={{display: 'flex', flexDirection: 'column', justifyContent: 'left', fontWeight: 'bold', fontSize: '18px'}}>
+          <label style={{display: 'flex', flexDirection: 'column', fontWeight: 'bold', fontSize: '18px'}}>
             Изменить комментарий:
             <textarea
             maxLength={200}
               placeholder="Комментарий ..."
               value={comment}
-              className={styles.textarea}
+              className={styles.textarea2}
               onChange={(e) => setComment(e.target.value)}
             />
           </label>
           <label style={{display: 'flex', justifyContent: 'left', fontWeight: 'bold', fontSize: '18px', marginTop: '10px'}}>
             Изменить оценку:
-            <input 
-            style={{background: '#141213', color: 'white', border: 'none', borderRadius: '10px', padding: '5px 10px', fontSize: '18px', marginTop: '10px', marginBottom: '10px'}} 
-              type="number"
-              min="0"
-              max="5"
-              value={score}
-              className={styles.input}
-              onChange={(e) => {
-                const value = Number(e.target.value);
-                if (value >= 0 && value <= 5) {
-                  setScore(value);
-                }
-              }}
-              onKeyDown={(e) => {
-                if (!["Backspace", "Delete", "ArrowUp", "ArrowDown"].includes(e.key)) {
-                  e.preventDefault();
-                }
-              }}
-            />
+            <div>{renderContent()}</div>
           </label>
           {user?.id === feedback.userId && (
             <>
