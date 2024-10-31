@@ -1,13 +1,11 @@
 import { PlaceItem } from "@/entities/place";
 import { Clusterer, Map } from "@pbe/react-yandex-maps";
-import {isMobile} from 'react-device-detect';
+import { isMobile } from "react-device-detect";
 import { useEffect, useRef, useState } from "react";
 import styles from "./MapList.module.css";
 import ModalWindow from "@/shared/ui/Modal/Modal";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { addPlace, getApprovedPlaces } from "@/entities/place/api/placeThunks";
-
-
 
 import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
@@ -18,7 +16,6 @@ import { Button as UploadButton } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/es/upload";
 import TagSelectorMobile from "../TagSelectorMobile/TagSelectorMobile";
-
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -47,10 +44,6 @@ function MapList() {
   const places = useAppSelector((state) => state.place.approvedPlaces);
   const tags = useAppSelector((state) => state.tag.tagList);
   const dispatch = useAppDispatch();
-
- 
-
-
 
   const handleFileChange = (info: UploadChangeParam) => {
     const file = info.fileList[0].originFileObj;
@@ -93,8 +86,6 @@ function MapList() {
     }
   };
 
-
-
   const handleMouseUp = () => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -111,9 +102,8 @@ function MapList() {
     event.preventDefault();
     const formData = new FormData();
     if (file) {
-    formData.append("image", file)
-    console.log(file,'file');
-    
+      formData.append("image", file);
+      console.log(file, "file");
     }
     // formData.append("description", description);
     // formData.append("width", String(coords[0]));
@@ -121,10 +111,16 @@ function MapList() {
     // formData.append("tags", selectedTags);
     if (coords) {
       try {
-
         await dispatch(
-          addPlace({formData, title, description, longitude: String(coords[1]), width: String(coords[0]), tags: selectedTags})
-        )
+          addPlace({
+            formData,
+            title,
+            description,
+            longitude: String(coords[1]),
+            width: String(coords[0]),
+            tags: selectedTags,
+          })
+        );
         //         const newPlace = await dispatch(
         //   addPlace(formData)
         // ).unwrap();
@@ -147,10 +143,10 @@ function MapList() {
       }
     }
   };
-         
 
   const renderContent = () => {
     if (isMobile) {
+
       return <div>
         <div className={styles.bottomBar}>
         <input 
@@ -166,37 +162,36 @@ function MapList() {
       </div>
       </div>
         <SidebarMobile places={filteredPlaces}/></div>;
+
     }
 
-    return  (
-    <>
-    <div className={styles.sidebar}>
-    <Sidebar places={filteredPlaces} />
-  </div>
-  
-  <div className={styles.leftbar}>
-  <input 
-    className={styles.input}
-    type="text"
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    placeholder="Поиск..."
-  />
-<div className={styles.tags}>
-  <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
-</div>
+    return (
+      <>
+        <div className={styles.sidebar}>
+          <Sidebar places={filteredPlaces} />
+        </div>
 
-</div>
-</>)
-  }
-
+        <div className={styles.leftbar}>
+          <input
+            className={styles.input}
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Поиск..."
+          />
+          <div className={styles.tags}>
+            <TagSelector tags={tags} onTagSelect={setSelectedTags} />
+          </div>
+        </div>
+      </>
+    );
+  };
 
   return (
     <>
       <div className={styles.navbar}></div>
 
       <div className={styles.mapContainer} style={{ height: "100%" }}>
-
         <Map
           defaultState={{ center: [59.95, 30.3], zoom: 9 }}
           width={"100%"}
@@ -270,13 +265,9 @@ function MapList() {
         </ModalWindow>
       </div>
 
-     <div>{renderContent()}</div>
-
-      
-
+      <div>{renderContent()}</div>
     </>
   );
 }
-
 
 export default MapList;
