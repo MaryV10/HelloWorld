@@ -118,8 +118,7 @@ async function updatePlaceController(req, res) {
     } else {
       const place = await PlaceService.updatePlace(id, user.id, {
         title,
-        description,
-        
+        description,        
         longitude,
         width,
       });
