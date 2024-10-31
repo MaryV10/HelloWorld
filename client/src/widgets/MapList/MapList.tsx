@@ -45,7 +45,7 @@ function MapList() {
   const dispatch = useAppDispatch();
 
  
-  useEffect(() => {
+
 
 
   const handleFileChange = (info: UploadChangeParam) => {
@@ -239,5 +239,6 @@ function MapList() {
     </>
   );
 }
+
 
 export default MapList;
