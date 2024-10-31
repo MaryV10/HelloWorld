@@ -42,6 +42,7 @@ export class PlaceService {
       static async getAllPendingPlaces(): Promise<PlaceList> {
         try {
          const {data} =  await axiosInstance.get(`/places/pending`);
+         console.log(data.places, '-------------')
          return data.places 
           
         } catch (error) {
@@ -50,15 +51,26 @@ export class PlaceService {
         }
       }
    //создание одного места на общей карте
-  static async createPlace(title: string, description: string, longitude: string, width: string, tags: string[]): Promise<Place> {
+  static async createPlace( formData: FormData,  title: string, description: string, longitude: string, width: string, tags:string[]): Promise<Place> {
     try {
       
       const response = await axiosInstance.post('/places', {title, description, longitude, width},
       );
-
-      tags.map(async (tag) => {
+      console.log(response.data.place.id,'00');
+if (tags) {
+      tags.map(async (tag:string) => {
         await axiosInstance.post('/tagplace', { tagId: tag, placeId: response.data.place.id })
       })
+    }
+ console.log([...formData.entries()],'formData');
+ const placeId = response.data.place.id
+    await axiosInstance.post(`/photos/${placeId}`,  
+      
+      formData,  
+      {headers: {
+        'Content-Type': 'multipart/form-data'
+    }})
+ 
       
       return response.data.place;
     } catch (error) {
@@ -105,11 +117,11 @@ export class PlaceService {
     }
   }
 
-  //* обновить задачу по ID
+  
   static async updatePlace( id: number,
      title: string, description: string, longitude: string, width: string): Promise<Place> {
     try {
-      // console.log({ id,title, description, longitude, width })
+      
       const response = await axiosInstance.put(`/places/${id}`, {title, description, longitude, width})
      return response.data.place
     } catch (error) {

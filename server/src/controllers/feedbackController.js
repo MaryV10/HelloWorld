@@ -18,7 +18,7 @@ async function createFeedbackController(req, res) {
     } else {
       
      const yyyy = await FeedbackService.createFeedback({score, comment, placeId, userId: user.id});
-// console.log(yyyy,';;;;;;;;')
+
 
       const place = await PlaceService.getOnePlace(placeId);
   
@@ -41,13 +41,13 @@ async function updateFeedbackController(req, res) {
         message: "Not update",
       });
     } else {
-      // console.log(score, comment, placeId, "score, comment, placeId");
+      
       const newFeedback=await FeedbackService.updateFeedback(id, user.id, {
         score, comment
       });
-console.log(newFeedback, "newFeedback")
+
       const place = await PlaceService.getOnePlace(placeId);
-      // console.log(place,';;;;;;;;')
+      
       res.status(200).json({ place });
     }
   } catch (error) {
@@ -60,7 +60,7 @@ async function deleteFeedbackController(req, res) {
   const { id } = req.params;
   const userId = res.locals.user.id;
   try {
-    console.log(id, userId, "---------------------")
+    
     const { isDeleted } = await FeedbackService.deleteFeedback(id, userId);
     const place = await PlaceService.getOnePlace(id);
     if (isDeleted) {

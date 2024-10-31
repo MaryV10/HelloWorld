@@ -7,12 +7,7 @@ class PhotoService {
 
   static async uploadPhoto(data) {
     try {
-      
-      const newPhoto = await Photo.create(data);
-      
-      
-      return newPhoto;
-      
+      return await Photo.create(data) 
     } catch (error) {
       console.error(error);
     }

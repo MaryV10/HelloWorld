@@ -7,12 +7,17 @@ import ModalWindow from "@/shared/ui/Modal/Modal";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { addPlace, getApprovedPlaces } from "@/entities/place/api/placeThunks";
 
-import { addPhoto } from "@/entities/photo/api/photoThunks";
+
 
 import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
 import SidebarMobile from "../SidebarMobile/SidebarMobile";
+import { Upload } from "antd";
+import { Button as UploadButton } from "antd";
+import { CloudUploadOutlined } from "@ant-design/icons";
+import { UploadChangeParam } from "antd/es/upload";
+
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -26,7 +31,7 @@ interface YMapsMouseEvent {
 
 function MapList() {
   const [title, setTitle] = useState("");
-  const [photo, setPhoto] = useState("");
+  // const [photo, setPhoto] = useState("");
   const [description, setDescription] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [isLongTouch, setIsLongTouch] = useState(false);
@@ -35,18 +40,32 @@ function MapList() {
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
+  const [file, setFile] = useState<File | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const places = useAppSelector((state) => state.place.approvedPlaces);
   const tags = useAppSelector((state) => state.tag.tagList);
   const dispatch = useAppDispatch();
 
+ 
   useEffect(() => {
 
+
+  const handleFileChange = (info: UploadChangeParam) => {
+    const file = info.fileList[0].originFileObj;
+    setFile(file as File);
+
+    // Обновляем formDataRef, добавляя выбранный файл
+    // if (file) {
+    //   formDataRef.current.set("image", file);
+    //   console.log("Updated formData with file:", formDataRef.current);
+    // }
+  };
+
+  useEffect(() => {
     dispatch(getApprovedPlaces());
     dispatch(getAllTags());
   }, [dispatch]);
-
 
   const selectedTagIds = selectedTags.map(Number);
 
@@ -89,28 +108,36 @@ function MapList() {
 
   const onSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
+    const formData = new FormData();
+    if (file) {
+    formData.append("image", file)
+    console.log(file,'file');
+    
+    }
+    // formData.append("description", description);
+    // formData.append("width", String(coords[0]));
+    // formData.append("longitude", String(coords[1]));
+    // formData.append("tags", selectedTags);
     if (coords) {
       try {
-        const newPlace = await dispatch(
-          addPlace({
-            title,
-            description,
-            width: String(coords[0]),
-            longitude: String(coords[1]),
-            tags: selectedTags,
-          })
-        ).unwrap();
-
-        console.log(photo,newPlace.id, "imageUrl");
 
         await dispatch(
-          addPhoto({ imageUrl: photo, placeId: newPlace.id })
-        ).unwrap();
+          addPlace({formData, title, description, longitude: String(coords[1]), width: String(coords[0]), tags: selectedTags})
+        )
+        //         const newPlace = await dispatch(
+        //   addPlace(formData)
+        // ).unwrap();
+
+        // console.log(photo,newPlace.id, "imageUrl");
+
+        // await dispatch(
+        //   addPhoto({ imageUrl: file, placeId: newPlace.id })
+        // ).unwrap();
 
         setModalActive(false);
         setTitle("");
         setDescription("");
-        setPhoto("");
+        // setPhoto("");
         setCoords(null);
         setSelectedTags([]);
         setModalActive(false);
@@ -119,6 +146,7 @@ function MapList() {
       }
     }
   };
+         
 
   const renderContent = () => {
     if (isMobile) {
@@ -161,12 +189,13 @@ function MapList() {
 </>)
   }
 
+
   return (
     <>
       <div className={styles.navbar}></div>
 
       <div className={styles.mapContainer} style={{ height: "100%" }}>
-     
+
         <Map
           defaultState={{ center: [59.95, 30.3], zoom: 9 }}
           width={"100%"}
@@ -196,10 +225,12 @@ function MapList() {
           onToggle={() => setModalActive(false)}
         >
           {modalActive && (
-            
-            <form style={{ display: "flex", flexDirection: "column", gap: "20px" }} onSubmit={onSubmitHandler}>
-              <div >
-                <TagSelector  tags={tags} onTagSelect={setSelectedTags} />
+            <form
+              style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+              onSubmit={onSubmitHandler}
+            >
+              <div>
+                <TagSelector tags={tags} onTagSelect={setSelectedTags} />
               </div>
               <input
                 type="text"
@@ -207,27 +238,41 @@ function MapList() {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Название места"
               />
-              <input
+              {/* <input
                 type="text"
+                required
                 value={photo}
                 onChange={(e) => setPhoto(e.target.value)}
                 placeholder="Фото"
-              />
+              /> */}
+              <Upload
+                onChange={handleFileChange}
+                listType="picture"
+                beforeUpload={() => false}
+              >
+                <UploadButton icon={<CloudUploadOutlined />}>
+                  Click to Upload
+                </UploadButton>
+              </Upload>
               <textarea
                 className={styles.textarea}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Описание места"
               />
-              
-              <button style={{color: "white"}} type="submit">Создать место</button>
+
+              <button style={{ color: "white" }} type="submit">
+                Создать место
+              </button>
             </form>
           )}
         </ModalWindow>
       </div>
+
      <div>{renderContent()}</div>
 
       
+
     </>
   );
 }

@@ -3,7 +3,7 @@ const userService = require("../services/userService");
 const generateTokens = require("../utils/generateToken");
 // const axios = require('axios');
 
-// ====================== i dont haveAccount on HUNTER.IO
+// ====================== don't haveAccount on HUNTER.IO
 // async function checkEmail(req, res) {
 //   const { email } = req.body;
 
@@ -92,7 +92,7 @@ async function logout(req, res) {
 }
 
 async function update(req, res) {
-  // const { id } = req.params;
+  
   const { nickname, firstName, secondName } = req.body;
   const { user } = res.locals;
 
