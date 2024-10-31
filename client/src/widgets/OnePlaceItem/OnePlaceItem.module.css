@@ -71,6 +71,7 @@
   width: 300px !important;
   max-width: 500px !important;
   min-height: 200px;
+  max-height: 500px;
 }
 
 .image {
@@ -87,3 +88,4 @@
   transform: scale(1.2);
   cursor: pointer;
 }
+
