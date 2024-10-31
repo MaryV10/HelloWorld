@@ -40,6 +40,7 @@ export const MyPlaceItem: React.FC<Props> = ({ place }) => {
     });
   }
 
+  
   return (
     <div className={styles.myPlaceItem}>
       <>
