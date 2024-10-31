@@ -40,12 +40,13 @@ const MobileMenu = () => {
   };
 
   return (
-    <div>
+    <div style={{overflow: 'hidden'}}>
       <AppBar position="static" style={{ background: 'none', borderRadius: '20px',boxShadow: 'none' }}>
         <Toolbar>
         <Button
+        disableRipple
   onClick={toggleDrawer}
-  style={{ background: 'transparent', padding: 0 }} 
+  style={{ background: 'transparent', padding: 0, outline: 'none', border: 'none' }} 
   className={styles.customButton} 
 >
   <div className={`${styles.menuIcon} ${open ? styles.open : ''}`}>

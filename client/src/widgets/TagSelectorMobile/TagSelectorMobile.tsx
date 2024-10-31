@@ -8,7 +8,7 @@ type TagSelectorProps = {
   onTagSelect: (selectedTags: string[]) => void;
 };
 
-const TagSelector: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
+const TagSelectorMobile: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
   <ConfigProvider
     theme={{
       token: {
@@ -32,31 +32,40 @@ const TagSelector: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
       placeholder="Выберите теги"
       onChange={onTagSelect}
       tagRender={(props) => {
-        const { label, value, closable, onClose } = props;
+        const { value, closable, onClose } = props;
         const tag = tags.find((tag) => tag.id === value);
 
         return (
           <span
             style={{
               backgroundColor: tag?.color || "#ccc",
-              color: "#fff",
-              padding: "4px 8px",
               borderRadius: "20px",
-              display: "inline-flex",
-              alignItems: "center",
+              display: "inline-block",
+              width: "20px", 
+              height: "20px", 
               margin: "3px",
+              position: "relative",
             }}
           >
-            {label}
             {closable && (
               <span
                 onClick={onClose}
                 style={{
-                  marginLeft: "8px",
+                  position: "absolute",
+                  top: "50%",
+                  right: "0%",
+                  transform: "translateY(-50%)",
                   cursor: "pointer",
-                  color: "#fff",
+                  color: "white",
+                  display: "flex",
+                  justifyContent: "center", 
+                  alignItems: "center", 
+                  width: "20px", 
+                  height: "20px", 
                 }}
-              ></span>
+              >
+                ×
+              </span>
             )}
           </span>
         );
@@ -66,7 +75,8 @@ const TagSelector: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) => (
         (option?.label as string).toLowerCase().includes(input.toLowerCase())
       }
     />
+    
   </ConfigProvider>
 );
 
-export default TagSelector;
+export default TagSelectorMobile;
