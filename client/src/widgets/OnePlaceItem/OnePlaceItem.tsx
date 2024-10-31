@@ -290,7 +290,7 @@ export const OnePlaceItem: React.FC = () => {
                 
               >
                 <UploadButton  icon={<CloudUploadOutlined  />}>
-                Нажмите для згрузки
+                Нажмите для загрузки
                 </UploadButton>
               </Upload>
               </label>
