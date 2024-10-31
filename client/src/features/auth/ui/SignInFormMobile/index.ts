@@ -1,1 +1,1 @@
-export { SignInForm } from './SignInForm';
+export { SignInFormMobile } from './SignInForm';

@@ -18,25 +18,12 @@ export const ProfilePage: React.FC = () => {
   return (
     <div style={{  padding: '20px', height: '250vh', background:'#f8ebda', display: 'flex', flexDirection: 'column', gap: '20px' }}> 
   
-      {/* <button type='button' onClick={() => dispatch(decrement())}>
-        -
-      </button>
-      <span>{count}</span>
-      <button type='button' onClick={() => dispatch(increment())}>
-        +
-      </button> */}
-      {/* <Suspense fallback={<Loader />}> */}
+
       <ProfileForm />
       <MyFeedbackList/>
       <MyPlacesList/>
       {user?.id===1 && <PendingPlacesList/>} 
-        {/*
-        <MyPlacesList/>
-        {user?.id===1 && <PendingPlacesList/>} */}
-      {/* </Suspense> */}
-      {/* <Suspense fallback={<Loader />}> */}
-        {/* <LazyTaskList /> */}
-      {/* </Suspense> */}
+
     </div>
   );
 };
