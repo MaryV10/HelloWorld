@@ -50,12 +50,6 @@ function MapList() {
   const handleFileChange = (info: UploadChangeParam) => {
     const file = info.fileList[0].originFileObj;
     setFile(file as File);
-
-    // Обновляем formDataRef, добавляя выбранный файл
-    // if (file) {
-    //   formDataRef.current.set("image", file);
-    //   console.log("Updated formData with file:", formDataRef.current);
-    // }
   };
 
   useEffect(() => {
@@ -104,14 +98,8 @@ function MapList() {
     event.preventDefault();
     const formData = new FormData();
     if (file) {
-
-    formData.append("image", file)
-    console.log(file,'file');
-
-    }
-
-
-
+      formData.append("image", file);
+      }
     if (coords) {
       try {
 
@@ -131,16 +119,7 @@ function MapList() {
             tags: selectedTags,
           })
         );
-        //         const newPlace = await dispatch(
-        //   addPlace(formData)
-        // ).unwrap();
-
-        // console.log(photo,newPlace.id, "imageUrl");
-
-        // await dispatch(
-        //   addPhoto({ imageUrl: file, placeId: newPlace.id })
-        // ).unwrap();
-
+      
         setModalActive(false);
         setTitle("");
         setDescription("");
@@ -257,7 +236,7 @@ function MapList() {
                 beforeUpload={() => false}
               >
                 <UploadButton icon={<CloudUploadOutlined />}>
-                  Click to Upload
+                  Нажмите для згрузки
                 </UploadButton>
               </Upload>
               <textarea

@@ -17,8 +17,11 @@ import { ROUTES } from "@/app/router/routes";
 import BasicRating from "@/shared/Rating/Rating";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
 import { Modal } from "antd";
+import { Upload } from "antd";
+import { Button as UploadButton } from "antd";
+import { CloudUploadOutlined } from "@ant-design/icons";
+import { UploadChangeParam } from "antd/es/upload";
 import { notification } from 'antd';
-
 
 
 export const OnePlaceItem: React.FC = () => {
@@ -37,8 +40,14 @@ export const OnePlaceItem: React.FC = () => {
   const [longitude, setLongitude] = useState(onePlace?.longitude);
   const [width, setWidth] = useState(onePlace?.width);
   const navigate = useNavigate();
+  const [file, setFile] = useState<File | null>(null);
 
   // ======================================== CHANGE PLACE =====================================
+  const handleFileChange = (info: UploadChangeParam) => {
+    const file = info.fileList[0].originFileObj;
+    setFile(file as File);
+  };
+
   const handleEdit = () => {
     setIsEditing(true);
   };
@@ -100,6 +109,10 @@ export const OnePlaceItem: React.FC = () => {
 
   const handlerUpdatePlace = async (e: React.FormEvent) => {
     e.preventDefault();
+    const formData = new FormData();
+    if (file) {
+      formData.append("image", file);
+      }
     if (title?.trim()==='' || description?.trim()==='' || longitude?.trim()==='' || width?.trim()==='') {  
       notification.error({  
         message: 'Ошибка',  
@@ -110,6 +123,7 @@ export const OnePlaceItem: React.FC = () => {
     if (user?.id && onePlace) {
       await dispatch(
         updatePlace({
+          formData,
           id: onePlace.id,
           title: title!,
           description: description!,
@@ -207,8 +221,10 @@ export const OnePlaceItem: React.FC = () => {
           <CarouselShared>
            
           {onePlace?.Photos.map((photo, index) => (
-            <div style={{ width: "100%", height: "100%" }} key={index}>
-              <img style={{borderRadius: "10px", width: "100%", height: "100%", objectFit: "cover"}} src={`${window.location.origin}/images/${photo.imageUrl}`}></img>
+            <div className={styles.imageContainer} style={{ width: "100%", height: "100%" }} key={index}>
+              
+              <img className={styles.image} src={`${window.location.origin}/images/${photo.imageUrl}`}></img>
+              
             </div>
           ))}
             </CarouselShared>
@@ -266,6 +282,18 @@ export const OnePlaceItem: React.FC = () => {
                 onChange={(e) => setWidth(e.target.value)}
               />
             </label>
+            <label style={{display: "flex", alignItems: "center"}}><p>Загрузить фото: </p> 
+            <Upload
+                onChange={handleFileChange}
+                listType="picture"
+                beforeUpload={() => false}
+                
+              >
+                <UploadButton  icon={<CloudUploadOutlined  />}>
+                Нажмите для згрузки
+                </UploadButton>
+              </Upload>
+              </label>
             {user?.id && (
               <>
                 {" "}

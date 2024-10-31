@@ -71,23 +71,7 @@ export const getPendingPlaces = createAsyncThunk<
   }
 });
 
-export const addPlace = createAsyncThunk<
-Place,
 
-{formData: FormData,  title: string; description: string; longitude: string; width: string; tags: string[] },
-{ rejectValue: RejectValue }
->(
-  PLACE_THUNKS_ACTIONS.ADD_PLACE,
-  async ({formData,  title, description, longitude, width, tags }, { rejectWithValue }) => {
-    try {
-      return await PlaceService.createPlace(
-        formData,  title, description, longitude, width, tags)
-    } catch (error) {
-      const err = error as AxiosError<{ message: string }>;
-      return rejectWithValue({ message: err.message });
-    }
-  }
-);
 
 export const approvePlace = createAsyncThunk<
   Place,
@@ -131,13 +115,13 @@ export const removePlace = createAsyncThunk<
 
 export const updatePlace = createAsyncThunk<
   Place,
-  { id: number,
+  {formData: FormData, id: number,
     title: string, description: string, longitude: string, width: string },
   { rejectValue: RejectValue }
->(PLACE_THUNKS_ACTIONS.UPDATE_PLACE, async ({ id,
+>(PLACE_THUNKS_ACTIONS.UPDATE_PLACE, async ({ formData, id,
   title, description, longitude, width }, { rejectWithValue }) => {
   try {
-    const newPlace = await PlaceService.updatePlace(id,
+    const newPlace = await PlaceService.updatePlace(formData, id,
       title, description, longitude, width);
     return newPlace;
   } catch (error) {
@@ -145,3 +129,20 @@ export const updatePlace = createAsyncThunk<
     return rejectWithValue({ message: err.message });
   }
 });
+
+export const addPlace = createAsyncThunk<
+Place,
+{formData: FormData,  title: string; description: string; longitude: string; width: string; tags: string[] },
+{ rejectValue: RejectValue }
+>(
+  PLACE_THUNKS_ACTIONS.ADD_PLACE,
+  async ({formData,  title, description, longitude, width, tags }, { rejectWithValue }) => {
+    try {
+      return await PlaceService.createPlace(
+        formData,  title, description, longitude, width, tags)
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      return rejectWithValue({ message: err.message });
+    }
+  }
+);

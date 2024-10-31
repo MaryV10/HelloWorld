@@ -2,20 +2,15 @@ const PhotoService = require("../services/PhotoServices");
 const PlaceService = require("../services/PlaceServices");
 
 async function uploadPhotoController(req, res) {
-  console.log(req.body, 'body');
-  const {  placeId} = req.params;
+ 
+  const {  placeId } = req.params;
   const imageUrl = req.file ? req.file.filename : null;
-  console.log(req.file,'============>>>>>');
-  console.log(placeId,'-------------------');
-
+ 
   try {
-
-    console.log(imageUrl, 'imageUrl');
-
      await PhotoService.uploadPhoto({imageUrl, placeId});
 
       const place = await PlaceService.getOnePlace(placeId);
-       console.log(place.Photos , "111111111111");  
+       
            res.status(201).json({ place });
     
 
