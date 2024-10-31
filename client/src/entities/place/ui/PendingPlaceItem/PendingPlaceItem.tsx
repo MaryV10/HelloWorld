@@ -54,6 +54,12 @@ export const PendingPlaceItem: React.FC<Props> = ({ place }) => {
             alt={`Photo ${index + 1}`}
           />
         ))}
+        <div>
+       {place.tags.map((tag) => (  
+    <p key={tag.id} style={{ display:"inline-block", marginTop: "15px", backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
+      #{tag.title}  
+    </p>  
+  ))}  </div> 
       </div>
       <div className={styles.PendingPlaceItem}>
         <button onClick={() => handleReject()}>Отклонить</button>

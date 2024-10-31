@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/shared/lib/axiosInstance";
 import { Place, PlaceList } from "../model";
-// import { Place, PlaceList } from '../model';
+
 
 export class PlaceService {
   // параметризированный запрос для OnePlacePage (только со статусом "approved")
@@ -39,7 +39,7 @@ export class PlaceService {
   static async getAllPendingPlaces(): Promise<PlaceList> {
     try {
       const { data } = await axiosInstance.get(`/places/pending`);
-      console.log(data.places, "-------------");
+    
       return data.places;
     } catch (error) {
       console.error("Error fetching all places:", error);
