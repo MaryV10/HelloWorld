@@ -11,6 +11,7 @@ const CarouselSharedMobile: React.FC<{ children: React.ReactNode[] }> = ( {child
       {children.map((item) => (
         <div className={styles.carouselItem}>{item}</div>
       ))}
+     
       </Carousel>
     </div>
   );

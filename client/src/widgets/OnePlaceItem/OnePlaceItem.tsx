@@ -22,6 +22,8 @@ import { Button as UploadButton } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/es/upload";
 import { notification } from 'antd';
+import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselSharedMobile";
+import CarouselPhotosMobile from "@/shared/CarousellPhotosMobile/CarouselPhotosMobile";
 
 
 export const OnePlaceItem: React.FC = () => {
@@ -196,16 +198,19 @@ export const OnePlaceItem: React.FC = () => {
       {/* =======================================PLACE CHANGING======================== */}
 
       <div style={{ backgroundColor: "#027147", borderRadius: "15px", padding: '20px' }}>
+
         <div className={styles.name}>
       <p style={{textAlign: 'center', background: 'white', maxWidth: '500px', padding: '10px', borderRadius: '20px', fontWeight: 'bold'}}> {onePlace?.title}</p>
+
         <div style={{ display: "flex", justifyContent: "space-between" }}>
         </div>
-          <p></p>
+          
 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "20px", background: 'white', borderRadius: '20px', padding: '10px', paddingRight: '15px', paddingLeft: '15px' }}>
   <p>{totalScore()}</p>
          <BasicRating value={Number(totalScore())}  />
          </div>
         </div>
+
         <p >  
           {onePlace?.tags.map((tag) => (  
     <p key={tag.id} style={{ display:"inline-block", marginTop: "15px", backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
@@ -218,7 +223,24 @@ export const OnePlaceItem: React.FC = () => {
           <p className={styles.photoTitle}>Фотографии:</p>
 
           {/* @ts-ignore */}  
-          <CarouselShared>
+
+          {!isMobile && 
+         ( <CarouselShared>
+           
+          {onePlace?.Photos.map((photo, index) => (
+            <>
+            <div className={styles.imageContainer} style={{ width: "100%", height: "100%" }} key={index}>
+              
+              <img className={styles.image} src={`${window.location.origin}/images/${photo.imageUrl}`}></img>
+              
+            </div>
+            </>
+          ))}
+            </CarouselShared>)
+}
+
+{isMobile && 
+         ( <CarouselPhotosMobile>
            
           {onePlace?.Photos.map((photo, index) => (
             <div className={styles.imageContainer} style={{ width: "100%", height: "100%" }} key={index}>
@@ -227,8 +249,11 @@ export const OnePlaceItem: React.FC = () => {
               
             </div>
           ))}
-            </CarouselShared>
+            </CarouselPhotosMobile>)
+}
+
             </div>
+        
             <div style={{background: "white", borderRadius: "15px", padding: '20px', marginBottom: '20px'}}>
           <h1 style={{fontWeight: 'bold'}}>Описание: </h1> 
           <p>{onePlace?.description}</p>
@@ -323,7 +348,7 @@ export const OnePlaceItem: React.FC = () => {
           
         ) : (
           <>
-            {user?.id && (
+            {user?.id === onePlace?.userId && (
               <button
                 style={{ backgroundColor: "#141213", padding: "10px", color: "white" }}
                 onClick={handleEdit}
