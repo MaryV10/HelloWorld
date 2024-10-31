@@ -17,6 +17,9 @@ import { ROUTES } from "@/app/router/routes";
 import BasicRating from "@/shared/Rating/Rating";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
 import { Modal } from "antd";
+import { notification } from 'antd';
+
+
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
@@ -97,6 +100,13 @@ export const OnePlaceItem: React.FC = () => {
 
   const handlerUpdatePlace = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!title || !description || !longitude || !width) {  
+      notification.error({  
+        message: 'Ошибка',  
+        description: 'Пожалуйста, заполните все поля.',  
+      });  
+      return; // Прекращаем выполнение функции, если есть пустые поля  
+    }  
     if (user?.id && onePlace) {
       await dispatch(
         updatePlace({

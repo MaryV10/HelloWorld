@@ -14,6 +14,8 @@ import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
 import SidebarMobile from "../SidebarMobile/SidebarMobile";
 import { Upload } from "antd";
+import { notification } from 'antd';
+
 import { Button as UploadButton } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/es/upload";
@@ -112,14 +114,17 @@ function MapList() {
     if (file) {
     formData.append("image", file)
     console.log(file,'file');
-    
     }
-    // formData.append("description", description);
-    // formData.append("width", String(coords[0]));
-    // formData.append("longitude", String(coords[1]));
-    // formData.append("tags", selectedTags);
+
+
+
     if (coords) {
       try {
+        if (title.trim()==='' || description.trim() ===''|| !file) {
+          notification.error(     {message: 'Ошибка',  
+            description: 'Введите название, описание и загрузите фото'} )
+            return
+        }
 
         await dispatch(
           addPlace({formData, title, description, longitude: String(coords[1]), width: String(coords[0]), tags: selectedTags})

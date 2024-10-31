@@ -119,7 +119,7 @@ const placeSlice = createSlice({
         state.places.push(action.payload);
         state.place = action.payload
         state.pendingPlaces.push(action.payload);
-        state.approvedPlaces.push(action.payload);
+        // state.approvedPlaces.push(action.payload);
       })
       // =================================================================================
       .addCase(approvePlace.pending, (state) => {
