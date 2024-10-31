@@ -16,6 +16,7 @@ const TagSelectorMobile: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) =>
         colorBorder: "transparent",
         colorText: "black",
         colorTextPlaceholder: "#757575",
+        
       },
     }}
   >
@@ -28,6 +29,7 @@ const TagSelectorMobile: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) =>
         borderRadius: "20px",
         color: "black",
         border: "none",
+        height: "40px",
       }}
       placeholder="Выберите теги"
       onChange={onTagSelect}
@@ -36,15 +38,19 @@ const TagSelectorMobile: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) =>
         const tag = tags.find((tag) => tag.id === value);
 
         return (
+          <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
           <span
             style={{
               backgroundColor: tag?.color || "#ccc",
               borderRadius: "20px",
-              display: "inline-block",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               width: "20px", 
               height: "20px", 
               margin: "3px",
               position: "relative",
+
             }}
           >
             {closable && (
@@ -68,6 +74,7 @@ const TagSelectorMobile: React.FC<TagSelectorProps> = ({ tags, onTagSelect }) =>
               </span>
             )}
           </span>
+          </div>
         );
       }}
       options={tags.map((tag) => ({ label: tag.title, value: tag.id }))}
