@@ -9,6 +9,8 @@ import { SignUpPage } from '@/pages/SignUpPage';
 import MapPage from '@/pages/MapPage/MapPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { OnePlacePage } from '@/pages/OnePlacePage';
+import { NotFoundPage } from "@/pages/404Page/404page";
+
 // import { ProtectedRoute } from '@/shared/ui/Modal/ProtectedRoute';
 
 
@@ -16,6 +18,7 @@ export const router = createBrowserRouter([
   {
     path: AppRoutes.HOME,
     element: <Layout />,
+    errorElement: <NotFoundPage />,
     children: [
       {
         path: AppRoutes.HOME,
