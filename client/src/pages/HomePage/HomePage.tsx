@@ -14,7 +14,7 @@ export const HomePage: React.FC = () => {
     if (isMobile) {
 
       return <Suspense fallback={<Loader />}>
-   <div><LazyTaskForm /></div>
+   <div style={{marginTop: "5vh"}}><LazyTaskForm /></div>
     </Suspense>  ;
     }
     return <div><Example /></div>;
@@ -28,8 +28,8 @@ export const HomePage: React.FC = () => {
 
       <div className={styles.mission}>
         <div>
-          <h1 style={{ color: "black", fontSize: "30px" }}>Наша миссия</h1>
-          <p style={{ color: "black" }}>
+          <h1 style={{ color: "black", fontSize: "30px", textAlign: "left" }}>Наша миссия</h1>
+          <p style={{ color: "black", textAlign: "left" }}>
             Мы стремимся создать уникальную платформу, где каждый может
             открывать и делиться интересными местами на карте. Наша цель —
             вдохновить людей исследовать окружающий мир, находить новые уголки

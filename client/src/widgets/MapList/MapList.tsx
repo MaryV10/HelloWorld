@@ -12,9 +12,12 @@ import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
 import SidebarMobile from "../SidebarMobile/SidebarMobile";
 import { Upload } from "antd";
+import { notification } from 'antd';
+
 import { Button as UploadButton } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/es/upload";
+import TagSelectorMobile from "../TagSelectorMobile/TagSelectorMobile";
 
 interface YMapsMouseEvent {
   get: (key: string) => {
@@ -97,9 +100,15 @@ function MapList() {
     if (file) {
       formData.append("image", file);
       }
-   
     if (coords) {
       try {
+
+        if (title.trim()==='' || description.trim() ===''|| !file) {
+          notification.error(     {message: 'Ошибка',  
+            description: 'Введите название, описание и загрузите фото'} )
+            return
+        }
+
         await dispatch(
           addPlace({
             formData,
@@ -126,24 +135,23 @@ function MapList() {
 
   const renderContent = () => {
     if (isMobile) {
-      return (
-        <div>
-          <div className={styles.bottomBar}>
-            <input
-              className={styles.input}
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Поиск..."
-            />
 
-            <div className={styles.tags}>
-              <TagSelector tags={tags} onTagSelect={setSelectedTags} />
-            </div>
-          </div>
-          <SidebarMobile places={filteredPlaces} />
-        </div>
-      );
+      return <div>
+        <div className={styles.bottomBar}>
+        <input 
+          className={styles.input}
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Поиск..."
+        />
+
+<div className={styles.tags}>
+        <TagSelectorMobile  tags={tags} onTagSelect={setSelectedTags} />
+      </div>
+      </div>
+        <SidebarMobile places={filteredPlaces}/></div>;
+
     }
 
     return (

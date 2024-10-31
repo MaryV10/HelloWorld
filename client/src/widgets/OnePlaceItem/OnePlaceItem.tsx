@@ -21,6 +21,8 @@ import { Upload } from "antd";
 import { Button as UploadButton } from "antd";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { UploadChangeParam } from "antd/es/upload";
+import { notification } from 'antd';
+
 
 export const OnePlaceItem: React.FC = () => {
   const { approvedPlaces } = useAppSelector((state) => state.place);
@@ -111,6 +113,13 @@ export const OnePlaceItem: React.FC = () => {
     if (file) {
       formData.append("image", file);
       }
+    if (title?.trim()==='' || description?.trim()==='' || longitude?.trim()==='' || width?.trim()==='') {  
+      notification.error({  
+        message: 'Ошибка',  
+        description: 'Пожалуйста, заполните все поля.',  
+      });  
+      return;  
+    }  
     if (user?.id && onePlace) {
       await dispatch(
         updatePlace({

@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/shared/hooks/reduxHooks";
 import { signIn } from "@/entities/user";
 import { unwrapResult } from "@reduxjs/toolkit";
 import styles from "./SignInForm.module.css";
+import { notification } from 'antd';
 
 interface SignInFormProps {
   onToggle1?: () => void;
@@ -29,9 +30,9 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
     const { email, password } = inputs;
     try {
       if (!email.trim() || !password.trim()) {
-        setErrorMessage("Все поля обязательны к заполнению");
-        setShowError(true);
-        return;
+        notification.error(     {message: 'Ошибка',  
+          description: 'Введите email и пароль'} )
+          return
         // alert ("Все поля обязательны к заполнению")
       }
       const resultAction = await dispatch(signIn({ email, password }));
@@ -43,7 +44,8 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
       setInputs({ email: "", password: "" });
     } catch (error) {
       console.error("Sign in failed:", error);
-      alert("Не правильные почта или пароль !");
+      notification.error(     {message: 'Ошибка',  
+        description: 'Неверный email или пароль'} )
     }
   };
 
@@ -67,10 +69,10 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
         </div>
       )}
       <label>
-        Password:
+        Пароль:
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Пароль"
           required
           name="password"
           value={inputs.password}
