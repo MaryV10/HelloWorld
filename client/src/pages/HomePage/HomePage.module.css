@@ -1,0 +1,227 @@
+
+.heroImage {
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+  filter: blur(2px);
+    padding: 0; 
+    object-fit: cover;
+}
+
+.mission {
+ display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 20px;
+    color: white;
+    gap: 10px;
+    background: #e9dbc1;
+    position: relative;
+   
+}
+
+.mission p {
+    max-width: 80%;
+    margin: 0;
+    color: black;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    text-align: justify; 
+    margin-left: 15px;
+}
+
+.exampleWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.mission h1 {
+    max-width: 80%;
+    margin-left: 15px;
+}
+
+.carousel {
+    max-width: 35%;
+}
+
+.greenLine {
+    background: #037144;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.container {
+    width: 150px;
+    height: 150px;
+    background-image: url("https://framerusercontent.com/images/M4SNURkNYCDjIiopKdiL689jOQ.svg");
+    border-radius: 30px;
+}
+
+.carouselFadeIn {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+@media (max-width: 767px) {
+
+
+
+    .carouselFadeIn {
+        display: block;
+    }
+
+    .heroImage {
+        height: 80vh;
+    }
+  
+    .mission {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+     
+        
+    }
+  
+    .mission p {
+        max-width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+
+    }
+  
+    .exampleWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    }
+  
+    .carousel {
+        max-width: 100%;
+       
+    }
+  
+    .greenLine {
+        font-size: 20px;
+        height: 60px;
+    }
+    .carouselFadeIn {
+        max-width: 100%;
+        display: block;
+    }
+
+    
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+
+    .carouselFadeIn {
+        display: block;
+        
+    }
+
+    .heroImage {
+        height: 70vh;
+    }
+  
+    .mission {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+    }
+  
+    .mission p {
+        max-width: 70%;
+    }
+  
+    .exampleWrapper {
+        width: 80%;
+    }
+  
+    .carousel {
+        max-width: 60%;
+    }
+  
+    .greenLine {
+        font-size: 24px;
+        height: 80px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .heroImage {
+        height: 80vh;
+    }
+
+  
+
+    .exampleWrapper {
+        width: 70%;
+    }
+
+    .greenLine {
+        font-size: 26px;
+        height: 90px;
+    }
+}
+
+
+.image1 {
+    max-width: 350px;
+    border-radius: 20px;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 767px) {
+    .image1 {
+        max-width: 100%; /* Занимает всю ширину контейнера */
+        border-radius: 10px; /* Меньший радиус скругления */
+    }
+}
+
+/* Для планшетов */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .image1 {
+        max-width: 250px; /* Уменьшение максимальной ширины */
+        border-radius: 15px; /* Умеренный радиус скругления */
+    }
+}
+
+/* Для больших экранов */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .image1 {
+        max-width: 300px; /* Увеличение максимальной ширины */
+        border-radius: 20px; /* Стандартный радиус скругления */
+    }
+}
+
+/* Для очень больших экранов */
+@media (min-width: 1281px) {
+    .image1 {
+        max-width: 550px; /* Оставляем стандартное значение */
+        border-radius: 20px; /* Стандартный радиус скругления */
+    }
+}

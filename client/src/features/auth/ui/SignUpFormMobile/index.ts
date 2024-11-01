@@ -1,0 +1,1 @@
+export { SignUpFormMobile } from './SignUpForm';

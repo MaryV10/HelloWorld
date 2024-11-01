@@ -1,0 +1,64 @@
+.container {
+    margin: 0;
+    height: 400px;
+    width: 100px;
+    color: white;
+    line-height: 270px;
+    text-align: center;
+    background: rgb(0, 0, 0);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  
+  
+  .roundedCarousel {
+    border-radius: 20px; 
+    overflow: hidden;
+    height: 270px;
+  }
+
+
+@media (max-width: 767px) {
+    .container {
+        height: 250px; 
+        line-height: 200px; 
+    }
+
+    .roundedCarousel {
+        height: 200px; 
+    }
+}
+
+
+.carouselContainer {
+
+    justify-content: center;
+    max-width: 1400px;
+    align-items: center;
+    margin: 0 auto;
+    
+    
+  }
+  
+  .carouselSlide {
+    display: flex !important;
+    justify-content: flex-start;
+  }
+  
+  .carouselItem {
+    background: white;
+    
+    margin: 10px;
+    border-radius: 10px;
+    color: black;
+  
+    width: 400px;
+
+  }
+
+
+  

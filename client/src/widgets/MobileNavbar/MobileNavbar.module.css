@@ -1,0 +1,128 @@
+.iconButton {
+    padding-right: 0;
+    margin: 0;
+  }
+  
+  .menuIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  .bar {
+    width: 30px;
+    height: 4px;
+    background-color: #141213;
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px; 
+  }
+  
+  .open .bar:first-child {
+    transform: rotate(45deg) translate(2px, 2px);
+  }
+  
+  .open .bar:last-child {
+    transform: rotate(-45deg) translate(4px, -3px);
+  }
+  
+
+  /* @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  } */
+  
+  .shimmerButton {
+    background: linear-gradient(270deg, #007247 25%, #005f3f 50%, #007247 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  .appBar {
+  background: none;
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.customButton {
+  background: transparent;
+  padding: 0;
+}
+
+.menuIcon {
+  /* ваши стили для иконки меню */
+}
+
+.open {
+  /* стили при открытом меню */
+}
+
+.bar {
+  /* стили для полосок в меню */
+}
+
+.authButton {
+  background-color: #151213;
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: none;
+  font-family: 'Unbounded';
+}
+
+.avatar {
+  border: 3px solid #017247;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.shimmerButton {
+  background-color: #007247;
+  color: white;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: none;
+  font-family: 'Unbounded';
+}
+
+.mapButton, .homeButton, .logoutButton {
+  background-color: #007247;
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: none;
+  font-family: 'Unbounded';
+}
+
+.logoutButton {
+  background-color: #151213;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 3px solid #017247;
+  border-radius: 50%;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #017247, 0 0 10px #017247, 0 0 15px #017247, 0 0 20px rgba(1, 114, 71, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px #017247, 0 0 20px #017247, 0 0 30px #017247, 0 0 40px rgba(1, 114, 71, 0.8);
+  }
+}

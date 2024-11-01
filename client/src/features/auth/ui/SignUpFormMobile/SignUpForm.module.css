@@ -1,0 +1,23 @@
+.signUpForm {
+    /* width: 500px; */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 20px;
+    border-radius: 12px;
+
+  }
+
+  label {
+    display: flex;
+    gap: 20px;  
+    justify-content: space-between;
+    align-items: center;
+  }
+  .signUp {
+    padding-left: 20px;
+    padding-right: 20px;
+  }

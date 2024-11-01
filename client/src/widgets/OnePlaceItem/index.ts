@@ -1,0 +1,1 @@
+export {OnePlaceItem} from './OnePlaceItem';

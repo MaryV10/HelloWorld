@@ -1,0 +1,25 @@
+
+.button {
+  height: 50px;
+  margin: 100px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+
+.button:hover {
+    transform: scale(1.1);
+  cursor: pointer;
+}
+
+.buttonsContainer {
+margin: 0 auto;
+margin-top: 2rem;
+width: 50%;
+display: flex;
+justify-content: space-around;
+
+width: 180px;
+padding: 5px;
+border-radius: 20px; 
+}

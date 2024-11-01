@@ -1,0 +1,35 @@
+.modal {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.411);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 1;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+   background-color: #9d9d9d; 
+  /* backdrop-filter: blur(40px);
+  border: 3px solid #000000; */
+  font-size: 14px;
+  font-weight: 600;
+   z-index: 2; 
+}
