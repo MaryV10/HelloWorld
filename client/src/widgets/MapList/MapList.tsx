@@ -6,7 +6,6 @@ import styles from "./MapList.module.css";
 import ModalWindow from "@/shared/ui/Modal/Modal";
 import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 import { addPlace, getApprovedPlaces } from "@/entities/place/api/placeThunks";
-
 import Sidebar from "../Sidebar/Sidebar";
 import { TagSelector } from "../TagSelector";
 import { getAllTags } from "@/entities/tag/api/tagThunks";
@@ -41,6 +40,9 @@ function MapList() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const [file, setFile] = useState<File | null>(null);
+  const [pressTimeStart, setPressTimeStart] = useState(0);
+
+
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const places = useAppSelector((state) => state.place.approvedPlaces);
@@ -69,7 +71,11 @@ function MapList() {
 
   const handleMouseDown = (e: YMapsMouseEvent) => {
     const originalEvent = e.get("domEvent").originalEvent;
-
+    setPressTimeStart(Date.now()); // Запоминаем время нажатия
+    // console.log(e);
+    // console.log(originalEvent);
+    
+    
     if (originalEvent.button === 2) {
       originalEvent.preventDefault();
 
@@ -79,20 +85,37 @@ function MapList() {
         setCoords(coordinates);
         setModalActive(true);
       }, 1000);
+
+
     }
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e: YMapsMouseEvent) => {
+    const touchEndTime = Date.now(); // Запоминаем время окончания нажатия
+    const duration = touchEndTime - pressTimeStart; // Вычисляем длительность нажатия
+    setPressTimeStart(0);
+    
     if (timerRef.current) {
       clearTimeout(timerRef.current);
 
       timerRef.current = null;
     }
 
+    if(isMobile && duration > 1000) {
+      const coordinates = e.get("coords") as unknown as [number, number];
+      setCoords(coordinates);
+      setModalActive(true);
+
+    }
+
     if (isLongTouch) {
       setIsLongTouch(false);
     }
   };
+
+
+
+  
 
   const onSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -127,6 +150,8 @@ function MapList() {
         setCoords(null);
         setSelectedTags([]);
         setModalActive(false);
+        notification.info(     {message: 'Внимание!',  
+          description: 'Новая локация будет добавлена на карту после проверки модераторами платформы.'} )
       } catch (error) {
         console.error("Ошибка при добавлении места или фото:", error);
       }
@@ -182,10 +207,11 @@ function MapList() {
       <div className={styles.navbar}></div>
 
       <div className={styles.mapContainer} style={{ height: "100%" }}>
-        <Map
+        <Map 
           defaultState={{ center: [59.95, 30.3], zoom: 9 }}
           width={"100%"}
           style={{ height: "calc(100vh)", marginTop: "" }}
+          
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
         >
@@ -212,7 +238,7 @@ function MapList() {
         >
           {modalActive && (
             <form
-              style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+              style={{ display: "flex", flexDirection: "column", gap: "20px", width: "70vw" }}
               onSubmit={onSubmitHandler}
             >
               <div>
@@ -232,11 +258,13 @@ function MapList() {
                 placeholder="Фото"
               /> */}
               <Upload
+              maxCount={1}
+              style={{width: '100px'}}
                 onChange={handleFileChange}
                 listType="picture"
                 beforeUpload={() => false}
               >
-                <UploadButton icon={<CloudUploadOutlined />}>
+                <UploadButton icon={<CloudUploadOutlined />}  style={{ borderRadius: '10px' }}>
                   Нажмите для згрузки
                 </UploadButton>
               </Upload>
