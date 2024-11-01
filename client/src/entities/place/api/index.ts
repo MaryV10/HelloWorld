@@ -39,7 +39,6 @@ export class PlaceService {
   static async getAllPendingPlaces(): Promise<PlaceList> {
     try {
       const { data } = await axiosInstance.get(`/places/pending`);
-      console.log(data.places, "-------------");
       return data.places;
     } catch (error) {
       console.error("Error fetching all places:", error);

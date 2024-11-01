@@ -1,8 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-
-
-
 import { FeedbackService } from ".";
 import { Place } from "@/entities/place";
 
