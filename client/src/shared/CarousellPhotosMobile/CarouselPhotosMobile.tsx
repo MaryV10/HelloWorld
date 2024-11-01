@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'antd';
 import styles from './CarouselPhotosMobile.module.css';
 
-const CarouselPhotosMobile: React.FC<{ children: React.ReactNode[] }> = ( {children}) => {
+const CarouselPhotosMobile: React.FC<{ children: React.ReactNode }> = ( {children}) => {
 
 
   return (
