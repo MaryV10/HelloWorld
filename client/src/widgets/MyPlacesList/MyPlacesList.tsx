@@ -14,9 +14,9 @@ export const MyPlacesList: React.FC = () => {
   const dispatch=useAppDispatch()
  
 
-  useEffect(() => {
-    dispatch(getMyPlaces())
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getMyPlaces())
+  // }, [dispatch]);
 
   const renderContent = () => {
     if (isMobile) {

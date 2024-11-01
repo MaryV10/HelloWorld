@@ -91,10 +91,5 @@ width: 100%;
   object-fit: cover;
   
 }
-.image:hover {
-  /* object-fit: cover;  */
-  /* overflow: hidden; */
-  transform: scale(1.2);
-  cursor: pointer;
-}
+
 
