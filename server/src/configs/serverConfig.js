@@ -23,6 +23,7 @@ const configureApp = () => {
     '/images',
     express.static(path.join(__dirname, '../..', 'public', 'images'))
   );
+  app.use(express.static(path.join(__dirname, '../..', 'public', 'dist')));
 
   return app;
 };
