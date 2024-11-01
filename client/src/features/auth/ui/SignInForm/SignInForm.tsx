@@ -14,8 +14,7 @@ interface SignInFormProps {
 
 export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
   const [inputs, setInputs] = useState({ email: "", password: "" });
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showError, setShowError] = useState(false);
+
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -33,7 +32,7 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
         notification.error(     {message: 'Ошибка',  
           description: 'Введите email и пароль'} )
           return
-        // alert ("Все поля обязательны к заполнению")
+
       }
       const resultAction = await dispatch(signIn({ email, password }));
       unwrapResult(resultAction);
@@ -63,11 +62,6 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
           onChange={changeInputsHandler}
         />
       </label>
-      {showError && (
-        <div style={{ border: "3px solid red", padding: "10px" }}>
-          {errorMessage}
-        </div>
-      )}
       <label>
         Пароль:
         <input

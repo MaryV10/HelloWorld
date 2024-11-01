@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carousel } from 'antd';
 import styles from "./Carousel.module.css";
-import image1 from "@/assets/common.jpg"
-import image2 from "@/assets/comonphoto2.jpg"
+import image1 from "@/assets/common.jpg";
+import video2 from "@/assets/6026167_Person_People_3840x2160 (1).mp4"
 
  const CarouselComponent: React.FC = () => {
     const contentStyle: React.CSSProperties = {
@@ -17,12 +17,12 @@ import image2 from "@/assets/comonphoto2.jpg"
 
   return (
     <div className={styles.desctop}>
-    <Carousel arrows autoplay className={styles.roundedCarousel} draggable  infinite>
+    <Carousel arrows autoplay  className={styles.roundedCarousel} draggable  infinite>
       <div>
         <img style={contentStyle} className={styles.container} src={image1} alt="" />
       </div>
-      <div>
-        <img style={contentStyle} className={styles.container} src={image2} alt="" />
+      <div >
+        <video style={contentStyle} className={styles.container}  loop muted src={video2}></video>
       </div>
     
     </Carousel>

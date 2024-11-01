@@ -78,6 +78,9 @@
     }
 }
 @media (max-width: 767px) {
+
+
+
     .carouselFadeIn {
         display: block;
     }
@@ -133,6 +136,8 @@
 
 
 @media (min-width: 768px) and (max-width: 1024px) {
+    
+
     .carouselFadeIn {
         display: block;
         
@@ -180,5 +185,43 @@
     .greenLine {
         font-size: 26px;
         height: 90px;
+    }
+}
+
+
+.image1 {
+    max-width: 350px;
+    border-radius: 20px;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 767px) {
+    .image1 {
+        max-width: 100%; /* Занимает всю ширину контейнера */
+        border-radius: 10px; /* Меньший радиус скругления */
+    }
+}
+
+/* Для планшетов */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .image1 {
+        max-width: 250px; /* Уменьшение максимальной ширины */
+        border-radius: 15px; /* Умеренный радиус скругления */
+    }
+}
+
+/* Для больших экранов */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .image1 {
+        max-width: 300px; /* Увеличение максимальной ширины */
+        border-radius: 20px; /* Стандартный радиус скругления */
+    }
+}
+
+/* Для очень больших экранов */
+@media (min-width: 1281px) {
+    .image1 {
+        max-width: 550px; /* Оставляем стандартное значение */
+        border-radius: 20px; /* Стандартный радиус скругления */
     }
 }

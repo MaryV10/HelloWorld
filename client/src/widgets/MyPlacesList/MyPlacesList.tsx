@@ -1,15 +1,22 @@
-import React from "react";
-import { useAppSelector } from "@/shared/hooks/reduxHooks";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/shared/hooks/reduxHooks";
 
 import { MyPlaceItem } from "@/entities/place/ui/MyPlaceItem";
 import CarouselShared from "@/shared/CarouselShared/CarouselShared";
 import { isMobile } from "react-device-detect";
 
 import CarouselSharedMobile from "@/shared/CarouselSharedMobileLK/CarouselSharedMobile";
+import { getMyPlaces } from "@/entities/place/api/placeThunks";
 
 export const MyPlacesList: React.FC = () => {
   const { places } = useAppSelector((state) => state.place);
   const { user } = useAppSelector((state) => state.user);
+  const dispatch=useAppDispatch()
+ 
+
+  // useEffect(() => {
+  //   dispatch(getMyPlaces())
+  // }, [dispatch]);
 
   const renderContent = () => {
     if (isMobile) {
@@ -54,7 +61,7 @@ export const MyPlacesList: React.FC = () => {
   };
 
   if (!places || places.length === 0) {
-    return <p>Загрузка...</p>;
+    return <p> </p>;
   }
 
   return <>{renderContent()}</>;

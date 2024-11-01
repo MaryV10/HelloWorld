@@ -215,6 +215,7 @@ const placeSlice = createSlice({
         message.error(state.error);
       })
       .addCase(addPhoto.fulfilled, (state, action) => {
+
         state.loading = false;
         state.error = null;
         state.approvedPlaces = state.approvedPlaces.map((place) =>

@@ -1,15 +1,18 @@
 import React, { Suspense } from "react";
 import background from "@/assets/05.jpg";
 import styles from "./HomePage.module.css";
+import image1 from "@/assets/common.jpg";
 
 import {isMobile} from 'react-device-detect';
 
 import Example from "@/shared/CarouselMain/CarouselMain";
 import Loader from "@/shared/Loader/Loader";
 const LazyTaskForm = React.lazy(() => import('@/shared/CarouselMainPage/CarouselMainPage'));
-const LazyCarouselComponent = React.lazy(() => import('@/shared/Carousel/Carousel'));
+
 export const HomePage: React.FC = () => {
 
+
+  
   const renderContent = () => {
     if (isMobile) {
 
@@ -43,7 +46,7 @@ export const HomePage: React.FC = () => {
       
         <Suspense fallback={<Loader />}>
           <div className={styles.carouselFadeIn}>
-            <LazyCarouselComponent />
+          <img className={styles.image1} src={image1} alt="" />
           </div>
           </Suspense>
       </div>

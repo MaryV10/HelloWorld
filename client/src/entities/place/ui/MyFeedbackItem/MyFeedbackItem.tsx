@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import styles from "./MyFeedbackItem.module.css"; 
 import { Modal } from "antd";
 import {isMobile} from 'react-device-detect';
-import { notification } from 'antd';
+
 
 interface MyFeedbackItemProps {
   place?: Place;
@@ -49,13 +49,7 @@ export const MyFeedbackItem: React.FC<MyFeedbackItemProps> = ({
 
   const handlerUpdateFeedback = async (e: React.FormEvent) => {
     e.preventDefault();
-    // if (comment.trim()==='') {  
-    //   notification.error({  
-    //     message: 'Ошибка',  
-    //     description: 'Пожалуйста, заполните все поля.',  
-    //   });  
-    //   return;  
-    // } 
+
     if (user?.id && place) {
       await dispatch(updateFeedback({ id: feedback.id, comment, score, placeId: place.id }));
       await dispatch(getApprovedPlaces());
