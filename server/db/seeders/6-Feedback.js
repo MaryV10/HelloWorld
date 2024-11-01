@@ -10,7 +10,7 @@ module.exports = {
         {
           placeId: 1,
           userId: 1,
-          score: 10,
+          score: 5,
           comment: "Великолепно! Очень понравился маяк. Восхитительный вид",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -18,7 +18,7 @@ module.exports = {
         {
           placeId: 2,
           userId: 1,
-          score: 9,
+          score: 5,
           comment: "Круто",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -34,7 +34,7 @@ module.exports = {
         {
           placeId: 2,
           userId: 1,
-          score: 10,
+          score: 5,
           comment: "мне понравился отдых! теперь хочу себе купить мотик",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -42,7 +42,7 @@ module.exports = {
         {
           placeId: 3,
           userId: 2,
-          score: 10,
+          score: 5,
           comment: "Я как будто бы побывал на Мальдивах, кайф!",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -58,7 +58,7 @@ module.exports = {
         {
           placeId: 4,
           userId: 2,
-          score: 10,
+          score: 5,
           comment: "Место силы! Я вернусь сюда вновь",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -66,7 +66,7 @@ module.exports = {
         {
           placeId: 4,
           userId: 1,
-          score: 10,
+          score: 5,
           comment: "Место силы! Я вернусь сюда вновь",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -74,7 +74,7 @@ module.exports = {
         {
           placeId: 5,
           userId: 2,
-          score: 7,
+          score: 4,
           comment: "Я продрог и устал. Не советую тем, кто не любит долго ходить",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -90,7 +90,7 @@ module.exports = {
         {
           placeId: 6,
           userId: 2,
-          score: 9,
+          score: 5,
           comment: "Поймал щуку и карпа",
           createdAt: new Date(),
           updatedAt: new Date(),

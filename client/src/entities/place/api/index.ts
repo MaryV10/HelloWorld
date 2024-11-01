@@ -73,7 +73,7 @@ export class PlaceService {
       }
 
       const placeId = response.data.place.id;
-      await axiosInstance.post(
+    const placesWithPhoto = await axiosInstance.post(
         `/photos/${placeId}`,
 
         formData,
@@ -84,7 +84,7 @@ export class PlaceService {
         }
       );
 
-      return response.data.place;
+      return placesWithPhoto.data.place;
     } catch (error) {
       console.error("Error creating place:", error);
       throw new Error("Failed to create place.");
