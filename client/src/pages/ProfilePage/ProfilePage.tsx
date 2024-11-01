@@ -16,7 +16,7 @@ export const ProfilePage: React.FC = () => {
 
 
   return (
-    <div style={{  padding: '20px', height: '250vh', background:'#f8ebda', display: 'flex', flexDirection: 'column', gap: '20px' }}> 
+    <div style={{  padding: '20px', background:'#f8ebda', display: 'flex', flexDirection: 'column', gap: '20px' }}> 
   
 
       <ProfileForm />

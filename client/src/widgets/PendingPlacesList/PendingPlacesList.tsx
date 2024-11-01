@@ -17,6 +17,7 @@ export const PendingPlacesList: React.FC = () => {
  
   return (
     <>
+    <div style={{display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'center', alignItems: 'center'}}>
       <p
         style={{
           marginTop: "20px",
@@ -42,6 +43,7 @@ export const PendingPlacesList: React.FC = () => {
 
             <PendingPlaceItem key={p.id} place={p} />
           ))}
+      </div>
       </div>
     </>
   );

@@ -35,7 +35,8 @@
 
 
 .carouselContainer {
-
+display: flex;
+flex-direction: column;
     justify-content: center;
     max-width: 1400px;
     align-items: center;
