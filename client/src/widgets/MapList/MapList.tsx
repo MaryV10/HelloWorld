@@ -238,7 +238,7 @@ function MapList() {
         >
           {modalActive && (
             <form
-              style={{ display: "flex", flexDirection: "column", gap: "20px", width: "70vw" }}
+              style={{ display: "flex", flexDirection: "column", gap: "20px", width: "70vw", maxWidth: "500px" }}
               onSubmit={onSubmitHandler}
             >
               <div>
