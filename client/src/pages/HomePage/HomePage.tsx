@@ -8,6 +8,7 @@ import {isMobile} from 'react-device-detect';
 import Example from "@/shared/CarouselMain/CarouselMain";
 import Loader from "@/shared/Loader/Loader";
 const LazyTaskForm = React.lazy(() => import('@/shared/CarouselMainPage/CarouselMainPage'));
+
 export const HomePage: React.FC = () => {
 
 

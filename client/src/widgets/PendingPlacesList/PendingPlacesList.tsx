@@ -28,7 +28,7 @@ export const PendingPlacesList: React.FC = () => {
       style={{
         marginTop: "10px",
         padding: "20px",
-       
+       justifyContent: 'center',
         background: "grey",
        display: "flex",
 

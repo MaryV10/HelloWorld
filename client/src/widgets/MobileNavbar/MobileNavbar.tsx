@@ -9,7 +9,7 @@ import {
   Button,
   Avatar,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MapIcon from '@mui/icons-material/Map';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import HomeIcon from '@mui/icons-material/Home';
@@ -20,15 +20,19 @@ import PersonIcon from '@mui/icons-material/Person';
 import styles from './MobileNavbar.module.css';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/reduxHooks';
 import { logout } from '@/entities/user';
+import { ROUTES } from '@/app/router/routes';
 
 const MobileMenu = () => {
   const [open, setOpen] = React.useState(false);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector(state => state.user);
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     dispatch(logout());
     toggleDrawer();
+    navigate(ROUTES.HOME)
+
   };
 
   const toggleDrawer = () => {

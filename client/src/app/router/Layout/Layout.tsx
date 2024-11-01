@@ -13,12 +13,13 @@ const Layout: React.FC = () => {
 const dispatch = useAppDispatch();
 const user= useAppSelector((state) => state.user.user);
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         await dispatch(refreshAccessToken()).unwrap();
         if(user?.id) {
-        await dispatch(getMyPlaces()).unwrap()
+        await dispatch(getMyPlaces())
       }
       } catch (error) {
         console.error('Error fetching data:', error);

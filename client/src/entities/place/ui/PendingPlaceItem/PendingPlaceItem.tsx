@@ -33,7 +33,7 @@ export const PendingPlaceItem: React.FC<Props> = ({ place }) => {
         justifyContent: "space-between",
         width: "400px",
         background: "white",
-        padding: "10px",
+        padding: "20px",
         gap: "10px",
         borderRadius: "15px",
       }}
@@ -41,7 +41,7 @@ export const PendingPlaceItem: React.FC<Props> = ({ place }) => {
       <div>
         <h2 className={styles.title}>{place.title}</h2>
         <p className={styles.description}>{place.description}</p>
-        {place.Photos.map((photo, index) => (
+        {/* {place.Photos.map((photo, index) => (
           <img
             style={{
               height: "20vh",
@@ -53,7 +53,10 @@ export const PendingPlaceItem: React.FC<Props> = ({ place }) => {
             src={`${window.location.origin}/images/${photo.imageUrl}`}
             alt={`Photo ${index + 1}`}
           />
-        ))}
+        ))} */}
+        <div> 
+        <img className={styles.img}src={`${window.location.origin}/images/${place.Photos[0]?.imageUrl}`}/>
+        </div>
         <div>
        {place.tags.map((tag) => (  
     <p key={tag.id} style={{ display:"inline-block", marginTop: "15px", backgroundColor: tag.color, color: '#ffffff', padding: '2px 5px', borderRadius: '3px', marginRight: '5px' }}>  
