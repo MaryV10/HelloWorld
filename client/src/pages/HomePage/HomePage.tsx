@@ -7,7 +7,8 @@ import {isMobile} from 'react-device-detect';
 
 import Example from "@/shared/CarouselMain/CarouselMain";
 import Loader from "@/shared/Loader/Loader";
-const LazyTaskForm = React.lazy(() => import('@/shared/CarouselMainPage/CarouselMainPage'));
+import CarouselMainPage2 from "@/shared/CarouselMainPage2/CarouselMainPage2";
+
 
 export const HomePage: React.FC = () => {
 
@@ -16,9 +17,7 @@ export const HomePage: React.FC = () => {
   const renderContent = () => {
     if (isMobile) {
 
-      return <Suspense fallback={<Loader />}>
-   <div style={{marginTop: "5vh"}}><LazyTaskForm /></div>
-    </Suspense>  ;
+return <CarouselMainPage2 />
     }
     return <div><Example /></div>;
   };
