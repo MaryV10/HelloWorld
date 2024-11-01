@@ -72,7 +72,7 @@ const placeSlice = createSlice({
       .addCase(getApprovedPlaces.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.approvedPlaces = action.payload
+        state.approvedPlaces = action.payload;
       })
       // =================================================================================
       .addCase(getMyPlaces.pending, (state) => {
@@ -117,9 +117,8 @@ const placeSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.places.push(action.payload);
-        state.place = action.payload
+        state.place = action.payload;
         state.pendingPlaces.push(action.payload);
-
       })
       // =================================================================================
       .addCase(approvePlace.pending, (state) => {
@@ -131,7 +130,6 @@ const placeSlice = createSlice({
         message.error(state.error);
       })
       .addCase(approvePlace.fulfilled, (state, action) => {
-        
         state.loading = false;
         state.error = null;
         state.place = action.payload;
@@ -139,7 +137,7 @@ const placeSlice = createSlice({
           if (place.id === action.payload.id) {
             return action.payload;
           }
-          
+
           return place;
         });
         state.pendingPlaces = state.pendingPlaces.filter(
@@ -170,10 +168,6 @@ const placeSlice = createSlice({
         );
       })
 
-        // =================================COPY==========================================
-
-
-      // =================================================================================
       .addCase(removePlace.pending, (state) => {
         state.loading = true;
       })
@@ -195,7 +189,7 @@ const placeSlice = createSlice({
           (place) => place.id !== action.payload
         );
       })
-     // =================================================================================
+      // =================================================================================
       .addCase(updatePlace.pending, (state) => {
         state.loading = true;
       })
@@ -232,10 +226,8 @@ const placeSlice = createSlice({
           place.id === action.payload.id ? action.payload : place
         );
         state.places = state.places.map((place) =>
-
           place.id === action.payload.id ? action.payload : place
         );
-   
       })
       // =================================================================================
       .addCase(removePhoto.pending, (state) => {
@@ -265,7 +257,7 @@ const placeSlice = createSlice({
       .addCase(addFeedback.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.approvedPlaces= state.approvedPlaces.map((place) =>
+        state.approvedPlaces = state.approvedPlaces.map((place) =>
           place.id === action.payload.id ? action.payload : place
         );
       })
@@ -286,7 +278,7 @@ const placeSlice = createSlice({
         );
       })
 
-     // =================================================================================
+      // =================================================================================
       .addCase(updateFeedback.pending, (state) => {
         state.loading = true;
       })
