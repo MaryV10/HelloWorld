@@ -108,7 +108,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
 
             <input
               type="text"
-              placeholder="Никнейм"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
@@ -118,7 +117,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
 
             <input
               type="text"
-              placeholder="Имя"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -128,7 +126,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
 
             <input
               type="text"
-              placeholder="Фамилия"
               value={secondName}
               onChange={(e) => setSecondName(e.target.value)}
             />
@@ -138,7 +135,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
 
             <input
               type="Email"
-              placeholder="email"
               value={email}
               onChange={(e) => setEmail(e.target.value.trim())}
             />
@@ -148,7 +144,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
 
             <input
               type="password"
-              placeholder="Пароль"
               value={password}
               onChange={(e) => setPassword(e.target.value.trim())}
             />
@@ -158,7 +153,6 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onToggle }) => {
 
             <input
               type="password"
-              placeholder="Повторите пароль"
               value={rpassword}
               onChange={(e) => setRPassword(e.target.value.trim())}
             />

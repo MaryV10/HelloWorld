@@ -265,7 +265,7 @@ function MapList() {
                 beforeUpload={() => false}
               >
                 <UploadButton icon={<CloudUploadOutlined />}  style={{ borderRadius: '10px' }}>
-                  Нажмите для згрузки
+                  Нажмите для загрузки
                 </UploadButton>
               </Upload>
               <textarea

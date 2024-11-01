@@ -55,7 +55,6 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
         Email:
         <input
           type="email"
-          placeholder="Email"
           required
           value={inputs.email}
           name="email"
@@ -66,7 +65,6 @@ export const SignInForm: React.FC<SignInFormProps> = ({onToggle1}) => {
         Пароль:
         <input
           type="password"
-          placeholder="Пароль"
           required
           name="password"
           value={inputs.password}

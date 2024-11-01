@@ -57,7 +57,6 @@ export const SignInFormMobile: React.FC<SignInFormProps> = ({onToggle1}) => {
         Email:
         <input
           type="email"
-          placeholder="Email"
           required
           value={inputs.email}
           name="email"
@@ -73,7 +72,6 @@ export const SignInFormMobile: React.FC<SignInFormProps> = ({onToggle1}) => {
         Password:
         <input
           type="password"
-          placeholder="Password"
           required
           name="password"
           value={inputs.password}
